@@ -51,7 +51,7 @@ class CadastroEvento:
             print("A data do evento não pode ser anterior a data atual.")
 
     @local.setter
-    def data(self):
+    def local(self):
         local_evento = str(input("Local do evento: "))
         self._local = local_evento
         
@@ -76,5 +76,5 @@ class CadastroEvento:
         print(f"Nome: {self.nome}\nData: {self.data}\nLocal: {self.local}\nCapacidade: {self.capacidade_max}\nPreço: R$ {self.preco}")
 
 
-mini_curso = CadastroEvento("Mini curso Python", 20/9/2025,"Recife",0,"Tech", 0)
-mini_curso.status()
+#mini_curso = CadastroEvento("Mini curso Python", 20/9/2025,"Recife",0,"Tech", 0)
+#mini_curso.status()
