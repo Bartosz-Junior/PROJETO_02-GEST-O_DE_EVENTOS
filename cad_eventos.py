@@ -32,10 +32,18 @@ class CadastroEvento:
     @property
     def preco(self):
         return self._preco_ingresso
+
+    @capacidade_max.setter
+    def capacidade_max(self, capacidade):
+        if capacidade > 0:
+            self._capacidade_max = capacidade
+        else:
+            print("O evento não pode ter capacidade menor de que zero(0)!")
     
     def status(self):
         print(f"Nome: {self._nome}\nData: {self._data_evento}\nLocal: {self._local}\nCapacidade: {self._capacidade_max}\nPreço: R$ {self._preco_ingresso}")
 
 
 mini_curso = CadastroEvento("Mini curso Python", "20/09/2025", "Recife", 50, "Tech", 0)
+mini_curso.capacidade_max = -1
 mini_curso.status()
