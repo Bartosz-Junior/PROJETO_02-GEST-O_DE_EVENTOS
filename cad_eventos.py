@@ -1,13 +1,15 @@
 import datetime
 
-class CadastroEvento:
-    def __init__(self, nome, data_evento, local, capacidade_max, categoria, preco_ingresso):
+class Evento:
+    def __init__(self, nome = None, data_evento = None, local = None, capacidade_max = None, 
+                 categoria = None, preco_ingresso = None):
         self._nome = nome
         self._data_evento = data_evento
         self._local  = local
         self._capacidade_max = capacidade_max
         self._categoria = categoria
         self._preco_ingresso = preco_ingresso
+        self.eventos = []
     
     @property
     def nome(self):
@@ -75,6 +77,38 @@ class CadastroEvento:
     def status(self):
         print(f"Nome: {self.nome}\nData: {self.data}\nLocal: {self.local}\nCapacidade: {self.capacidade_max}\nPreço: R$ {self.preco}")
 
+    def add_evento(self):
+        pass
+
+    def listar_eventos(self):
+        for evento in self.eventos:
+            print(evento)
 
 #mini_curso = CadastroEvento("Mini curso Python", 20/9/2025,"Recife",0,"Tech", 0)
 #mini_curso.status()
+
+class Workshop(Evento):
+    def __init__(self, nome, data_evento, local, capacidade_max, categoria, preco_ingresso):
+        super().__init__(nome, data_evento, local, capacidade_max, categoria, preco_ingresso)
+        self.workshop = []
+
+    def add_evento(self, Workshop):
+        self.workshop.append(Workshop)
+
+    def listar_eventos(self):
+        for workshop in self.workshop:
+            print(workshop)
+
+class Palestra(Evento):
+    def __init__(self, nome, data_evento, local, capacidade_max, categoria, preco_ingresso):
+        super().__init__(nome, data_evento, local, capacidade_max, categoria, preco_ingresso)
+        self.palestra = []
+
+    def add_evento(self, Palestra):
+        self.palestra.append(Palestra)
+
+    def listar_eventos(self):
+        for palestra in self.palestra:
+            print(palestra)
+
+    
