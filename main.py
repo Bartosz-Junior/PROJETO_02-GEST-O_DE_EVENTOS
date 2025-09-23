@@ -1,10 +1,11 @@
-import cad_eventos
-eventos_cadastrados = []
+import cad_eventos as evento
 
-meu_evento = cad_eventos.CadastroEvento(str(input("Nome do evento: ")), str(input("Data do evento: ")), 
-                                        str(input("Local do eventO: ")), int(input("Capacidade máxima: ")), str(input("Categoria do evento: ")),
-                                        float(input("Preço do ingresso: ")))
 
-eventos_cadastrados.append({meu_evento})
-meu_evento.status()
-print(eventos_cadastrados)
+#minha_palestra = evento.Palestra("Python", "25/09/2025", "Recife", 150, "Tech", 35)
+#print(minha_palestra.status())
+#minha_palestra.add_evento()
+#minha_palestra.listar_eventos()
+
+palestra_2 = evento.Palestra("Python", "25/09/2025", "Recife", 150, "Tech", 35)
+#palestra_2.add_evento()
+palestra_2.listar_eventos()

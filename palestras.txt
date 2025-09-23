@@ -1,0 +1,2 @@
+{'Palestra: ': 'Python para leigos', 'Data: ': '20/10/2025', 'Local ': 'UFPE - Cecine', 'Capacidade: ': 50, 'Categoria: ': 'Tech', 'Pre�o ingresso: ': 0.0}
+{'Palestra: ': 'Java para leigos', 'Data: ': '25/11', 'Local ': 'RioMar shopping', 'Capacidade: ': 1000, 'Categoria: ': 'Tech', 'Pre�o ingresso: ': 120.0}

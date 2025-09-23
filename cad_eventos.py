@@ -9,7 +9,6 @@ class Evento:
         self._capacidade_max = capacidade_max
         self._categoria = categoria
         self._preco_ingresso = preco_ingresso
-        self.eventos = []
     
     @property
     def nome(self):
@@ -104,11 +103,22 @@ class Palestra(Evento):
         super().__init__(nome, data_evento, local, capacidade_max, categoria, preco_ingresso)
         self.palestra = []
 
-    def add_evento(self, Palestra):
-        self.palestra.append(Palestra)
+    def add_evento(self):
+        nome = str(input("Nome: "))
+        data_evento = str(input("Data: "))
+        local_evento = str(input("Local: "))
+        capacidade_max = int(input("Número máximo de pessoas: "))
+        categoria = str(input("Categoria [Tech/Marketing]: "))
+        preco_ingresso = float(input("Preço da entrada: "))
+        dados = {"Palestra: " : nome, "Data: " : data_evento, "Local " : local_evento, "Capacidade: " : capacidade_max,
+                 "Categoria: " : categoria, "Preço ingresso: " : preco_ingresso}
+        file = open("palestras.txt", "a")
+        file.write(str(dados))
+        file.close()
 
     def listar_eventos(self):
-        for palestra in self.palestra:
-            print(palestra)
-
+        arquivo = open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/palestras.txt", "r")
+        conteudo = arquivo.readlines()
+        for dados in conteudo:
+            print(dados)
     
