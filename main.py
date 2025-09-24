@@ -1,33 +1,35 @@
 from eventos.palestra import Palestra
 from eventos.workshop import Workshop
+from eventos.workshop import Evento
 
 while True:
     try:
-        print("*" * 35)
-        print("[1] Adicionar PALESTRA")
-        print("[2] Adicionar WORKSHOP")
+        print("_" * 35)
+        print("[1] Adicionar EVENTO")
+        print("[2] Mostrar EVENTOS")
         print("[3] Fazer inscrição")
         print("[4] Cancelar inscrição")
         print("[5] Listar Palestras")
         print("[6] Listar Workshops")
         print("[7] Listar todos os eventos")
         print("[0] Sair")
-        print('*' * 35)
+        print('_' * 35)
 
         # Entrada do usuário para escolha da opção
         escolha = int(input("Escolha uma opção: "))
+        palestra = Palestra()
+        workshop = Workshop()
+        evento = Evento()
 
         match escolha:
             case 1:
-                palestra = Palestra()
-                palestra.add_palestra()
+                evento.add_evento()
 
             case 2:
-                workshop = Workshop()
-                workshop.add_workshop()
+                evento.listar_eventos()
 
             case 3:
-                pass
+                pass                
 
             case 4:
                 pass
@@ -38,8 +40,9 @@ while True:
             case 6:
                 workshop.listar_workshop()
 
-            case _:
-                print("Escolha um número válido")
+            case 0:
+                print("Saindo...")
+                break
 
     except ValueError:
         print("Erro! Digite um número inteiro, ou 0 para sair.\n")

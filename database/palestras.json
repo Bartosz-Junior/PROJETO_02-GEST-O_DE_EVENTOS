@@ -1,2 +1,4 @@
-{'Palestra: ': 'java', 'Data: ': '20/10/2025', 'Local ': 'recife', 'Capacidade: ': 50, 'Categoria: ': 'Tech', 'Preço ingresso: ': 12.5}
-{'Palestra: ': 'Python para leigos', 'Data: ': '12/02/2026', 'Local ': 'UFPE', 'Capacidade: ': 30, 'Categoria: ': 'Tech', 'Preço ingresso: ': 15.0}
+{'Tema: ': 'Teste', 'Data: ': 'Teste', 'Local ': 'teste', 'Capacidade: ': 120, 'Categoria: ': 'Teste', 'Preço ingresso: ': 120.0}
+{'Tema: ': 'Teste_01', 'Data: ': datetime.datetime(2025, 9, 20, 0, 0), 'Local ': 'Recife', 'Capacidade: ': 0, 'Categoria: ': 'Sex', 'Preço ingresso: ': 10.0}
+{'Tema: ': 'Java', 'Data: ': datetime.datetime(2025, 9, 25, 0, 0), 'Local ': 'Recife', 'Capacidade: ': 150, 'Categoria: ': 'Tech', 'Preço ingresso: ': 150.0}
+{'Tema: ': 'Java avançado II', 'Data: ': '30/09/2025', 'Local ': 'Cecine -UFPE', 'Capacidade: ': 30, 'Categoria: ': 'Tech', 'Preço ingresso: ': 150.0}
