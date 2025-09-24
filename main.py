@@ -1,4 +1,5 @@
-import cad_eventos as evento
+from eventos.palestra import Palestra
+from eventos.workshop import Workshop
 
 while True:
     try:
@@ -18,19 +19,27 @@ while True:
 
         match escolha:
             case 1:
-                palestra = evento.Palestra()
+                palestra = Palestra()
                 palestra.add_palestra()
+
             case 2:
-                workshop = evento.Workshop()
+                workshop = Workshop()
                 workshop.add_workshop()
+
             case 3:
                 pass
+
             case 4:
                 pass
+
             case 5:
                 palestra.listar_palestras()
+
             case 6:
                 workshop.listar_workshop()
+
+            case _:
+                print("Escolha um número válido")
 
     except ValueError:
         print("Erro! Digite um número inteiro, ou 0 para sair.\n")

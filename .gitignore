@@ -1,0 +1,10 @@
+# Arquivos do sistema
+__pycache__
+
+# Diretórios de dependências
+Exemple/
+
+# Variáveis de ambiente
+.env
+
+# Arquivos de log e build
