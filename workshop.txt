@@ -1,1 +1,1 @@
-{'Palestra: ': 'Marketing para sexshop', 'Data: ': '30/09/2025', 'Local ': 'UFPE', 'Capacidade: ': 45, 'Categoria: ': 'Markteing', 'Preço ingresso: ': 115.0}
+{'Palestra: ': 'Marketing para sexshop', 'Data: ': '30/09/2025', 'Local ': 'UFPE', 'Capacidade: ': 45, 'Categoria: ': 'Markteing', 'Preï¿½o ingresso: ': 115.0}
