@@ -19,7 +19,7 @@ class Workshop(Evento):
         file.close()
 
     def listar_workshop(self):
-        arquivo = open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/workshop.txt", "r")
+        arquivo = open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/database/wokshop.json", "r")
         conteudo = arquivo.readlines()
         for dados in conteudo:
             print(dados)

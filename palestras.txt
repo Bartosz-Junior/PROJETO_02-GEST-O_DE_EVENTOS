@@ -1,5 +1,0 @@
-{'Palestra: ': 'Java', 'Data: ': '30/09/2025', 'Local ': 'recife', 'Capacidade: ': 50, 'Categoria: ': 'Tech', 'Preço ingresso: ': 10.0}
-{'Palestra: ': 'Python', 'Data: ': '31/10/2025', 'Local ': 'Petrolina', 'Capacidade: ': 123, 'Categoria: ': 'Tech', 'Preço ingresso: ': 120.0}
-{'Palestra: ': 'Python para iniciantes', 'Data: ': '25/10/2025', 'Local ': 'Cecine - UFPE', 'Capacidade: ': 35, 'Categoria: ': 'Tech', 'Preço ingresso: ': 35.0}
-{'Palestra: ': 'Python para iniciantes', 'Data: ': '30/10/2025', 'Local ': 'Recife', 'Capacidade: ': 50, 'Categoria: ': 'Tech', 'Preço ingresso: ': 10.0}
-{'Palestra: ': 'Python para iniciantes', 'Data: ': '31/10/2025', 'Local ': 'recife', 'Capacidade: ': 50, 'Categoria: ': 'tech', 'Preço ingresso: ': 10.0}
