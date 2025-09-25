@@ -1,2 +1,26 @@
-{'Tema: ': 'Teste', 'Data: ': '20.20.20', 'Local ': 'Recife', 'Capacidade: ': 120, 'Categoria: ': 'Tech', 'PreÁo ingresso: ': 120.0}
-{'Tema: ': 'rere', 'Data: ': 'ere', 'Local ': 'rere', 'Capacidade: ': 120, 'Categoria: ': 'erere', 'PreÁo ingresso: ': 10.0}
+[
+    {
+        "Tema": "Python para leigos",
+        "Data": "20/10/2025",
+        "Local": "teste",
+        "Capacidade": 120,
+        "Categoria": "Teste",
+        "Pre√ßo ingresso": 120.0
+    },
+    {
+        "Tema: ": "Aniv. Arthur",
+        "Data: ": "26/11/2025",
+        "Local ": "Recife",
+        "Capacidade: ": 1000,
+        "Categoria: ": "Tech",
+        "Pre√ßo ingresso: ": 0.0
+    },
+    {
+        "Tema: ": "aniv. Junior",
+        "Data: ": "30/10/2025",
+        "Local ": "Recife",
+        "Capacidade: ": 0,
+        "Categoria: ": "Tech",
+        "Pre√ßo ingresso: ": 0.0
+    }
+]

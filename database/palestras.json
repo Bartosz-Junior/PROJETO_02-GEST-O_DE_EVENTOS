@@ -1,4 +1,50 @@
-{'Tema: ': 'Teste', 'Data: ': 'Teste', 'Local ': 'teste', 'Capacidade: ': 120, 'Categoria: ': 'Teste', 'PreÁo ingresso: ': 120.0}
-{'Tema: ': 'Teste_01', 'Data: ': datetime.datetime(2025, 9, 20, 0, 0), 'Local ': 'Recife', 'Capacidade: ': 0, 'Categoria: ': 'Sex', 'PreÁo ingresso: ': 10.0}
-{'Tema: ': 'Java', 'Data: ': datetime.datetime(2025, 9, 25, 0, 0), 'Local ': 'Recife', 'Capacidade: ': 150, 'Categoria: ': 'Tech', 'PreÁo ingresso: ': 150.0}
-{'Tema: ': 'Java avanÁado II', 'Data: ': '30/09/2025', 'Local ': 'Cecine -UFPE', 'Capacidade: ': 30, 'Categoria: ': 'Tech', 'PreÁo ingresso: ': 150.0}
+[
+    {
+        "Tema": "Python para leigos",
+        "Data": "20/10/2025",
+        "Local": "teste",
+        "Capacidade": 120,
+        "Categoria": "Teste",
+        "Pre√ßo ingresso": 120.0
+    },
+    {
+        "Tema": "Python para leigos",
+        "Data": "20/10/2025",
+        "Local": "teste",
+        "Capacidade": 120,
+        "Categoria": "Teste",
+        "Pre√ßo ingresso": 120.0
+    },
+    {
+        "Tema": "Python para leigos",
+        "Data": "20/10/2025",
+        "Local": "teste",
+        "Capacidade": 120,
+        "Categoria": "Teste",
+        "Pre√ßo ingresso": 120.0
+    },
+    {
+        "Tema": "Bartosz",
+        "Data": "29/12/2025",
+        "Local": "recife",
+        "Capacidade": 0,
+        "Categoria": "tech",
+        "Pre√ßo ingresso": 0.0
+    },
+    {
+        "Tema": "aniv camila",
+        "Data": "02/04/2026",
+        "Local": "Recife",
+        "Capacidade": 120,
+        "Categoria": "Tech",
+        "Pre√ßo ingresso": 0.0
+    },
+    {
+        "Tema": "Aniv. Junior",
+        "Data": "30/10/2025",
+        "Local": "Casa Recife",
+        "Capacidade": 120,
+        "Categoria": "Marketing",
+        "Pre√ßo ingresso": 0.0
+    }
+]

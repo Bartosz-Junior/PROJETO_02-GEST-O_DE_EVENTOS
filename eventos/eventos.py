@@ -98,11 +98,14 @@ class Evento:
                 capacidade_max = int(input("Capacidade de pessoas: "))       #ENTRADA DA CAPACIDADE MAX. (INT)
                 categoria = str(input("Categoria [Tech/Marketing]: "))       #ENTRADA DA CATEGORIA DA PALESTRA
                 preco_ingresso = float(input("Preço da entrada: "))          #PREÇO DO INGRESSO
-                dados_palestra = {"Tema: " : nome, "Data: " : data_evento, "Local " : local_evento, "Capacidade: " : capacidade_max,
-                            "Categoria: " : categoria, "Preço ingresso: " : preco_ingresso} #DICIONÁRIO QUE É ARMAZENADO NO .JSON
-                file = open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/database/palestras.json", "a") #MANIPULAÇÃO DO JSON
-                file.write(str(dados_palestra) + "\n")                       #ESCREVE NO JSON O DICIONÁRIO COM AS INFORMAÇÕES DO FORMULÁRIO
-                file.close()                                                 #FECHA O ARQUIVO JSON PARA ECONOMIZAR MEMÓRIA
+                dados_palestra = {"Tema" : nome, "Data" : data_evento, "Local" : local_evento, "Capacidade" : capacidade_max,
+                            "Categoria" : categoria, "Preço ingresso" : preco_ingresso} #DICIONÁRIO QUE É ARMAZENADO NO .JSON
+                with open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/database/palestras.json", "r", encoding= "utf-8") as file:
+                    carrega_palestras = json.load(file)
+                    carrega_palestras.append(dados_palestra)
+                
+                with open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/database/palestras.json", "w", encoding= "utf-8") as file:
+                    json.dump(carrega_palestras, file, indent= 4, ensure_ascii= False)
 
             if escolha == 2:                                                 # SE ESCOLHER 2 ADD WORKSHOP
                 print("__________ Adicionar Workshop __________" )           #IMPRIMI UM CABEÇALHO
@@ -119,14 +122,21 @@ class Evento:
                 capacidade_max = int(input("Capacidade de pessoas: "))       #CAPACIDADE MAX DO EVENTO(INT)
                 categoria = str(input("Categoria [Tech/Marketing]: "))       #CATEGORIA DO EVENTO(str)
                 preco_ingresso = float(input("Preço da entrada: R$ "))       #PREÇO DA ENTRADA DO EVENTO
-                dados_workshop = {"Tema: " : nome, "Data: " : data_evento, "Local " : local_evento, "Capacidade: " : capacidade_max,
-                            "Categoria: " : categoria, "Preço ingresso: " : preco_ingresso}     #DICIONÁRIO COM AS INFORMAÇÕES DO FORMULÁRIO
-                file = open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/database/wokshop.json", "a") #ABRE UM ARQUIVO JSON SE EXISTIR OU CRIA CASO NÃO EXISTA
-                file.write(str(dados_workshop) + "\n")                       #ESCREVE O DICIONÁRIO ANTERIOR NO ARQUIVO JSON
-                file.close()                                                 #FECHA O ARQUIVO JSON PARA ECONOMIZAR MEMÓRIA
-        except ValueError:                                                   #TRATAMENTO DE ERRO
-            print("Opção inválida!")                                         #IMPRIMI MENSAGEM DE VALOR INVÁLIDO NA ENTRADA DAS OPÇOES [1] E [2].
+                dados_workshop = {"Tema" : nome, "Data" : data_evento, "Local" : local_evento, "Capacidade" : capacidade_max,
+                            "Categoria" : categoria, "Preço ingresso" : preco_ingresso}     #DICIONÁRIO COM AS INFORMAÇÕES DO FORMULÁRIO
+                
+                with open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/database/wokshop.json", "r", encoding= "utf-8") as file:
+                    carrega_workshops = json.load(file)
+                    carrega_workshops.append(dados_workshop)
 
+                with open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/database/wokshop.json", "w", encoding= "utf-8") as file:
+                    json.dump(carrega_workshops, file, indent= 4, ensure_ascii= False)
+                    
+                
+        except ValueError:
+            print("Opção inválida!")
+                
+                
     def listar_eventos(self):
         try:
             print("__________ EVENTOS DISPONIVEIS __________" )
@@ -136,14 +146,10 @@ class Evento:
             escolha = int(input())
             if escolha == 1:
                 print("__________ PALESTRAS DISPONIVEIS __________" )
-                file = open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/database/palestras.json")
-                print(file.readlines())
-                file.close()
-        except ValueError:
-            print("Opção inválida!")
+                with open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/database/palestras.json", "r", encoding= "utf-8") as file:
+                    carrega_palestras = json.load(file)
+                    for i,v in enumerate(carrega_palestras):
+                        print(f"{i + 1:5}- Tema: {v["Tema"]:5} Data: {v["Data"]:5} Local: {v["Local"]:5} Capacidade: {v["Capacidade"]:5} Categoria: {v["Categoria"]:5} Preço: R${v["Preço ingresso"]:5.2f}\n")
 
-"""file = open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/database/palestras.json")
-                lista_palestras = [dict(file.readline())]
-                print(lista_palestras)
-                for indice, palestra in lista_palestras:
-                    print(f"{indice} - Nome: {palestra[indice]["Tema"]}")"""
+        except ValueError:
+            print("Opção inválida!")        

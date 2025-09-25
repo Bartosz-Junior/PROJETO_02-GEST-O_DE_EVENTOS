@@ -8,9 +8,4 @@ class Palestra(Evento):
         return super().add_evento()
 
     def listar_palestras(self):
-        arquivo = open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/database/palestras.json", "r")
-        conteudo = arquivo.readlines()
-        for dados in conteudo:
-            print(dados)
-            print("\n")
-        arquivo.close()
+        pass

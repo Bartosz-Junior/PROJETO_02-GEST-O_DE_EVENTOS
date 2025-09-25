@@ -1,6 +1,7 @@
 from eventos.palestra import Palestra
 from eventos.workshop import Workshop
 from eventos.workshop import Evento
+import os
 
 while True:
     try:
@@ -24,10 +25,10 @@ while True:
         match escolha:
             case 1:
                 evento.add_evento()
-
+                
             case 2:
                 evento.listar_eventos()
-
+                
             case 3:
                 pass                
 
