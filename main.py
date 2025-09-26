@@ -27,8 +27,25 @@ while True:
                 evento.add_evento()
                 
             case 2:
-                evento.listar_eventos()
-                
+                while True:
+                    try:
+                        print("__________ EVENTOS DISPONIVEIS __________" )
+                        print("Digte [1] para PALESTRAS:")
+                        print("Digte [2] para WORKSHOPS:")
+                        print("Digte [3] para TODOS:")
+                        print("Digte [0] para VOLTAR:")
+                        escolha = int(input())
+                        if escolha == 1:
+                            palestra.listar_palestras()
+                        elif escolha == 2:
+                            workshop.listar_workshop()
+                        elif escolha == 3:
+                            palestra.listar_palestras()
+                            workshop.listar_workshop()
+                        elif escolha == 0:
+                            break
+                    except ValueError:
+                        print("Opção inválida!")
             case 3:
                 pass                
 
@@ -36,10 +53,10 @@ while True:
                 pass
 
             case 5:
-                palestra.listar_palestras()
+                pass
 
             case 6:
-                workshop.listar_workshop()
+                pass
 
             case 0:
                 print("Saindo...")

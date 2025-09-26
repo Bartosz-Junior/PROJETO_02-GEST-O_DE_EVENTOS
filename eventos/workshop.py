@@ -1,5 +1,5 @@
 from .eventos import Evento
-import datetime
+import datetime, json
 
 
 class Workshop(Evento):
@@ -10,8 +10,8 @@ class Workshop(Evento):
         return super().add_evento()
 
     def listar_workshop(self):
-        arquivo = open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/database/wokshop.json", "r")
-        conteudo = arquivo.readlines()
-        for dados in conteudo:
-            print(dados)
-            print("\n")
+        print("__________ WORKSHOPS DISPONIVEIS __________" )
+        with open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/database/wokshop.json", "r", encoding= "utf-8") as file:
+            carrega_workshop = json.load(file)
+            for i,v in enumerate(carrega_workshop):
+                print(f"{i + 1:}- Tema: {v["Tema"]:5} Data: {v["Data"]:5} Local: {v["Local"]:5} Capacidade: {v["Capacidade"]:5} Categoria: {v["Categoria"]:5} Preço: R${v["Preço ingresso"]:5.2f}\n")

@@ -138,18 +138,4 @@ class Evento:
                 
                 
     def listar_eventos(self):
-        try:
-            print("__________ EVENTOS DISPONIVEIS __________" )
-            print("Digte [1] para PALESTRAS:")
-            print("Digte [2] para WORKSHOPS:")
-            print("Digte [3] para TODOS:")
-            escolha = int(input())
-            if escolha == 1:
-                print("__________ PALESTRAS DISPONIVEIS __________" )
-                with open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/database/palestras.json", "r", encoding= "utf-8") as file:
-                    carrega_palestras = json.load(file)
-                    for i,v in enumerate(carrega_palestras):
-                        print(f"{i + 1:5}- Tema: {v["Tema"]:5} Data: {v["Data"]:5} Local: {v["Local"]:5} Capacidade: {v["Capacidade"]:5} Categoria: {v["Categoria"]:5} Preço: R${v["Preço ingresso"]:5.2f}\n")
-
-        except ValueError:
-            print("Opção inválida!")        
+        pass        

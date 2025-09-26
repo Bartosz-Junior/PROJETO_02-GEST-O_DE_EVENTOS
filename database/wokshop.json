@@ -8,19 +8,19 @@
         "Preço ingresso": 120.0
     },
     {
-        "Tema: ": "Aniv. Arthur",
-        "Data: ": "26/11/2025",
-        "Local ": "Recife",
-        "Capacidade: ": 1000,
-        "Categoria: ": "Tech",
-        "Preço ingresso: ": 0.0
+        "Tema": "Aniv. Arthur",
+        "Data": "26/11/2025",
+        "Local": "Recife",
+        "Capacidade": 1000,
+        "Categoria": "Tech",
+        "Preço ingresso": 0.0
     },
     {
-        "Tema: ": "aniv. Junior",
-        "Data: ": "30/10/2025",
-        "Local ": "Recife",
-        "Capacidade: ": 0,
-        "Categoria: ": "Tech",
-        "Preço ingresso: ": 0.0
+        "Tema": "aniv. Junior",
+        "Data": "30/10/2025",
+        "Local": "Recife",
+        "Capacidade": 0,
+        "Categoria": "Tech",
+        "Preço ingresso": 0.0
     }
 ]
