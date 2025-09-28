@@ -12,8 +12,8 @@ while True:
         print("[3] Fazer inscrição")
         print("[4] Cancelar inscrição")
         print("[5] Buscar Evento")
-        print("[6] Listar Workshops")
-        print("[7] Listar todos os eventos")
+        print("[6] pass")
+        print("[7] pass")
         print("[0] Sair")
         print('_' * 35)
 
