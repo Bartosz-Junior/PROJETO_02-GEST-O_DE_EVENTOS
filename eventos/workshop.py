@@ -5,13 +5,50 @@ import datetime, json
 class Workshop(Evento):
     def __init__(self, nome = None, data_evento= None, local = None, capacidade_max = None, categoria = None, preco_ingresso = None):
         super().__init__(nome, data_evento, local, capacidade_max, categoria, preco_ingresso)        
-    
+        self._data_atual = datetime.datetime.today()
+
     def add_evento(self):
-        return super().add_evento()
+        print("__________ Adicionar Workshop __________" )           #IMPRIMI UM CABEÇALHO
+        nome = str(input("Tema do Workshop: "))                      #RECEBE O NOME DO WORKSHOP
+        while True:                                                  #LOOP ENQUENTO VERDADEIRO PARA TRATAMENTO DE DATA
+            data_evento = str(input("Data de realização dd/mm/aaaa: ")) #ENTRADA DE DATA NO FORMATO STRING
+            data_formatada = datetime.datetime.strptime(data_evento, "%d/%m/%Y")    #CONVERTE A DATA PARA DATETIME
+            if data_formatada < self._data_atual:                    #SE A DATA INFORMADA FOR MENOR QUE A DATA ATUAL ELE PEDE A DATA NOVAMENTE
+                print("A data do evento não pode ser menor que a data atual!")  #IMPRIMI UMA MENSAGEM INFORMANDO QUE A DATA INFORMADA É INVÁLIDA
+                continue                                             # CONTINUAR NO LOOP
+            else:                                                    # SE NÃO...
+                break                                                #QUEBRA O LOOP E CONTINUA O FORMULÁRIO
+        local_evento = str(input("Local: "))                         # ENTRADA DO LOCAL DO EVENTO(STR)
+        
+        while True:
+            capacidade_max = int(input("Capacidade de pessoas: "))   #ENTRADA DA CAPACIDADE MAX. (INT)
+            if capacidade_max <= 0:
+                print("O evento deve comportar um número maior que zero de pessoas.")
+                continue
+            else:
+                break
+
+        categoria = str(input("Categoria [Tech/Marketing]: ")).lower().strip()       #ENTRADA DA CATEGORIA DA PALESTRA
+        while True:
+            preco_ingresso = float(input("Preço da entrada: "))      #PREÇO DO INGRESSO
+            if preco_ingresso < 0:
+                print("O preço não pode ser negativo.")
+                continue
+            else:
+                break       #PREÇO DA ENTRADA DO EVENTO
+        dados_workshop = {"Tema" : nome, "Data" : data_evento, "Local" : local_evento, "Capacidade" : capacidade_max,
+                    "Categoria" : categoria, "Preço ingresso" : preco_ingresso}     #DICIONÁRIO COM AS INFORMAÇÕES DO FORMULÁRIO
+        
+        with open("database/wokshop.json", "r", encoding= "utf-8") as file:
+            carrega_workshops = json.load(file)
+            carrega_workshops.append(dados_workshop)
+
+        with open("database/wokshop.json", "w", encoding= "utf-8") as file:
+            json.dump(carrega_workshops, file, indent= 4, ensure_ascii= False)
 
     def listar_workshop(self):
-        print("__________ WORKSHOPS DISPONIVEIS __________" )
-        with open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/database/wokshop.json", "r", encoding= "utf-8") as file:
+        print("__________ WORKSHOPS __________" )
+        with open("database/wokshop.json", "r", encoding= "utf-8") as file:
             carrega_workshop = json.load(file)
             for i,v in enumerate(carrega_workshop):
                 print(f"{i + 1:}- Tema: {v["Tema"]:5} Data: {v["Data"]:5} Local: {v["Local"]:5} Capacidade: {v["Capacidade"]:5} Categoria: {v["Categoria"]:5} Preço: R${v["Preço ingresso"]:5.2f}\n")
