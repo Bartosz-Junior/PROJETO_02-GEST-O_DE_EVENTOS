@@ -1,7 +1,12 @@
+from utils import functions
 from eventos.palestra import Palestra
 from eventos.workshop import Workshop
 from eventos.workshop import Evento
-import os
+
+
+# 1. Carrega os eventos do JSON
+eventos = functions.carregar_eventos()
+
 
 while True:
     try:
@@ -47,7 +52,7 @@ while True:
                     except ValueError:
                         print("Opção inválida!")
             case 3:
-                pass                
+                functions.add_participante(eventos)             
 
             case 4:
                 pass
