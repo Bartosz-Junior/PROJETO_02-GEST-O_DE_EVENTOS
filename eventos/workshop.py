@@ -28,7 +28,7 @@ class Workshop(Evento):
             else:
                 break
 
-        categoria = str(input("Categoria [Tech/Marketing]: "))       #ENTRADA DA CATEGORIA DA PALESTRA
+        categoria = str(input("Categoria [Tech/Marketing]: ")).lower().strip()       #ENTRADA DA CATEGORIA DA PALESTRA
         while True:
             preco_ingresso = float(input("Preço da entrada: "))      #PREÇO DO INGRESSO
             if preco_ingresso < 0:

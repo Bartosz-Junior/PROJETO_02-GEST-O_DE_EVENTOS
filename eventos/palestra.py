@@ -5,6 +5,7 @@ class Palestra(Evento):
     def __init__(self, nome = None, data_evento= None, local = None, capacidade_max = None, categoria = None, preco_ingresso = None):
         super().__init__(nome, data_evento, local, capacidade_max, categoria, preco_ingresso)
         self._data_atual = datetime.datetime.today()
+    
     def add_evento(self):
         print("__________ Adicionar Palestra __________" )              #IMPRIMI UM CABEÇALHO
         nome = str(input("Tema da palestra: "))                         #RECEBE O NOME DA PALESTRA
@@ -26,7 +27,7 @@ class Palestra(Evento):
             else:
                 break
 
-        categoria = str(input("Categoria [Tech/Marketing]: "))       #ENTRADA DA CATEGORIA DA PALESTRA
+        categoria = str(input("Categoria [Tech/Marketing]: ")).lower().strip()       #ENTRADA DA CATEGORIA DA PALESTRA
         while True:
             preco_ingresso = float(input("Preço da entrada: "))      #PREÇO DO INGRESSO
             if preco_ingresso < 0:

@@ -80,7 +80,7 @@ while True:
                             functions.buscar_evento_data()
 
                         if escolha == 2:
-                            pass
+                            functions.buscar_evento_categoria()
 
                         elif escolha == 0:
                             break
