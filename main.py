@@ -1,8 +1,15 @@
+from utils import functions
 from eventos.palestra import Palestra
 from eventos.workshop import Workshop
 from eventos.workshop import Evento
 from utils import functions
 import os
+
+
+# 1. Carrega os eventos do JSON
+palestras = functions.carregar_palestras()
+workshops = functions.carregar_workshop()
+
 
 while True:
     try:
@@ -50,19 +57,25 @@ while True:
                         print("[3] para TODOS:")
                         print("[0] para VOLTAR:")
                         escolha = int(input())
+
                         if escolha == 1:
                             palestra.listar_palestras()
+
                         elif escolha == 2:
                             workshop.listar_workshop()
+
                         elif escolha == 3:
                             palestra.listar_palestras()
                             workshop.listar_workshop()
+
                         elif escolha == 0:
                             break
+
                     except ValueError:
                         print("Opção inválida!")
+
             case 3:
-                pass                
+                functions.add_participante(palestras, workshops)             
 
             case 4:
                 pass

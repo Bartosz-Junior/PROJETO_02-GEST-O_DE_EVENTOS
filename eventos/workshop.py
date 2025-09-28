@@ -3,10 +3,10 @@ import datetime, json
 
 
 class Workshop(Evento):
-    def __init__(self, nome = None, data_evento= None, local = None, capacidade_max = None, categoria = None, preco_ingresso = None):
+    def __init__(self, nome = None, data_evento= None, local = None, capacidade_max = None, num_inscritos = None, categoria = None, preco_ingresso = None):
         super().__init__(nome, data_evento, local, capacidade_max, categoria, preco_ingresso)        
         self._data_atual = datetime.datetime.today()
-
+    
     def add_evento(self):
         print("__________ Adicionar Workshop __________" )           #IMPRIMI UM CABEÇALHO
         nome = str(input("Tema do Workshop: "))                      #RECEBE O NOME DO WORKSHOP

@@ -3,7 +3,8 @@
         "Tema": "Python para leigos",
         "Data": "20/10/2025",
         "Local": "teste",
-        "Capacidade": 120,
+        "Capacidade_max": 120,
+        "Numero_inscritos": 0,
         "Categoria": "Teste",
         "Preço ingresso": 120.0
     },
@@ -11,7 +12,8 @@
         "Tema": "Python para leigos",
         "Data": "20/10/2025",
         "Local": "teste",
-        "Capacidade": 120,
+        "Capacidade_max": 120,
+        "Numero_inscritos": 0,
         "Categoria": "Teste",
         "Preço ingresso": 120.0
     },
@@ -19,7 +21,8 @@
         "Tema": "Python para leigos",
         "Data": "20/10/2025",
         "Local": "teste",
-        "Capacidade": 120,
+        "Capacidade_max": 120,
+        "Numero_inscritos": 0,
         "Categoria": "Teste",
         "Preço ingresso": 120.0
     },
@@ -27,7 +30,8 @@
         "Tema": "Bartosz",
         "Data": "29/12/2025",
         "Local": "recife",
-        "Capacidade": 0,
+        "Capacidade_max": 0,
+        "Numero_inscritos": 0,
         "Categoria": "tech",
         "Preço ingresso": 0.0
     },
@@ -35,7 +39,8 @@
         "Tema": "aniv camila",
         "Data": "02/04/2026",
         "Local": "Recife",
-        "Capacidade": 120,
+        "Capacidade_max": 120,
+        "Numero_inscritos": 0,
         "Categoria": "Tech",
         "Preço ingresso": 0.0
     },
@@ -43,7 +48,8 @@
         "Tema": "Aniv. Junior",
         "Data": "30/10/2025",
         "Local": "Casa Recife",
-        "Capacidade": 120,
+        "Capacidade_max": 120,
+        "Numero_inscritos": 0,
         "Categoria": "Marketing",
         "Preço ingresso": 0.0
     },
@@ -51,7 +57,8 @@
         "Tema": "Aniversário Bartosz",
         "Data": "29/12/2025",
         "Local": "Iputinga",
-        "Capacidade": 1,
+        "Capacidade_max": 120,
+        "Numero_inscritos": 0,
         "Categoria": "Festa",
         "Preço ingresso": 0.0
     }
