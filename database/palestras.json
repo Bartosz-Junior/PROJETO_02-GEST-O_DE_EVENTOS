@@ -57,7 +57,8 @@
         "Tema": "Aniversário Bartosz",
         "Data": "29/12/2025",
         "Local": "Iputinga",
-        "Capacidade": 1,
+        "Capacidade_max": 120,
+        "Numero_inscritos": 0,
         "Categoria": "Festa",
         "Preço ingresso": 0.0
     }
