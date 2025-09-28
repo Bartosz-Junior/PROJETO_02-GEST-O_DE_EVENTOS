@@ -10,7 +10,6 @@ class Evento:
         self.numero_inscritos = numero_inscritos
         self._categoria = categoria
         self._preco_ingresso = preco_ingresso
-        self._data_atual = datetime.datetime.today()
 
     @property
     def nome(self):

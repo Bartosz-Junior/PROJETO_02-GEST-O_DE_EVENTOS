@@ -52,5 +52,13 @@
         "Numero_inscritos": 0,
         "Categoria": "Marketing",
         "Preço ingresso": 0.0
+    },
+    {
+        "Tema": "Aniversário Bartosz",
+        "Data": "29/12/2025",
+        "Local": "Iputinga",
+        "Capacidade": 1,
+        "Categoria": "Festa",
+        "Preço ingresso": 0.0
     }
 ]
