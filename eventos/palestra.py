@@ -2,8 +2,8 @@ from .eventos import Evento
 import json
 
 class Palestra(Evento):
-    def __init__(self, nome = None, data_evento= None, local = None, capacidade_max = None, categoria = None, preco_ingresso = None):
-        super().__init__(nome, data_evento, local, capacidade_max, categoria, preco_ingresso)
+    def __init__(self, nome = None, data_evento= None, local = None, capacidade_max = None, num_inscritos = None, categoria = None, preco_ingresso = None):
+        super().__init__(nome, data_evento, local, capacidade_max, num_inscritos, categoria, preco_ingresso)
     
     def add_evento(self):
         return super().add_evento()

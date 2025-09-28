@@ -4,5 +4,9 @@ class Participante:
         self.email = email
         self.evento = evento_escolhido
 
+
+    def verificar_lotacao(self):
+        self.evento
+
     def exibir_participante(self):
         return f"{self.nome} <{self.email}> <{self.evento}>"

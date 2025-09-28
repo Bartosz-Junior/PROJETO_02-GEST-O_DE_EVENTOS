@@ -1,12 +1,13 @@
 import datetime, json
 
 class Evento:
-    def __init__(self, nome = None, data_evento = None, local = None, capacidade_max = None, 
+    def __init__(self, nome = None, data_evento = None, local = None, capacidade_max = None, numero_inscritos = 0,
                  categoria = None, preco_ingresso = None):
         self._nome = nome
         self._data_evento = data_evento
         self._local  = local
         self._capacidade_max = capacidade_max
+        self.numero_inscritos = numero_inscritos
         self._categoria = categoria
         self._preco_ingresso = preco_ingresso
         self._data_atual = datetime.datetime.today()
@@ -46,7 +47,7 @@ class Evento:
     @data.setter
     def data(self, data_evento):
         data_evento = str(input("Data do evento (DD/MM/AA): "))
-        data_str = datetime.date.strptime(data_evento, '%d/%m/%a')
+        data_str = datetime.date.strptime(data_evento, '%d/%m/%Y')
         if data_str > datetime.date.today():
             self._data_evento = data_str
         else:
@@ -65,6 +66,13 @@ class Evento:
         else:
             print("O evento não pode ter capacidade menor de que zero(0)!")
 
+    def adicionar_inscrito(self):
+        if (self.numero_inscritos >= self.capacidade_max):
+            print("O evento ja atingiu a capacidade máxima")
+            return
+        
+        self.numero_inscritos += 1
+
     @categoria.setter
     def categoria(self):
         categoria_evento = str(input("Categoria do evento (Tech, Marketing): "))
@@ -74,8 +82,17 @@ class Evento:
     def preco(self, preco_ingresso):
         self._preco_ingresso = preco_ingresso
     
-    def status(self):
-        print(f"Nome: {self.nome}\nData: {self.data}\nLocal: {self.local}\nCapacidade: {self.capacidade_max}\nPreço: R$ {self.preco}")
+    def __str__(self):
+        return (
+            f"Tema: {self.nome}\n"
+            f"Data: {self.data}\n"
+            f"Local: {self.local}\n"
+            f"Capacidade_max: {self.capacidade_max}\n"
+            f"Inscritos: {self.numero_inscritos}"
+            f"Categoria: {self.categoria}\n"
+            f"Preço: R$ {self.preco:.2f}\n"
+        )
+
 
     def add_evento(self):                                                    #FUNÇÃO PARA ADD EVENTOS
         try:                                                                 #TRATAMENTO DE ERROS
@@ -98,8 +115,8 @@ class Evento:
                 capacidade_max = int(input("Capacidade de pessoas: "))       #ENTRADA DA CAPACIDADE MAX. (INT)
                 categoria = str(input("Categoria [Tech/Marketing]: "))       #ENTRADA DA CATEGORIA DA PALESTRA
                 preco_ingresso = float(input("Preço da entrada: "))          #PREÇO DO INGRESSO
-                dados_palestra = {"Tema" : nome, "Data" : data_evento, "Local" : local_evento, "Capacidade" : capacidade_max,
-                            "Categoria" : categoria, "Preço ingresso" : preco_ingresso} #DICIONÁRIO QUE É ARMAZENADO NO .JSON
+                dados_palestra = {"Tema" : nome, "Data" : data_evento, "Local" : local_evento, "Capacidade_max" : capacidade_max, "Numero_inscritos": 0, "Categoria" : categoria, "Preço ingresso" : preco_ingresso} #DICIONÁRIO QUE É ARMAZENADO NO .JSON
+                
                 with open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/database/palestras.json", "r", encoding= "utf-8") as file:
                     carrega_palestras = json.load(file)
                     carrega_palestras.append(dados_palestra)
@@ -122,8 +139,8 @@ class Evento:
                 capacidade_max = int(input("Capacidade de pessoas: "))       #CAPACIDADE MAX DO EVENTO(INT)
                 categoria = str(input("Categoria [Tech/Marketing]: "))       #CATEGORIA DO EVENTO(str)
                 preco_ingresso = float(input("Preço da entrada: R$ "))       #PREÇO DA ENTRADA DO EVENTO
-                dados_workshop = {"Tema" : nome, "Data" : data_evento, "Local" : local_evento, "Capacidade" : capacidade_max,
-                            "Categoria" : categoria, "Preço ingresso" : preco_ingresso}     #DICIONÁRIO COM AS INFORMAÇÕES DO FORMULÁRIO
+                dados_workshop = {"Tema" : nome, "Data" : data_evento, "Local" : local_evento, "Capacidade_max" : capacidade_max,
+                            "Numero_inscritos": 0, "Categoria" : categoria, "Preço ingresso" : preco_ingresso}     #DICIONÁRIO COM AS INFORMAÇÕES DO FORMULÁRIO
                 
                 with open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/database/wokshop.json", "r", encoding= "utf-8") as file:
                     carrega_workshops = json.load(file)
