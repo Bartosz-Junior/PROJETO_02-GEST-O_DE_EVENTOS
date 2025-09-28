@@ -47,7 +47,7 @@ class Workshop(Evento):
             json.dump(carrega_workshops, file, indent= 4, ensure_ascii= False)
 
     def listar_workshop(self):
-        print("__________ WORKSHOPS DISPONIVEIS __________" )
+        print("__________ WORKSHOPS __________" )
         with open("database/wokshop.json", "r", encoding= "utf-8") as file:
             carrega_workshop = json.load(file)
             for i,v in enumerate(carrega_workshop):

@@ -42,25 +42,10 @@ while True:
                         print("Opção inválida!")
                 
             case 2:
-                while True:
-                    try:
-                        print("__________ EVENTOS DISPONIVEIS __________" )
-                        print("[1] para PALESTRAS:")
-                        print("[2] para WORKSHOPS:")
-                        print("[3] para TODOS:")
-                        print("[0] para VOLTAR:")
-                        escolha = int(input())
-                        if escolha == 1:
-                            palestra.listar_palestras()
-                        elif escolha == 2:
-                            workshop.listar_workshop()
-                        elif escolha == 3:
-                            palestra.listar_palestras()
-                            workshop.listar_workshop()
-                        elif escolha == 0:
-                            break
-                    except ValueError:
-                        print("Opção inválida!")
+                print("__________ EVENTOS DISPONIVEIS __________\n" )
+                palestra.listar_palestras()
+                workshop.listar_workshop()
+
             case 3:
                 pass                
 

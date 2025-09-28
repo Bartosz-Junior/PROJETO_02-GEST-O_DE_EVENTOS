@@ -46,7 +46,7 @@ class Palestra(Evento):
             json.dump(carrega_palestras, file, indent= 4, ensure_ascii= False)
 
     def listar_palestras(self):
-        print("__________ PALESTRAS DISPONIVEIS __________" )
+        print("__________ PALESTRAS __________" )
         with open("database/palestras.json", "r", encoding= "utf-8") as file:
             carrega_palestras = json.load(file)
             for i,v in enumerate(carrega_palestras):
