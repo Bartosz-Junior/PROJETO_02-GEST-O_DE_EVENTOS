@@ -22,5 +22,13 @@
         "Capacidade": 0,
         "Categoria": "Tech",
         "Preço ingresso": 0.0
+    },
+    {
+        "Tema": "Marketing para festas",
+        "Data": "20/10/2025",
+        "Local": "Caxanga",
+        "Capacidade": 10,
+        "Categoria": "Marketing",
+        "Preço ingresso": -1.0
     }
 ]

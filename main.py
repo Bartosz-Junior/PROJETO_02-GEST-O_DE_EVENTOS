@@ -24,7 +24,21 @@ while True:
 
         match escolha:
             case 1:
-                evento.add_evento()
+                while True:
+                    try:
+                        print("__________ ADICIONAR EVENTO __________" )
+                        print("Digte [1] para PALESTRAS:")
+                        print("Digte [2] para WORKSHOPS:")
+                        print("Digte [0] para VOLTAR:")
+                        escolha = int(input())
+                        if escolha == 1:
+                            palestra.add_evento()
+                        elif escolha == 2:
+                            workshop.add_evento()
+                        elif escolha == 0:
+                            break
+                    except ValueError:
+                        print("Opção inválida!")
                 
             case 2:
                 while True:
