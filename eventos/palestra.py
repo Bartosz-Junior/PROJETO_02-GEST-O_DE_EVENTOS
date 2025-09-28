@@ -37,16 +37,16 @@ class Palestra(Evento):
 
         dados_palestra = {"Tema" : nome, "Data" : data_evento, "Local" : local_evento, "Capacidade" : capacidade_max,
                     "Categoria" : categoria, "Preço ingresso" : preco_ingresso} #DICIONÁRIO QUE É ARMAZENADO NO .JSON
-        with open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/database/palestras.json", "r", encoding= "utf-8") as file:
+        with open("database/palestras.json", "r", encoding= "utf-8") as file:
             carrega_palestras = json.load(file)
             carrega_palestras.append(dados_palestra)
         
-        with open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/database/palestras.json", "w", encoding= "utf-8") as file:
+        with open("database/palestras.json", "w", encoding= "utf-8") as file:
             json.dump(carrega_palestras, file, indent= 4, ensure_ascii= False)
 
     def listar_palestras(self):
         print("__________ PALESTRAS DISPONIVEIS __________" )
-        with open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/database/palestras.json", "r", encoding= "utf-8") as file:
+        with open("database/palestras.json", "r", encoding= "utf-8") as file:
             carrega_palestras = json.load(file)
             for i,v in enumerate(carrega_palestras):
                 print(f"{i + 1:}- Tema: {v["Tema"]:5} Data: {v["Data"]:5} Local: {v["Local"]:5} Capacidade: {v["Capacidade"]:5} Categoria: {v["Categoria"]:5} Preço: R${v["Preço ingresso"]:5.2f}\n")

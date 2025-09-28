@@ -39,16 +39,16 @@ class Workshop(Evento):
         dados_workshop = {"Tema" : nome, "Data" : data_evento, "Local" : local_evento, "Capacidade" : capacidade_max,
                     "Categoria" : categoria, "Preço ingresso" : preco_ingresso}     #DICIONÁRIO COM AS INFORMAÇÕES DO FORMULÁRIO
         
-        with open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/database/wokshop.json", "r", encoding= "utf-8") as file:
+        with open("database/wokshop.json", "r", encoding= "utf-8") as file:
             carrega_workshops = json.load(file)
             carrega_workshops.append(dados_workshop)
 
-        with open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/database/wokshop.json", "w", encoding= "utf-8") as file:
+        with open("database/wokshop.json", "w", encoding= "utf-8") as file:
             json.dump(carrega_workshops, file, indent= 4, ensure_ascii= False)
 
     def listar_workshop(self):
         print("__________ WORKSHOPS DISPONIVEIS __________" )
-        with open("C:/Users/Júnior/Documents/Projeto_02_BFD/PROJETO_02-GEST-O_DE_EVENTOS/database/wokshop.json", "r", encoding= "utf-8") as file:
+        with open("database/wokshop.json", "r", encoding= "utf-8") as file:
             carrega_workshop = json.load(file)
             for i,v in enumerate(carrega_workshop):
                 print(f"{i + 1:}- Tema: {v["Tema"]:5} Data: {v["Data"]:5} Local: {v["Local"]:5} Capacidade: {v["Capacidade"]:5} Categoria: {v["Categoria"]:5} Preço: R${v["Preço ingresso"]:5.2f}\n")

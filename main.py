@@ -1,6 +1,7 @@
 from eventos.palestra import Palestra
 from eventos.workshop import Workshop
 from eventos.workshop import Evento
+from utils import functions
 import os
 
 while True:
@@ -10,7 +11,7 @@ while True:
         print("[2] Mostrar EVENTOS")
         print("[3] Fazer inscrição")
         print("[4] Cancelar inscrição")
-        print("[5] Listar Palestras")
+        print("[5] Buscar Evento")
         print("[6] Listar Workshops")
         print("[7] Listar todos os eventos")
         print("[0] Sair")
@@ -44,10 +45,10 @@ while True:
                 while True:
                     try:
                         print("__________ EVENTOS DISPONIVEIS __________" )
-                        print("Digte [1] para PALESTRAS:")
-                        print("Digte [2] para WORKSHOPS:")
-                        print("Digte [3] para TODOS:")
-                        print("Digte [0] para VOLTAR:")
+                        print("[1] para PALESTRAS:")
+                        print("[2] para WORKSHOPS:")
+                        print("[3] para TODOS:")
+                        print("[0] para VOLTAR:")
                         escolha = int(input())
                         if escolha == 1:
                             palestra.listar_palestras()
@@ -67,7 +68,24 @@ while True:
                 pass
 
             case 5:
-                pass
+                while True:
+                    try:
+                        print("__________ BUSCAR EVENTO __________" )
+                        print("[1] Buscar por Data(dd/mm/aaaa):")
+                        print("[2] Buscar por Categria(Ex.: Tech):")
+                        print("[0] para VOLTAR:")
+                        escolha = int(input())
+
+                        if escolha == 1:
+                            functions.buscar_evento_data()
+
+                        if escolha == 2:
+                            pass
+
+                        elif escolha == 0:
+                            break
+                    except ValueError:
+                        print("Opção inválida!")
 
             case 6:
                 pass

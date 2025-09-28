@@ -30,5 +30,13 @@
         "Capacidade": 10,
         "Categoria": "Marketing",
         "Preço ingresso": -1.0
+    },
+    {
+        "Tema": "Testando Caminho json",
+        "Data": "20/10/2025",
+        "Local": "Recife",
+        "Capacidade": 100,
+        "Categoria": "tech",
+        "Preço ingresso": 0.0
     }
 ]
