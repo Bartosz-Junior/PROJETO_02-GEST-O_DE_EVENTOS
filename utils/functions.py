@@ -128,7 +128,7 @@ def listar_eventos(eventos):
         print("Nenhum evento cadastrado ainda.")
         return
 
-    for i, evento in enumerate(eventos, 1):
+    for i, evento in enumerate(eventos):
         print(f"\n--- Evento {i} ---")
         print(evento)
 
@@ -152,35 +152,78 @@ def add_participante(palestras, workshop):
 
             # Chama a função para listar
             listar_eventos(palestras)
-            indice = int(input("Informe qual evento deseja participar: ")) - 1
-            if (indice < 0) or (indice > len(palestras)):
+            indice = int(input("Informe qual evento deseja participar: "))
+
+            if (indice < 0) or (indice >= len(palestras)):
                 print("Evento inválido!")
                 return
             
-            
-            nome = str(input("Informe o nome: "))
-            email = str(input("Informe o e-mail: "))
+            nome = str(input("Informe o nome: ")).upper()
+            email = str(input("Informe o e-mail: ")).lower()
             evento_escolhido = palestras[indice]
             
-            participante = Participante(nome, email, evento_escolhido.nome)
-            evento_escolhido.adicionar_inscrito()
+            if nome and email and evento_escolhido:
+                participante = Participante(nome, email, evento_escolhido.nome)
+                print(participante)
+
+                dados_participante = {
+                    "Nome:": participante.nome,
+                    "E-mail": participante.email,
+                    "Evento escolhido": participante.evento
+                }
+
+                with open("database/participantes.json", "r", encoding= "utf-8") as file:
+                        carrega_participantes = json.load(file)
+                        carrega_participantes.append(dados_participante)
+                    
+                with open("database/participantes.json", "w", encoding= "utf-8") as file:
+                        json.dump(carrega_participantes, file, indent= 4, ensure_ascii= False)
+
+                evento_escolhido.adicionar_inscrito()
 
         elif tipo_evento == 2:
             
             # Chama a função para listar
             listar_eventos(workshop)
             indice = int(input("Informe qual evento deseja participar: "))
-            if indice < 0 or indice > len(workshop):
+            
+            if (indice < 0) or (indice >= len(workshop)):
                 print("Evento inválido!")
                 return
             
+            nome = str(input("Informe o nome: ")).upper()
+            email = str(input("Informe o e-mail: ")).lower()
+            evento_escolhido = workshop[indice]
             
-            nome = str(input("Informe o nome: "))
-            email = str(input("Informe o e-mail: "))
-            evento_escolhido = workshop[indice].nome
-            
-            participante = Participante(nome, email, evento_escolhido)
-            workshop[indice].capacidade -= 1
+            if nome and email and evento_escolhido:
+                participante = Participante(nome, email, evento_escolhido.nome)
+
+                dados_participante = {
+                    "Nome:": participante.nome,
+                    "E-mail": participante.email,
+                    "Evento escolhido": participante.evento
+                }
+
+                with open("database/participantes.json", "r", encoding= "utf-8") as file:
+                        carrega_participantes = json.load(file)
+                        carrega_participantes.append(dados_participante)
+                    
+                with open("database/participantes.json", "w", encoding= "utf-8") as file:
+                        json.dump(carrega_participantes, file, indent= 4, ensure_ascii= False)
+
+                evento_escolhido.adicionar_inscrito()
 
     except ValueError:
         print("Dados informados inválidos")
+
+    except IndexError:
+        print("Evento inválido! O número do evento não existe na lista.")
+
+    except FileNotFoundError:
+        # Se o arquivo não existir, inicia a lista vazia
+        carrega_participantes = []
+
+    except json.JSONDecodeError:
+        # Se o arquivo estiver vazio/inválido, inicia a lista vazia e avisa
+        print("Aviso: Arquivo de participantes inválido ou vazio. Iniciando nova lista.")
+        carrega_participantes = []
