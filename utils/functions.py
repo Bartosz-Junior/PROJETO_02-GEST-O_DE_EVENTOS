@@ -11,16 +11,25 @@ def buscar_evento_data():
 
         data_busca = str(input("Informe a data do evento (dd/mm/aaaa): "))
 
-        print("__________ PALESTRAS __________")
         for i, v in enumerate(carrega_palestras):
             if v["Data"] == data_busca:
-                print(f"{i + 1:}- Tema: {v["Tema"]:5} Data: {v["Data"]:5} Local: {v["Local"]:5} Capacidade: {v["Capacidade_max"]:5} Categoria: {v["Categoria"]:5} Preço: R${v["Preço ingresso"]:5.2f}\n")
+                print(f"_____ PALESTRA {i + 1} _____")
+                print(f"Tema: {v["Tema"]:5}")
+                print(f"Data: {v["Data"]:5}")
+                print(f"Local: {v["Local"]:5}")
+                print(f"Capacidade: {v["Capacidade_max"]:5}")
+                print(f"Categoria: {v["Categoria"]:5}")
+                print(f"Preço: R${v["Preço ingresso"]:5.2f}\n")
 
-
-        print("__________ WORKSHOPS __________")
         for i, v in enumerate(carrega_workshops):
             if v["Data"] == data_busca:
-                print(f"{i + 1:}- Tema: {v["Tema"]:5} Data: {v["Data"]:5} Local: {v["Local"]:5} Capacidade: {v["Capacidade_max"]:5} Categoria: {v["Categoria"]:5} Preço: R${v["Preço ingresso"]:5.2f}\n")
+                print(f"_____ WORKOSHOP {i + 1} _____")
+                print(f"Tema: {v["Tema"]:5}")
+                print(f"Data: {v["Data"]:5}") 
+                print(f"Local: {v["Local"]:5}")
+                print(f"Capacidade: {v["Capacidade_max"]:5}")
+                print(f"Categoria: {v["Categoria"]:5}")
+                print(f"Preço: R${v["Preço ingresso"]:5.2f}\n")
 
 def buscar_evento_categoria():
     with open("database\palestras.json", "r", encoding="utf-8") as file:
@@ -31,15 +40,25 @@ def buscar_evento_categoria():
 
         categoria_busca = str(input("Informe a categoria do evento:")).lower().strip()
 
-        print("__________ PALESTRAS __________")
         for i, v in enumerate(carrega_palestras):
             if v["Categoria"] == categoria_busca:
-                print(f"{i + 1:}- Tema: {v["Tema"]:5} Data: {v["Data"]:5} Local: {v["Local"]:5} Capacidade: {v["Capacidade_max"]:5} Categoria: {v["Categoria"]:5} Preço: R${v["Preço ingresso"]:5.2f}\n")
+                print(f"_____ PALESTRA {i + 1} _____")
+                print(f"Tema: {v["Tema"]:5}")
+                print(f"Data: {v["Data"]:5}")
+                print(f"Local: {v["Local"]:5}")
+                print(f"Capacidade: {v["Capacidade_max"]:5}")
+                print(f"Categoria: {v["Categoria"]:5}")
+                print(f"Preço: R${v["Preço ingresso"]:5.2f}\n")
 
-        print("__________ WORKSHOPS __________")
         for i, v in enumerate(carrega_workshops):
             if v["Categoria"] == categoria_busca:
-                print(f"{i + 1:}- Tema: {v["Tema"]:5} Data: {v["Data"]:5} Local: {v["Local"]:5} Capacidade: {v["Capacidade_max"]:5} Categoria: {v["Categoria"]:5} Preço: R${v["Preço ingresso"]:5.2f}\n")
+                print(f"_____ WORKOSHOP {i + 1} _____")
+                print(f"Tema: {v["Tema"]:5}")
+                print(f"Data: {v["Data"]:5}") 
+                print(f"Local: {v["Local"]:5}")
+                print(f"Capacidade: {v["Capacidade_max"]:5}")
+                print(f"Categoria: {v["Categoria"]:5}")
+                print(f"Preço: R${v["Preço ingresso"]:5.2f}\n")
 
 # FUNÇÕES AUXILIARES
 
@@ -73,23 +92,23 @@ def carregar_json(arquivo):
         return []
 
 
-#def carregar_instancias(dados, instancia_evento):
+def carregar_instancias(dados, instancia_evento):
 
-#    eventos = []
-#    for d in dados:
-#        # recria objeto Palestra
-#        p = instancia_evento(
-#            d["Tema"],
-#            d["Data"],
-#            d["Local"],
-#            d["Capacidade"],
-#            d["Numero_inscritos"],
-#            d["Categoria"],
-#            d["Preço ingresso"]
-#
-#        eventos.append(p)
-#
-#    return eventos
+    eventos = []
+    for d in dados:
+        # recria objeto Palestra
+        p = instancia_evento(
+            d["Tema"],
+            d["Data"],
+            d["Local"],
+            d["Capacidade_max"],
+            d["Numero_inscritos"],
+            d["Categoria"],
+            d["Preço ingresso"]
+        )
+        eventos.append(p)
+
+    return eventos
 
 # def carregar_instancias(dados):
 

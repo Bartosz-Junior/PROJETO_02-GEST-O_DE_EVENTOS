@@ -48,9 +48,14 @@ class Workshop(Evento):
             
 
     def listar_workshop(self):
-        print("__________ WORKSHOPS __________" )
         with open("database\wokshops.json", "r", encoding= "utf-8") as file:
             carrega_workshop = json.load(file)
             for i,v in enumerate(carrega_workshop):
-                print(f"{i + 1:}- Tema: {v["Tema"]:5} Data: {v["Data"]:5} Local: {v["Local"]:5} Capacidade: {v["Capacidade_max"]:5} Categoria: {v["Categoria"]:5} Preço: R${v["Preço ingresso"]:5.2f}\n")
+                print(f"_____ WORKSHOP {i + 1} _____")
+                print(f"Tema: {v["Tema"]:5}")
+                print(f"Data: {v["Data"]:5}")
+                print(f"Local: {v["Local"]:5}")
+                print(f"Capacidade: {v["Capacidade_max"]:5}")
+                print(f"Categoria: {v["Categoria"]:5}")
+                print(f"Preço: R${v["Preço ingresso"]:5.2f}\n")
 

@@ -39,6 +39,7 @@ class Palestra(Evento):
 
         dados_palestra = {"Tema" : nome, "Data" : data_evento, "Local" : local_evento, "Capacidade_max" : capacidade_max,
                     "Categoria" : categoria, "Preço ingresso" : preco_ingresso} #DICIONÁRIO QUE É ARMAZENADO NO .JSON
+        
         with open("database/palestras.json", "r", encoding= "utf-8") as file:
             carrega_palestras = json.load(file)
             carrega_palestras.append(dados_palestra)
@@ -47,8 +48,13 @@ class Palestra(Evento):
             json.dump(carrega_palestras, file, indent= 4, ensure_ascii= False)
 
     def listar_palestras(self):
-        print("__________ PALESTRAS __________" )
         with open("database/palestras.json", "r", encoding= "utf-8") as file:
             carrega_palestras = json.load(file)
             for i,v in enumerate(carrega_palestras):
-                print(f"{i + 1:}- Tema: {v["Tema"]:5} Data: {v["Data"]:5} Local: {v["Local"]:5} Capacidade: {v["Capacidade_max"]:5} Categoria: {v["Categoria"]:5} Preço: R${v["Preço ingresso"]:5.2f}\n")
+                print(f"_____ PALESTRA {i + 1} _____")
+                print(f"Tema: {v["Tema"]:5}")
+                print(f"Data: {v["Data"]:5}")
+                print(f"Local: {v["Local"]:5}")
+                print(f"Capacidade: {v["Capacidade_max"]:5}")
+                print(f"Categoria: {v["Categoria"]:5}")
+                print(f"Preço: R${v["Preço ingresso"]:5.2f}\n")

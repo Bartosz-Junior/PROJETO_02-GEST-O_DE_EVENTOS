@@ -77,5 +77,13 @@
         "Capacidade_max": 20,
         "Categoria": "tech",
         "Preço ingresso": 312.0
+    },
+    {
+        "Tema": "teste005",
+        "Data": "31/10/2027",
+        "Local": "Paulista",
+        "Capacidade_max": 80,
+        "Categoria": "marketing",
+        "Preço ingresso": 0.0
     }
 ]
