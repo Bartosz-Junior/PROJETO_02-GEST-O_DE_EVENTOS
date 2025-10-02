@@ -60,8 +60,8 @@ def carregar_json(arquivo):
         return []
 
     try:
-        with open(arquivo, "r", encoding="utf-8"):
-            dados = json.load(arquivo)
+        with open(arquivo, "r", encoding="utf-8") as file:
+            dados = json.load(file)
             return dados
 
     except json.JSONDecodeError:
@@ -73,12 +73,12 @@ def carregar_json(arquivo):
         return []
 
 
-def carregar_instancias(dados):
+def carregar_instancias(dados, instancia_evento):
 
-    palestras = []
+    eventos = []
     for d in dados:
         # recria objeto Palestra
-        p = Palestra(
+        p = instancia_evento(
             d["Tema"],
             d["Data"],
             d["Local"],
@@ -88,29 +88,29 @@ def carregar_instancias(dados):
             d["Preço ingresso"]
         )
 
-        palestras.append(p)
+        eventos.append(p)
 
-    return palestras
+    return eventos
 
-def carregar_instancias(dados):
+# def carregar_instancias(dados):
 
-    workshop = []
+#     workshop = []
 
-    for d in dados:
-        # recria objeto Palestra
-        w = Workshop(
-            d["Tema"],
-            d["Data"],
-            d["Local"],
-            d["Capacidade_max"],
-            d["Numero_inscritos"],
-            d["Categoria"],
-            d["Preço ingresso"]
-        )
+#     for d in dados:
+#         # recria objeto Palestra
+#         w = Workshop(
+#             d["Tema"],
+#             d["Data"],
+#             d["Local"],
+#             d["Capacidade_max"],
+#             d["Numero_inscritos"],
+#             d["Categoria"],
+#             d["Preço ingresso"]
+#         )
 
-        workshop.append(w)
+#         workshop.append(w)
 
-    return workshop
+#     return workshop
 
 
 # Lista todos os eventos contidos na lista 'eventos'
@@ -130,79 +130,35 @@ def listar_eventos(objeto):
     print("\n" + "="*30)
 
 
-def add_participante(palestras, workshop):
+def add_participante(evento):
     try:
-        if (not palestras) and (not workshop):
+        if not evento:
             print("Nenhum evento disponível.")
             return
 
-        print("*** ADICIONAR PARTICIPANTE ***")
-        tipo_evento = int(input("Escolha o tipo de evento: [1] Palestra | [2] Workshop"))
+        # Chama a função para listar
+        listar_eventos(evento)
+        indice = int(input("Informe qual evento deseja participar: "))
 
-        if tipo_evento == 1:
+        if (indice < 0) or (indice >= len(evento)):
+            print("Evento inválido!")
+            return
+        
+        nome = str(input("Informe o nome: ")).upper()
+        email = str(input("Informe o e-mail: ")).lower()
+        evento_escolhido = evento[indice]
+        
+        if nome and email and evento_escolhido:
+            participante = Participante(nome, email, evento_escolhido.nome)
+            print(participante)
 
-            # Chama a função para listar
-            listar_eventos(palestras)
-            indice = int(input("Informe qual evento deseja participar: "))
+            dados_participante = {
+                "Nome:": participante.nome,
+                "E-mail": participante.email,
+                "Evento escolhido": participante.evento
+            }
 
-            if (indice < 0) or (indice >= len(palestras)):
-                print("Evento inválido!")
-                return
-            
-            nome = str(input("Informe o nome: ")).upper()
-            email = str(input("Informe o e-mail: ")).lower()
-            evento_escolhido = palestras[indice]
-            
-            if nome and email and evento_escolhido:
-                participante = Participante(nome, email, evento_escolhido.nome)
-                print(participante)
-
-                dados_participante = {
-                    "Nome:": participante.nome,
-                    "E-mail": participante.email,
-                    "Evento escolhido": participante.evento
-                }
-
-                with open("database/participantes.json", "r", encoding= "utf-8") as file:
-                        carrega_participantes = json.load(file)
-                        carrega_participantes.append(dados_participante)
-                    
-                with open("database/participantes.json", "w", encoding= "utf-8") as file:
-                        json.dump(carrega_participantes, file, indent= 4, ensure_ascii= False)
-
-                evento_escolhido.adicionar_inscrito()
-
-        elif tipo_evento == 2:
-            
-            # Chama a função para listar
-            listar_eventos(workshop)
-            indice = int(input("Informe qual evento deseja participar: "))
-            
-            if (indice < 0) or (indice >= len(workshop)):
-                print("Evento inválido!")
-                return
-            
-            nome = str(input("Informe o nome: ")).upper()
-            email = str(input("Informe o e-mail: ")).lower()
-            evento_escolhido = workshop[indice]
-            
-            if nome and email and evento_escolhido:
-                participante = Participante(nome, email, evento_escolhido.nome)
-
-                dados_participante = {
-                    "Nome:": participante.nome,
-                    "E-mail": participante.email,
-                    "Evento escolhido": participante.evento
-                }
-
-                with open("database/participantes.json", "r", encoding= "utf-8") as file:
-                        carrega_participantes = json.load(file)
-                        carrega_participantes.append(dados_participante)
-                    
-                with open("database/participantes.json", "w", encoding= "utf-8") as file:
-                        json.dump(carrega_participantes, file, indent= 4, ensure_ascii= False)
-
-                evento_escolhido.adicionar_inscrito()
+            participante.salvar_participante(dados_participante, evento_escolhido)
 
     except ValueError:
         print("Dados informados inválidos")
