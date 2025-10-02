@@ -97,5 +97,14 @@
         "Numero_inscritos": 0,
         "Categoria": "tech",
         "Preço ingresso": 15.0
+    },
+    {
+        "Tema": "teste999",
+        "Data": "23/10/2025",
+        "Local": "fortaleza",
+        "Capacidade_max": 90,
+        "Numero_inscritos": 0,
+        "Categoria": "marketing",
+        "Preço ingresso": 90.0
     }
 ]

@@ -88,5 +88,14 @@
         "Numero_inscritos": 0,
         "Categoria": "marketing",
         "Preço ingresso": 0.0
+    },
+    {
+        "Tema": "teste777",
+        "Data": "20/10/2028",
+        "Local": "Recife",
+        "Capacidade_max": 55,
+        "Numero_inscritos": 0,
+        "Categoria": "tech",
+        "Preço ingresso": 40.0
     }
 ]

@@ -41,9 +41,8 @@ class Palestra(Evento):
         dados_palestra = {"Tema" : nome, "Data" : data_evento, "Local" : local_evento, "Capacidade_max" : capacidade_max, 
                           "Numero_inscritos" : 0, "Categoria" : categoria, "Preço ingresso" : preco_ingresso}   #DICIONÁRIO QUE É ARMAZENADO NO .JSON
         
-        with open("database/palestras.json", "r", encoding= "utf-8") as file:
-            carrega_palestras = json.load(file)
-            carrega_palestras.append(dados_palestra)
+        carrega_palestras = functions.carregar_json("database/palestras.json")
+        carrega_palestras.append(dados_palestra)
         
         with open("database/palestras.json", "w", encoding= "utf-8") as file:
             json.dump(carrega_palestras, file, indent= 4, ensure_ascii= False)

@@ -40,14 +40,12 @@ class Workshop(Evento):
         dados_workshop = {"Tema" : nome, "Data" : data_evento, "Local" : local_evento, "Capacidade_max" : capacidade_max,
                     "Numero_inscritos" : 0,"Categoria" : categoria, "Preço ingresso" : preco_ingresso}     #DICIONÁRIO COM AS INFORMAÇÕES DO FORMULÁRIO
         
-        with open("database\wokshops.json", "r", encoding= "utf-8") as file:
-            carrega_workshops = json.load(file)
-            carrega_workshops.append(dados_workshop)
+        carrega_workshops = functions.carregar_json("database/wokshops.json")
+        carrega_workshops.append(dados_workshop)
 
         with open("database\wokshops.json", "w", encoding= "utf-8") as file:
             json.dump(carrega_workshops, file, indent= 4, ensure_ascii= False)
             
-
     def listar_workshop(self):
         carrega_workshop = functions.carregar_json("database\wokshops.json")
         for i,v in enumerate(carrega_workshop):
@@ -58,4 +56,3 @@ class Workshop(Evento):
             print(f"Capacidade: {v["Capacidade_max"]:5}")
             print(f"Categoria: {v["Categoria"]:5}")
             print(f"Preço: R${v["Preço ingresso"]:5.2f}\n")
-
