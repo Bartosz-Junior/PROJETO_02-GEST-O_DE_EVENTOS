@@ -1,5 +1,5 @@
 from .eventos import Evento
-import utils
+from utils import functions
 import datetime, json
 
 
@@ -49,7 +49,7 @@ class Workshop(Evento):
             
 
     def listar_workshop(self):
-        carrega_workshop = utils.functions.carregar_json("database\wokshops.json")
+        carrega_workshop = functions.carregar_json("database\wokshops.json")
         for i,v in enumerate(carrega_workshop):
             print(f"_____ WORKSHOP {i + 1} _____")
             print(f"Tema: {v["Tema"]:5}")
