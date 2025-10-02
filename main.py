@@ -13,6 +13,11 @@ DIRETORIO_PARTICIPANTES = "database/participantes.json"
 palestras = functions.carregar_json(DIRETORIO_PALESTRAS)
 workshops = functions.carregar_json(DIRETORIO_WORKSHOPS)
 
+print(palestras)
+print(workshops)
+
+objetos_palestras = functions.carregar_instancias(palestras, Palestra)
+objetos_workshops = functions.carregar_instancias(workshops, Workshop)
 
 while True:
     try:
@@ -78,7 +83,15 @@ while True:
                         print("Opção inválida!")
 
             case 3:
-                functions.add_participante(palestras, workshops)             
+                escolha_evento = int(input("[1] palestras, [2] workshops"))
+                if escolha_evento == 1:
+                    functions.add_participante(objetos_palestras) 
+
+                elif escolha_evento == 2:   
+                    functions.add_participante(objetos_workshops)
+
+                else:
+                    pass           
 
             case 4:
                 pass
