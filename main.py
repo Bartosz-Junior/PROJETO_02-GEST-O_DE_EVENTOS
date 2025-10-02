@@ -124,7 +124,7 @@ while True:
                 break
 
             case _:
-                print("Digite uma opção válida!")
+                print("Digite uma opção válida!!")
 
     except ValueError:
         print("Erro! Digite um número inteiro, ou 0 para sair.\n")
