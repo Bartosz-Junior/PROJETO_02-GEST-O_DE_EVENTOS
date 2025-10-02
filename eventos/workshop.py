@@ -1,4 +1,5 @@
 from .eventos import Evento
+import utils
 import datetime, json
 
 
@@ -48,14 +49,13 @@ class Workshop(Evento):
             
 
     def listar_workshop(self):
-        with open("database\wokshops.json", "r", encoding= "utf-8") as file:
-            carrega_workshop = json.load(file)
-            for i,v in enumerate(carrega_workshop):
-                print(f"_____ WORKSHOP {i + 1} _____")
-                print(f"Tema: {v["Tema"]:5}")
-                print(f"Data: {v["Data"]:5}")
-                print(f"Local: {v["Local"]:5}")
-                print(f"Capacidade: {v["Capacidade_max"]:5}")
-                print(f"Categoria: {v["Categoria"]:5}")
-                print(f"Preço: R${v["Preço ingresso"]:5.2f}\n")
+        carrega_workshop = utils.functions.carregar_json("database\wokshops.json")
+        for i,v in enumerate(carrega_workshop):
+            print(f"_____ WORKSHOP {i + 1} _____")
+            print(f"Tema: {v["Tema"]:5}")
+            print(f"Data: {v["Data"]:5}")
+            print(f"Local: {v["Local"]:5}")
+            print(f"Capacidade: {v["Capacidade_max"]:5}")
+            print(f"Categoria: {v["Categoria"]:5}")
+            print(f"Preço: R${v["Preço ingresso"]:5.2f}\n")
 
