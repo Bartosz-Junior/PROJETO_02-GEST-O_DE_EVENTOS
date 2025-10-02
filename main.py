@@ -27,7 +27,7 @@ while True:
         print("[2] Mostrar EVENTOS")
         print("[3] Fazer inscrição")
         print("[4] Cancelar inscrição")
-        print("[5] Buscar Evento")
+        print("[5] pass")
         print("[6] pass")
         print("[7] pass")
         print("[0] Sair")
@@ -60,11 +60,12 @@ while True:
             case 2:
                 while True:
                     try:
-                        print("__________ EVENTOS DISPONIVEIS __________" )
-                        print("[1] para PALESTRAS:")
-                        print("[2] para WORKSHOPS:")
-                        print("[3] para TODOS:")
-                        print("[0] para VOLTAR:")
+                        print("________ EVENTOS DISPONIVEIS ________" )
+                        print("[1] PALESTRAS")
+                        print("[2] WORKSHOPS")
+                        print("[3] BUSCAR")
+                        print("[4] TODOS")
+                        print("[0] VOLTAR")
                         escolha = int(input())
 
                         if escolha == 1:
@@ -74,9 +75,28 @@ while True:
                             workshop.listar_workshop()
 
                         elif escolha == 3:
+                            while True:
+                                try:
+                                    print("______ BUSCAR EVENTO ______" )
+                                    print("[1] Buscar por Data(dd/mm/aaaa):")
+                                    print("[2] Buscar por Categria(Ex.: Tech):")
+                                    print("[0] para VOLTAR:")
+                                    escolha = int(input())
+
+                                    if escolha == 1:
+                                        functions.buscar_evento_data()
+
+                                    if escolha == 2:
+                                        functions.buscar_evento_categoria()
+
+                                    elif escolha == 0:
+                                        break
+                                except ValueError:
+                                    print("Opção inválida!")
+
+                        elif escolha == 4:
                             palestra.listar_palestras()
                             workshop.listar_workshop()
-
                         elif escolha == 0:
                             break
 
@@ -84,7 +104,7 @@ while True:
                         print("Opção inválida!")
 
             case 3:
-                escolha_evento = int(input("[1] palestras, [2] workshops"))
+                escolha_evento = int(input("[1] palestras | [2] workshops"))
                 if escolha_evento == 1:
                     functions.add_participante(objetos_palestras) 
 
@@ -98,24 +118,7 @@ while True:
                 pass
 
             case 5:
-                while True:
-                    try:
-                        print("__________ BUSCAR EVENTO __________" )
-                        print("[1] Buscar por Data(dd/mm/aaaa):")
-                        print("[2] Buscar por Categria(Ex.: Tech):")
-                        print("[0] para VOLTAR:")
-                        escolha = int(input())
-
-                        if escolha == 1:
-                            functions.buscar_evento_data()
-
-                        if escolha == 2:
-                            functions.buscar_evento_categoria()
-
-                        elif escolha == 0:
-                            break
-                    except ValueError:
-                        print("Opção inválida!")
+                pass
 
             case 6:
                 pass
