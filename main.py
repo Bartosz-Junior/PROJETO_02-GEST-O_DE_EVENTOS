@@ -6,14 +6,14 @@ from utils import functions
 import os
 
 DIRETORIO_PALESTRAS = 'database/palestras.json'
-DIRETORIO_WORKSHOPS = 'database/workshops.json'
+DIRETORIO_WORKSHOPS = 'database/wokshops.json'
 DIRETORIO_PARTICIPANTES = "database/participantes.json"
 
 # CARREGA OS DADOS DO JSON E A VARIAVEL RECEBER UM DICT
 palestras = functions.carregar_json(DIRETORIO_PALESTRAS)
 workshops = functions.carregar_json(DIRETORIO_WORKSHOPS)
 
-print(palestras)
+#print(palestras)
 print(workshops)
 
 objetos_palestras = functions.carregar_instancias(palestras, Palestra)
