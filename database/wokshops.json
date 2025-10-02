@@ -3,40 +3,63 @@
         "Tema": "Python para leigos",
         "Data": "20/10/2025",
         "Local": "teste",
-        "Capacidade": 120,
+        "Capacidade_max": 120,
+        "Numero_inscritos": 0,
         "Categoria": "Teste",
         "Preço ingresso": 120.0
     },
     {
-        "Tema": "Aniv. Arthur",
-        "Data": "26/11/2025",
-        "Local": "Recife",
-        "Capacidade": 1000,
-        "Categoria": "Tech",
-        "Preço ingresso": 0.0
-    },
-    {
-        "Tema": "aniv. Junior",
-        "Data": "30/10/2025",
-        "Local": "Recife",
-        "Capacidade": 0,
-        "Categoria": "Tech",
-        "Preço ingresso": 0.0
-    },
-    {
-        "Tema": "Marketing para festas",
+        "Tema": "Python para leigos",
         "Data": "20/10/2025",
-        "Local": "Caxanga",
-        "Capacidade": 10,
-        "Categoria": "Marketing",
-        "Preço ingresso": -1.0
+        "Local": "teste",
+        "Capacidade_max": 120,
+        "Numero_inscritos": 0,
+        "Categoria": "Teste",
+        "Preço ingresso": 120.0
     },
     {
-        "Tema": "Testando Caminho json",
+        "Tema": "Python para leigos",
         "Data": "20/10/2025",
-        "Local": "Recife",
-        "Capacidade": 100,
+        "Local": "teste",
+        "Capacidade_max": 120,
+        "Numero_inscritos": 0,
+        "Categoria": "Teste",
+        "Preço ingresso": 120.0
+    },
+    {
+        "Tema": "Bartosz",
+        "Data": "29/12/2025",
+        "Local": "recife",
+        "Capacidade_max": 0,
+        "Numero_inscritos": 0,
         "Categoria": "tech",
+        "Preço ingresso": 0.0
+    },
+    {
+        "Tema": "aniv camila",
+        "Data": "02/04/2026",
+        "Local": "Recife",
+        "Capacidade_max": 120,
+        "Numero_inscritos": 0,
+        "Categoria": "Tech",
+        "Preço ingresso": 0.0
+    },
+    {
+        "Tema": "Aniv. Junior",
+        "Data": "30/10/2025",
+        "Local": "Casa Recife",
+        "Capacidade_max": 120,
+        "Numero_inscritos": 0,
+        "Categoria": "Marketing",
+        "Preço ingresso": 0.0
+    },
+    {
+        "Tema": "Aniversário Bartosz",
+        "Data": "29/12/2025",
+        "Local": "Iputinga",
+        "Capacidade_max": 120,
+        "Numero_inscritos": 0,
+        "Categoria": "Festa",
         "Preço ingresso": 0.0
     }
 ]
