@@ -14,13 +14,14 @@ palestras = functions.carregar_json(DIRETORIO_PALESTRAS)
 workshops = functions.carregar_json(DIRETORIO_WORKSHOPS)
 
 #print(palestras)
-print(workshops)
+#print(workshops)
 
 objetos_palestras = functions.carregar_instancias(palestras, Palestra)
 objetos_workshops = functions.carregar_instancias(workshops, Workshop)
 
 while True:
     try:
+        print("______________ MENU _______________")
         print("_" * 35)
         print("[1] Adicionar EVENTO")
         print("[2] Mostrar EVENTOS")

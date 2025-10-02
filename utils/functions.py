@@ -3,10 +3,10 @@ import json, datetime
 # funções auxiliares
 
 def buscar_evento_data():
-    with open("database/palestras.json", "r", encoding="utf-8") as file:
+    with open("database\palestras.json", "r", encoding="utf-8") as file:
         carrega_palestras = json.load(file)
 
-    with open("database/wokshop.json", "r", encoding="utf-8") as file:
+    with open("database\wokshops.json", "r", encoding="utf-8") as file:
         carrega_workshops = json.load(file)
 
         data_busca = str(input("Informe a data do evento (dd/mm/aaaa): "))
@@ -14,19 +14,19 @@ def buscar_evento_data():
         print("__________ PALESTRAS __________")
         for i, v in enumerate(carrega_palestras):
             if v["Data"] == data_busca:
-                print(f"{i + 1:}- Tema: {v["Tema"]:5} Data: {v["Data"]:5} Local: {v["Local"]:5} Capacidade: {v["Capacidade"]:5} Categoria: {v["Categoria"]:5} Preço: R${v["Preço ingresso"]:5.2f}\n")
+                print(f"{i + 1:}- Tema: {v["Tema"]:5} Data: {v["Data"]:5} Local: {v["Local"]:5} Capacidade: {v["Capacidade_max"]:5} Categoria: {v["Categoria"]:5} Preço: R${v["Preço ingresso"]:5.2f}\n")
 
 
         print("__________ WORKSHOPS __________")
         for i, v in enumerate(carrega_workshops):
             if v["Data"] == data_busca:
-                print(f"{i + 1:}- Tema: {v["Tema"]:5} Data: {v["Data"]:5} Local: {v["Local"]:5} Capacidade: {v["Capacidade"]:5} Categoria: {v["Categoria"]:5} Preço: R${v["Preço ingresso"]:5.2f}\n")
+                print(f"{i + 1:}- Tema: {v["Tema"]:5} Data: {v["Data"]:5} Local: {v["Local"]:5} Capacidade: {v["Capacidade_max"]:5} Categoria: {v["Categoria"]:5} Preço: R${v["Preço ingresso"]:5.2f}\n")
 
 def buscar_evento_categoria():
-    with open("database/palestras.json", "r", encoding="utf-8") as file:
+    with open("database\palestras.json", "r", encoding="utf-8") as file:
         carrega_palestras = json.load(file)
 
-    with open("database/wokshop.json", "r", encoding="utf-8") as file:
+    with open("database\wokshops.json", "r", encoding="utf-8") as file:
         carrega_workshops = json.load(file)
 
         categoria_busca = str(input("Informe a categoria do evento:")).lower().strip()
@@ -34,12 +34,12 @@ def buscar_evento_categoria():
         print("__________ PALESTRAS __________")
         for i, v in enumerate(carrega_palestras):
             if v["Categoria"] == categoria_busca:
-                print(f"{i + 1:}- Tema: {v["Tema"]:5} Data: {v["Data"]:5} Local: {v["Local"]:5} Capacidade: {v["Capacidade"]:5} Categoria: {v["Categoria"]:5} Preço: R${v["Preço ingresso"]:5.2f}\n")
+                print(f"{i + 1:}- Tema: {v["Tema"]:5} Data: {v["Data"]:5} Local: {v["Local"]:5} Capacidade: {v["Capacidade_max"]:5} Categoria: {v["Categoria"]:5} Preço: R${v["Preço ingresso"]:5.2f}\n")
 
         print("__________ WORKSHOPS __________")
         for i, v in enumerate(carrega_workshops):
             if v["Categoria"] == categoria_busca:
-                print(f"{i + 1:}- Tema: {v["Tema"]:5} Data: {v["Data"]:5} Local: {v["Local"]:5} Capacidade: {v["Capacidade"]:5} Categoria: {v["Categoria"]:5} Preço: R${v["Preço ingresso"]:5.2f}\n")
+                print(f"{i + 1:}- Tema: {v["Tema"]:5} Data: {v["Data"]:5} Local: {v["Local"]:5} Capacidade: {v["Capacidade_max"]:5} Categoria: {v["Categoria"]:5} Preço: R${v["Preço ingresso"]:5.2f}\n")
 
 # FUNÇÕES AUXILIARES
 
@@ -73,24 +73,23 @@ def carregar_json(arquivo):
         return []
 
 
-def carregar_instancias(dados, instancia_evento):
+#def carregar_instancias(dados, instancia_evento):
 
-    eventos = []
-    for d in dados:
-        # recria objeto Palestra
-        p = instancia_evento(
-            d["Tema"],
-            d["Data"],
-            d["Local"],
-            d["Capacidade_max"],
-            d["Numero_inscritos"],
-            d["Categoria"],
-            d["Preço ingresso"]
-        )
-
-        eventos.append(p)
-
-    return eventos
+#    eventos = []
+#    for d in dados:
+#        # recria objeto Palestra
+#        p = instancia_evento(
+#            d["Tema"],
+#            d["Data"],
+#            d["Local"],
+#            d["Capacidade"],
+#            d["Numero_inscritos"],
+#            d["Categoria"],
+#            d["Preço ingresso"]
+#
+#        eventos.append(p)
+#
+#    return eventos
 
 # def carregar_instancias(dados):
 

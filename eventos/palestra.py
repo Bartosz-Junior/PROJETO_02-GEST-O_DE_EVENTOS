@@ -11,7 +11,7 @@ class Palestra(Evento):
         print("__________ Adicionar Palestra __________" )              #IMPRIMI UM CABEÇALHO
         nome = str(input("Tema da palestra: "))                         #RECEBE O NOME DA PALESTRA
         while True:                                                     #LOOP ENQUANTO VERDADEIRO PARA TRATAMENTO DE DATA
-            data_evento = str(input("Data de realização dd/mm/aaaa:"))  #DATA NO FORMATO STRING (ENTRADA)
+            data_evento = str(input("Data de realização dd/mm/aaaa: "))  #DATA NO FORMATO STRING (ENTRADA)
             data_formatada = datetime.datetime.strptime(data_evento, "%d/%m/%Y" )   #CONVERTE PARA O FORMATO DATA
             if data_formatada < self._data_atual:                       #SE DATA INFORMADA FOR MENOR QUE A DATA ATUAL VAI PEDIR A DATA NOVAMENTE
                 print("A data do evento não pode ser menor que a data atual!")  #IMPRIMI MENSAGEM QUE A DATA INFORMADA NÃO É VÁLIDA.
@@ -37,7 +37,7 @@ class Palestra(Evento):
             else:
                 break
 
-        dados_palestra = {"Tema" : nome, "Data" : data_evento, "Local" : local_evento, "Capacidade" : capacidade_max,
+        dados_palestra = {"Tema" : nome, "Data" : data_evento, "Local" : local_evento, "Capacidade_max" : capacidade_max,
                     "Categoria" : categoria, "Preço ingresso" : preco_ingresso} #DICIONÁRIO QUE É ARMAZENADO NO .JSON
         with open("database/palestras.json", "r", encoding= "utf-8") as file:
             carrega_palestras = json.load(file)
@@ -51,4 +51,4 @@ class Palestra(Evento):
         with open("database/palestras.json", "r", encoding= "utf-8") as file:
             carrega_palestras = json.load(file)
             for i,v in enumerate(carrega_palestras):
-                print(f"{i + 1:}- Tema: {v["Tema"]:5} Data: {v["Data"]:5} Local: {v["Local"]:5} Capacidade: {v["Capacidade"]:5} Categoria: {v["Categoria"]:5} Preço: R${v["Preço ingresso"]:5.2f}\n")
+                print(f"{i + 1:}- Tema: {v["Tema"]:5} Data: {v["Data"]:5} Local: {v["Local"]:5} Capacidade: {v["Capacidade_max"]:5} Categoria: {v["Categoria"]:5} Preço: R${v["Preço ingresso"]:5.2f}\n")

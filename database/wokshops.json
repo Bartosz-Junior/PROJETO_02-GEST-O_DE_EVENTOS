@@ -61,5 +61,21 @@
         "Numero_inscritos": 0,
         "Categoria": "Festa",
         "Preço ingresso": 0.0
+    },
+    {
+        "Tema": "teste001",
+        "Data": "10/10/2025",
+        "Local": "teste",
+        "Capacidade_max": 10,
+        "Categoria": "saude",
+        "Preço ingresso": 10.0
+    },
+    {
+        "Tema": "teste003",
+        "Data": "02/01/2026",
+        "Local": "Petrolina",
+        "Capacidade_max": 20,
+        "Categoria": "tech",
+        "Preço ingresso": 312.0
     }
 ]

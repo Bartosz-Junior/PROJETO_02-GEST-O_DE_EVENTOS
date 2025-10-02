@@ -61,5 +61,21 @@
         "Numero_inscritos": 0,
         "Categoria": "Festa",
         "Preço ingresso": 0.0
+    },
+    {
+        "Tema": "reciclagem consciente",
+        "Data": "05/10/2025",
+        "Local": "Tabatinga",
+        "Capacidade_max": 30,
+        "Categoria": "meio ambiente",
+        "Preço ingresso": 15.0
+    },
+    {
+        "Tema": "Teste002",
+        "Data": "01/01/2026",
+        "Local": "Recife",
+        "Capacidade_max": 10,
+        "Categoria": "tech",
+        "Preço ingresso": 10.0
     }
 ]
