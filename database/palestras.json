@@ -67,6 +67,7 @@
         "Data": "05/10/2025",
         "Local": "Tabatinga",
         "Capacidade_max": 30,
+        "Numero_inscritos": 0,
         "Categoria": "meio ambiente",
         "Preço ingresso": 15.0
     },
@@ -75,6 +76,7 @@
         "Data": "01/01/2026",
         "Local": "Recife",
         "Capacidade_max": 10,
+        "Numero_inscritos": 0,
         "Categoria": "tech",
         "Preço ingresso": 10.0
     },
@@ -83,7 +85,17 @@
         "Data": "30/10/2027",
         "Local": "Jaboatão",
         "Capacidade_max": 90,
+        "Numero_inscritos": 0,
         "Categoria": "tech",
         "Preço ingresso": 0.0
+    },
+    {
+        "Tema": "Teste666",
+        "Data": "20/10/2025",
+        "Local": "Ìtambé",
+        "Capacidade_max": 10,
+        "Numero_inscritos": 0,
+        "Categoria": "tech",
+        "Preço ingresso": 15.0
     }
 ]

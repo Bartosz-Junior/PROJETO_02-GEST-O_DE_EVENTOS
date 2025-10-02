@@ -37,8 +37,8 @@ class Palestra(Evento):
             else:
                 break
 
-        dados_palestra = {"Tema" : nome, "Data" : data_evento, "Local" : local_evento, "Capacidade_max" : capacidade_max,
-                    "Categoria" : categoria, "Preço ingresso" : preco_ingresso} #DICIONÁRIO QUE É ARMAZENADO NO .JSON
+        dados_palestra = {"Tema" : nome, "Data" : data_evento, "Local" : local_evento, "Capacidade_max" : capacidade_max, 
+                          "Numero_inscritos" : 0, "Categoria" : categoria, "Preço ingresso" : preco_ingresso}   #DICIONÁRIO QUE É ARMAZENADO NO .JSON
         
         with open("database/palestras.json", "r", encoding= "utf-8") as file:
             carrega_palestras = json.load(file)

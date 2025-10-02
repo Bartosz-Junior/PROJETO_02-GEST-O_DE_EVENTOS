@@ -37,7 +37,7 @@ class Workshop(Evento):
             else:
                 break       #PREÇO DA ENTRADA DO EVENTO
         dados_workshop = {"Tema" : nome, "Data" : data_evento, "Local" : local_evento, "Capacidade_max" : capacidade_max,
-                    "Categoria" : categoria, "Preço ingresso" : preco_ingresso}     #DICIONÁRIO COM AS INFORMAÇÕES DO FORMULÁRIO
+                    "Numero_inscritos" : 0,"Categoria" : categoria, "Preço ingresso" : preco_ingresso}     #DICIONÁRIO COM AS INFORMAÇÕES DO FORMULÁRIO
         
         with open("database\wokshops.json", "r", encoding= "utf-8") as file:
             carrega_workshops = json.load(file)

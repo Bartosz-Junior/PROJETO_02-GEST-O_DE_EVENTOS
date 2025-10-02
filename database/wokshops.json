@@ -67,6 +67,7 @@
         "Data": "10/10/2025",
         "Local": "teste",
         "Capacidade_max": 10,
+        "Numero_inscritos": 0,
         "Categoria": "saude",
         "Preço ingresso": 10.0
     },
@@ -75,6 +76,7 @@
         "Data": "02/01/2026",
         "Local": "Petrolina",
         "Capacidade_max": 20,
+        "Numero_inscritos": 0,
         "Categoria": "tech",
         "Preço ingresso": 312.0
     },
@@ -83,6 +85,7 @@
         "Data": "31/10/2027",
         "Local": "Paulista",
         "Capacidade_max": 80,
+        "Numero_inscritos": 0,
         "Categoria": "marketing",
         "Preço ingresso": 0.0
     }
