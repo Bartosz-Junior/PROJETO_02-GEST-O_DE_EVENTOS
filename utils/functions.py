@@ -2,9 +2,6 @@ import json, datetime
 
 # funções auxiliares
 
-def function():
-    pass
-
 def buscar_evento_data():
     with open("database/palestras.json", "r", encoding="utf-8") as file:
         carrega_palestras = json.load(file)
@@ -43,6 +40,7 @@ def buscar_evento_categoria():
         for i, v in enumerate(carrega_workshops):
             if v["Categoria"] == categoria_busca:
                 print(f"{i + 1:}- Tema: {v["Tema"]:5} Data: {v["Data"]:5} Local: {v["Local"]:5} Capacidade: {v["Capacidade"]:5} Categoria: {v["Categoria"]:5} Preço: R${v["Preço ingresso"]:5.2f}\n")
+
 # FUNÇÕES AUXILIARES
 
 from eventos.palestra import Palestra
@@ -53,134 +51,126 @@ from eventos.participantes import Participante
 from datetime import datetime
 import json
 import os # para verificar se o arquivo json existe
-PALESTRAS = 'database/palestras.json'
-WORKSHOP = 'database/workshop.json'
 
 
+# TENTA CARREGAR QUALQUER LISTA DE UM ARQUIVO JSON E RETORNA UM DICT
+def carregar_json(arquivo):
 
-# TENTA CARREGAR A LISTA DE PALESTRAS DO ARQUIVO JSON
-def carregar_palestras():
-
-    if not os.path.exists(PALESTRAS):
+    if not os.path.exists(arquivo):
         return []
 
     try:
-        with open(PALESTRAS, "r", encoding="utf-8") as arquivo:
-            dados = json.load(arquivo)
-            palestras = []
-
-            for d in dados:
-                # recria objeto Palestra
-                p = Palestra(
-                    d["Tema"],
-                    d["Data"],
-                    d["Local"],
-                    d["Capacidade_max"],
-                    d["Numero_inscritos"],
-                    d["Categoria"],
-                    d["Preço ingresso"]
-                )
-
-                palestras.append(p)
-
-            return palestras
+        with open(arquivo, "r", encoding="utf-8") as file:
+            dados = json.load(file)
+            return dados
 
     except json.JSONDecodeError:
-        print(f"Erro ao decodificar JSON do arquivo '{PALESTRAS}'")
+        print(f"Erro ao decodificar JSON do arquivo '{arquivo}'")
         return []
+    
     except Exception as e:
         print(f"Erro inesperado: {e}")
         return []
-    
-# TENTA CARREGAR A LISTA DE WORKSHOP DO ARQUIVO JSON
-def carregar_workshop():
-    
-    if not os.path.exists(WORKSHOP):
-        # Se o arquivo não existir, retorna uma lista vazia
-        return []
-    
-    try:
-        with open(WORKSHOP, 'r', encoding='utf-8') as arquivo:
-            # Carrega a lista de dicionários do arquivo
-            eventos_carregados = json.load(arquivo)
-            # Garante que o que foi carregado é uma lista
-            if isinstance(eventos_carregados, list):
-                return eventos_carregados
-            else:
-                print(f"Aviso: O arquivo '{WORKSHOP}' não contém uma lista válida.")
-                return []
-            
-    except json.JSONDecodeError:
-        print(f"Erro ao decodificar JSON do arquivo '{WORKSHOP}'. O arquivo pode estar corrompido.")
-        return []
-    except Exception as e:
-        print(f"Erro inesperado ao ler o arquivo: {e}")
-        return []
+
+
+def carregar_instancias(dados, instancia_evento):
+
+    eventos = []
+    for d in dados:
+        # recria objeto Palestra
+        p = instancia_evento(
+            d["Tema"],
+            d["Data"],
+            d["Local"],
+            d["Capacidade_max"],
+            d["Numero_inscritos"],
+            d["Categoria"],
+            d["Preço ingresso"]
+        )
+
+        eventos.append(p)
+
+    return eventos
+
+# def carregar_instancias(dados):
+
+#     workshop = []
+
+#     for d in dados:
+#         # recria objeto Palestra
+#         w = Workshop(
+#             d["Tema"],
+#             d["Data"],
+#             d["Local"],
+#             d["Capacidade_max"],
+#             d["Numero_inscritos"],
+#             d["Categoria"],
+#             d["Preço ingresso"]
+#         )
+
+#         workshop.append(w)
+
+#     return workshop
 
 
 # Lista todos os eventos contidos na lista 'eventos'
-def listar_eventos(eventos):
+def listar_eventos(objeto):
     print("\n" + "="*30)
     print("      LISTA DE EVENTOS")
     print("="*30)
 
-    if not eventos:
+    if not objeto:
         print("Nenhum evento cadastrado ainda.")
         return
 
-    for i, evento in enumerate(eventos, 1):
+    for i, evento in enumerate(objeto):
         print(f"\n--- Evento {i} ---")
         print(evento)
 
     print("\n" + "="*30)
 
 
-def adicionar_evento():
-    print("Tipo de evento: [1] Palestra | [2] Workshop")
-
-
-def add_participante(palestras, workshop):
+def add_participante(evento):
     try:
-        if (not palestras) and (not workshop):
+        if not evento:
             print("Nenhum evento disponível.")
             return
 
-        print("*** ADICIONAR PARTICIPANTE ***")
-        tipo_evento = int(input("Escolha o tipo de evento: [1] Palestra | [2] Workshop"))
+        # Chama a função para listar
+        listar_eventos(evento)
+        indice = int(input("Informe qual evento deseja participar: "))
 
-        if tipo_evento == 1:
-
-            # Chama a função para listar
-            listar_eventos(palestras)
-            indice = int(input("Informe qual evento deseja participar: ")) - 1
-            if (indice < 0) or (indice > len(palestras)):
-                print("Evento inválido!")
-                return
-            
-            
-            nome = str(input("Informe o nome: "))
-            email = str(input("Informe o e-mail: "))
-            evento_escolhido = palestras[indice]
-            
+        if (indice < 0) or (indice >= len(evento)):
+            print("Evento inválido!")
+            return
+        
+        nome = str(input("Informe o nome: ")).upper()
+        email = str(input("Informe o e-mail: ")).lower()
+        evento_escolhido = evento[indice]
+        
+        if nome and email and evento_escolhido:
             participante = Participante(nome, email, evento_escolhido.nome)
-            evento_escolhido.adicionar_inscrito()
+            print(participante)
 
-        elif tipo_evento == 2:
-            
-            # Chama a função para listar
-            listar_eventos(workshop)
-            indice = int(input("Informe qual evento deseja participar: "))
-            if indice < 0 or indice > len(workshop):
-                print("Evento inválido!")
-                return
-            
-            
-            nome = str(input("Informe o nome: "))
-            email = str(input("Informe o e-mail: "))
-            evento_escolhido = workshop[indice].nome
-            
-            participante = Participante(nome, email, evento_escolhido)
-            workshop[indice].capacidade -= 1
+            dados_participante = {
+                "Nome:": participante.nome,
+                "E-mail": participante.email,
+                "Evento escolhido": participante.evento
+            }
+
+            participante.salvar_participante(dados_participante, evento_escolhido)
 
     except ValueError:
         print("Dados informados inválidos")
+
+    except IndexError:
+        print("Evento inválido! O número do evento não existe na lista.")
+
+    except FileNotFoundError:
+        # Se o arquivo não existir, inicia a lista vazia
+        carrega_participantes = []
+
+    except json.JSONDecodeError:
+        # Se o arquivo estiver vazio/inválido, inicia a lista vazia e avisa
+        print("Aviso: Arquivo de participantes inválido ou vazio. Iniciando nova lista.")
+        carrega_participantes = []

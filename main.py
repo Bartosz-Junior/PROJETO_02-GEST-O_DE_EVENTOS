@@ -5,11 +5,19 @@ from eventos.workshop import Evento
 from utils import functions
 import os
 
+DIRETORIO_PALESTRAS = 'database/palestras.json'
+DIRETORIO_WORKSHOPS = 'database/workshops.json'
+DIRETORIO_PARTICIPANTES = "database/participantes.json"
 
-# 1. Carrega os eventos do JSON
-palestras = functions.carregar_palestras()
-workshops = functions.carregar_workshop()
+# CARREGA OS DADOS DO JSON E A VARIAVEL RECEBER UM DICT
+palestras = functions.carregar_json(DIRETORIO_PALESTRAS)
+workshops = functions.carregar_json(DIRETORIO_WORKSHOPS)
 
+print(palestras)
+print(workshops)
+
+objetos_palestras = functions.carregar_instancias(palestras, Palestra)
+objetos_workshops = functions.carregar_instancias(workshops, Workshop)
 
 while True:
     try:
@@ -75,7 +83,15 @@ while True:
                         print("Opção inválida!")
 
             case 3:
-                functions.add_participante(palestras, workshops)             
+                escolha_evento = int(input("[1] palestras, [2] workshops"))
+                if escolha_evento == 1:
+                    functions.add_participante(objetos_palestras) 
+
+                elif escolha_evento == 2:   
+                    functions.add_participante(objetos_workshops)
+
+                else:
+                    pass           
 
             case 4:
                 pass
@@ -93,7 +109,7 @@ while True:
                             functions.buscar_evento_data()
 
                         if escolha == 2:
-                            functions.buscar_evento_categoria
+                            functions.buscar_evento_categoria()
 
                         elif escolha == 0:
                             break
@@ -106,6 +122,9 @@ while True:
             case 0:
                 print("Saindo...")
                 break
+
+            case _:
+                print("Digite uma opção válida!!")
 
     except ValueError:
         print("Erro! Digite um número inteiro, ou 0 para sair.\n")
