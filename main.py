@@ -5,10 +5,13 @@ from eventos.workshop import Evento
 from utils import functions
 import os
 
+DIRETORIO_PALESTRAS = 'database/palestras.json'
+DIRETORIO_WORKSHOPS = 'database/workshops.json'
+DIRETORIO_PARTICIPANTES = "database/participantes.json"
 
-# 1. Carrega os eventos do JSON
-palestras = functions.carregar_palestras()
-workshops = functions.carregar_workshop()
+# CARREGA OS DADOS DO JSON E A VARIAVEL RECEBER UM DICT
+palestras = functions.carregar_json(DIRETORIO_PALESTRAS)
+workshops = functions.carregar_json(DIRETORIO_WORKSHOPS)
 
 
 while True:
@@ -93,7 +96,7 @@ while True:
                             functions.buscar_evento_data()
 
                         if escolha == 2:
-                            functions.buscar_evento_categoria
+                            functions.buscar_evento_categoria()
 
                         elif escolha == 0:
                             break
@@ -106,6 +109,9 @@ while True:
             case 0:
                 print("Saindo...")
                 break
+
+            case _:
+                print("Digite uma opção válida!")
 
     except ValueError:
         print("Erro! Digite um número inteiro, ou 0 para sair.\n")
