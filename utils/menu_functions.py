@@ -16,11 +16,12 @@ def adicionar_evento():
             print("Digite [2] para WORKSHOPS:")
             print("Digite [0] para VOLTAR:")
             escolha = int(input())
+
             if escolha == 1:
-                palestra.add_evento()
+                helpers_functions.add_palestra()
 
             elif escolha == 2:
-                workshop.add_evento()
+                helpers_functions.add_workshop()
 
             elif escolha == 0:
                 break

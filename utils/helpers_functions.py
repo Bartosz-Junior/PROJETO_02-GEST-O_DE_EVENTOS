@@ -7,6 +7,100 @@ from datetime import datetime
 import json, os, datetime
 
 
+def add_palestra():
+    hoje = datetime.date.today()
+    try:                            
+        print("__________ Adicionar Palestra __________" )
+
+        nome = str(input("Tema da palestra: "))
+
+        while True:
+            data_evento = str(input("Data de realização dd/mm/aaaa:"))
+            data_formatada = datetime.datetime.strptime(data_evento, "%d/%m/%Y")
+
+            if data_formatada < hoje:
+                print("A data do evento não pode ser menor que a data atual!")
+                continue
+            else:
+                break
+
+        local_evento = str(input("Local: "))
+        
+        while True:
+            capacidade_max = int(input("Capacidade de pessoas: "))
+            if capacidade_max <= 0:
+                print("O evento deve comportar um número maior que zero de pessoas.")
+                continue
+            else:
+                break
+
+        categoria = str(input("Categoria [Tech/Marketing]: ")).lower().strip()
+        numero_inscritos = 0
+
+        while True:
+            preco_ingresso = float(input("Preço da entrada: "))
+            if preco_ingresso < 0:
+                print("O preço não pode ser negativo.")
+                continue
+            else:
+                break
+
+        
+        nova_palestra = Palestra(nome, data_formatada, local_evento, capacidade_max, categoria, numero_inscritos, preco_ingresso)
+
+        nova_palestra.listar_eventos()
+
+    except ValueError:
+        print("Opção inválida!")
+
+
+def add_workshop():
+    hoje = datetime.date.today()
+    try:                            
+        print("__________ Adicionar workshop __________" )
+
+        nome = str(input("Tema do workshop: "))
+
+        while True:
+            data_evento = str(input("Data de realização dd/mm/aaaa:"))
+            data_formatada = datetime.datetime.strptime(data_evento, "%d/%m/%Y")
+
+            if data_formatada < hoje:
+                print("A data do evento não pode ser menor que a data atual!")
+                continue
+            else:
+                break
+
+        local_evento = str(input("Local: "))
+        
+        while True:
+            capacidade_max = int(input("Capacidade de pessoas: "))
+            if capacidade_max <= 0:
+                print("O evento deve comportar um número maior que zero de pessoas.")
+                continue
+            else:
+                break
+
+        categoria = str(input("Categoria [Tech/Marketing]: ")).lower().strip()
+        numero_inscritos = 0
+
+        while True:
+            preco_ingresso = float(input("Preço da entrada: "))
+            if preco_ingresso < 0:
+                print("O preço não pode ser negativo.")
+                continue
+            else:
+                break
+
+        
+        novo_workshop = Workshop(nome, data_formatada, local_evento, capacidade_max, categoria, numero_inscritos, preco_ingresso)
+
+        novo_workshop.listar_eventos()
+
+    except ValueError:
+        print("Opção inválida!")
+
+
 # Lista todos os eventos contidos na lista 'eventos'
 def listar_eventos(objeto):
     print("\n" + "="*30)

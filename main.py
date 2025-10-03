@@ -15,7 +15,6 @@ participantes = db_functions.carregar_json(DIRETORIO_PARTICIPANTES)
 objetos_palestras = db_functions.carregar_instancias(palestras, Palestra)
 objetos_workshops = db_functions.carregar_instancias(workshops, Workshop)
 
-
 while True:
     try:
         print("______________ MENU _______________")
