@@ -1,134 +1,55 @@
-from utils import functions
+from utils import menu_functions, helpers_functions, db_functions
 from eventos.palestra import Palestra
 from eventos.workshop import Workshop
-from eventos.workshop import Evento
-from utils import functions
-import os
 
 DIRETORIO_PALESTRAS = 'database/palestras.json'
 DIRETORIO_WORKSHOPS = 'database/wokshops.json'
 DIRETORIO_PARTICIPANTES = "database/participantes.json"
 
 # CARREGA OS DADOS DO JSON E A VARIAVEL RECEBER UM DICT
-#palestras = functions.carregar_json(DIRETORIO_PALESTRAS)
-#workshops = functions.carregar_json(DIRETORIO_WORKSHOPS)
+palestras = db_functions.carregar_json(DIRETORIO_PALESTRAS)
+workshops = db_functions.carregar_json(DIRETORIO_WORKSHOPS)
+participantes = db_functions.carregar_json(DIRETORIO_PARTICIPANTES)
 
-#print(palestras)
-#print(workshops)
 
-#objetos_palestras = functions.carregar_instancias(palestras, Palestra)
-#objetos_workshops = functions.carregar_instancias(workshops, Workshop)
+objetos_palestras = db_functions.carregar_instancias(palestras, Palestra)
+objetos_workshops = db_functions.carregar_instancias(workshops, Workshop)
 
 while True:
     try:
         print("______________ MENU _______________")
         print("_" * 35)
-        print("[1] Adicionar EVENTO")
-        print("[2] Mostrar EVENTOS")
+        print("[1] Adicionar evento")
+        print("[2] Mostrar eventos")
         print("[3] Fazer inscrição")
         print("[4] Cancelar inscrição")
         print("[5] pass")
-        print("[6] pass")
-        print("[7] pass")
         print("[0] Sair")
         print('_' * 35)
-
-        # Entrada do usuário para escolha da opção
         escolha = int(input("Escolha uma opção: "))
-        palestra = Palestra()
-        workshop = Workshop()
-        evento = Evento()
 
         match escolha:
             case 1:
-                while True:
-                    try:
-                        print("__________ ADICIONAR EVENTO __________" )
-                        print("Digte [1] para PALESTRAS:")
-                        print("Digte [2] para WORKSHOPS:")
-                        print("Digte [0] para VOLTAR:")
-                        escolha = int(input())
-                        if escolha == 1:
-                            palestra.add_evento()
-                        elif escolha == 2:
-                            workshop.add_evento()
-                        elif escolha == 0:
-                            break
-                    except ValueError:
-                        print("Opção inválida!")
+                menu_functions.adicionar_evento()
                 
             case 2:
-                while True:
-                    try:
-                        print("________ EVENTOS DISPONIVEIS ________" )
-                        print("[1] PALESTRAS")
-                        print("[2] WORKSHOPS")
-                        print("[3] BUSCAR")
-                        print("[4] TODOS")
-                        print("[0] VOLTAR")
-                        escolha = int(input())
-
-                        if escolha == 1:
-                            palestra.listar_palestras()
-
-                        elif escolha == 2:
-                            workshop.listar_workshop()
-
-                        elif escolha == 3:
-                            while True:
-                                try:
-                                    print("______ BUSCAR EVENTO ______" )
-                                    print("[1] Buscar por Data(dd/mm/aaaa):")
-                                    print("[2] Buscar por Categria(Ex.: Tech):")
-                                    print("[0] para VOLTAR:")
-                                    escolha = int(input())
-
-                                    if escolha == 1:
-                                        functions.buscar_evento_data()
-
-                                    if escolha == 2:
-                                        functions.buscar_evento_categoria()
-
-                                    elif escolha == 0:
-                                        break
-                                except ValueError:
-                                    print("Opção inválida!")
-
-                        elif escolha == 4:
-                            palestra.listar_palestras()
-                            workshop.listar_workshop()
-                        elif escolha == 0:
-                            break
-
-                    except ValueError:
-                        print("Opção inválida!")
+                menu_functions.mostrar_eventos(objetos_palestras, objetos_workshops)
 
             case 3:
-                escolha_evento = int(input("[1] palestras | [2] workshops"))
-                if escolha_evento == 1:
-                    functions.add_participante(objetos_palestras) 
-
-                elif escolha_evento == 2:   
-                    functions.add_participante(objetos_workshops)
-
-                else:
-                    pass           
+                menu_functions.fazer_inscricao(objetos_palestras, objetos_workshops)
 
             case 4:
-                pass
+                menu_functions.cancelar_inscricao()
 
             case 5:
-                pass
-
-            case 6:
-                pass
+                menu_functions.relatorios()
 
             case 0:
                 print("Saindo...")
                 break
 
             case _:
-                print("Digite uma opção válida!!")
+                print("Digite uma opção válida!")
 
     except ValueError:
         print("Erro! Digite um número inteiro, ou 0 para sair.\n")
