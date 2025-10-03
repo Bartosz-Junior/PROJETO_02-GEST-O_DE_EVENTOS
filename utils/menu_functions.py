@@ -92,3 +92,7 @@ def fazer_inscricao(obj_palestras, obj_workshops):
 
 def cancelar_inscricao():
     pass
+
+def relatorios():
+    print("________ RELATÓRIOS ________")
+    pass

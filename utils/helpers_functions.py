@@ -62,7 +62,7 @@ def add_workshop():
         nome = str(input("Tema do workshop: "))
 
         while True:
-            data_evento = str(input("Data de realização dd/mm/aaaa:"))
+            data_evento = str(input("Data de realização dd/mm/aaaa: "))
             data_formatada = datetime.datetime.strptime(data_evento, "%d/%m/%Y")
 
             if data_formatada < hoje:

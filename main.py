@@ -42,7 +42,7 @@ while True:
                 menu_functions.cancelar_inscricao()
 
             case 5:
-                pass
+                menu_functions.relatorios()
 
             case 0:
                 print("Saindo...")
