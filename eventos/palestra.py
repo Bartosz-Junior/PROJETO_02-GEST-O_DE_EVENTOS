@@ -1,5 +1,5 @@
 from .eventos import Evento
-from utils import functions
+from utils import helpers_functions, db_functions
 import json, datetime
 
 class Palestra(Evento):
@@ -41,14 +41,14 @@ class Palestra(Evento):
         dados_palestra = {"Tema" : nome, "Data" : data_evento, "Local" : local_evento, "Capacidade_max" : capacidade_max, 
                           "Numero_inscritos" : 0, "Categoria" : categoria, "Preço ingresso" : preco_ingresso}   #DICIONÁRIO QUE É ARMAZENADO NO .JSON
         
-        carrega_palestras = functions.carregar_json("database/palestras.json")
+        carrega_palestras = db_functions.carregar_json("database/palestras.json")
         carrega_palestras.append(dados_palestra)
         
         with open("database/palestras.json", "w", encoding= "utf-8") as file:
             json.dump(carrega_palestras, file, indent= 4, ensure_ascii= False)
 
     def listar_palestras(self):
-        carrega_palestras = functions.carregar_json("database/palestras.json")
+        carrega_palestras = db_functions.carregar_json("database/palestras.json")
         for i,v in enumerate(carrega_palestras):
             print(f"_____ PALESTRA {i + 1} _____")
             print(f"Tema: {v["Tema"]:5}")
