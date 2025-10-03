@@ -101,31 +101,61 @@ def add_workshop():
         print("Opção inválida!")
 
 
-# Lista todos os eventos contidos na lista 'eventos'
-def listar_eventos(objeto):
+def listar_objetos(objetos, tipo):
     print("\n" + "="*30)
-    print("      LISTA DE EVENTOS")
+    print(f"      LISTA DE {tipo}")
     print("="*30)
 
-    if not objeto:
-        print("Nenhum evento cadastrado ainda.")
+    if not objetos:
+        print(f"Nenhum evento cadastrado ainda.")
         return
 
-    for i, evento in enumerate(objeto):
-        print(f"\n--- Evento {i} ---")
-        print(evento)
+    for i, objeto in enumerate(objetos):
+        print(f"\n--- {tipo} {i} ---")
+        print(objeto)
 
     print("\n" + "="*30)
 
+# def listar_palestras(objeto):
+#     print("\n" + "="*30)
+#     print("      LISTA DE PALESTRAS")
+#     print("="*30)
 
-def add_participante(evento):
+#     if not objeto:
+#         print("Nenhuma palestra cadastrado ainda.")
+#         return
+
+#     for i, evento in enumerate(objeto):
+#         print(f"\n--- Palestra {i} ---")
+#         print(evento)
+
+#     print("\n" + "="*30)
+
+
+# def listar_workshops(objeto):
+#     print("\n" + "="*30)
+#     print("      LISTA DE WORKSHOPS")
+#     print("="*30)
+
+#     if not objeto:
+#         print("Nenhum workshop cadastrado ainda.")
+#         return
+
+#     for i, evento in enumerate(objeto):
+#         print(f"\n--- Workshop {i} ---")
+#         print(evento)
+
+#     print("\n" + "="*30)
+
+
+def add_participante(evento, tipo):
     try:
         if not evento:
             print("Nenhum evento disponível.")
             return
 
         # Chama a função para listar
-        listar_eventos(evento)
+        listar_objetos(evento, tipo)
         indice = int(input("Informe qual evento deseja participar: "))
 
         if (indice < 0) or (indice >= len(evento)):

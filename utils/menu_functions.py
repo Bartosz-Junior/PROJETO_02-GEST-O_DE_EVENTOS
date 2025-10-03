@@ -5,13 +5,11 @@ from eventos.palestra import Palestra
 from eventos.workshop import Workshop
 from eventos.participantes import Participante
 
-palestra = Palestra()
-workshop = Workshop()
 
 def adicionar_evento():
     while True:
         try:
-            print("__________ ADICIONAR EVENTO __________" )
+            print("__________ ADICIONAR EVENTO __________")
             print("Digite [1] para PALESTRAS:")
             print("Digite [2] para WORKSHOPS:")
             print("Digite [0] para VOLTAR:")
@@ -29,7 +27,7 @@ def adicionar_evento():
         except ValueError:
             print("Opção inválida!")
 
-def mostrar_eventos():
+def mostrar_eventos(obj_palestras, obj_workshops):
     while True:
         try:
             print("________ EVENTOS DISPONIVEIS ________")
@@ -41,10 +39,10 @@ def mostrar_eventos():
             escolha = int(input())
 
             if escolha == 1:
-                palestra.listar_palestras()
+                helpers_functions.listar_objetos(obj_palestras, "PALESTRAS")
 
             elif escolha == 2:
-                workshop.listar_workshop()
+                helpers_functions.listar_objetos(obj_workshops, "WORKSHOPS")
 
             elif escolha == 3:
                 while True:
@@ -67,8 +65,8 @@ def mostrar_eventos():
                         print("Opção inválida!")
 
             elif escolha == 4:
-                palestra.listar_palestras()
-                workshop.listar_workshop()
+                helpers_functions.listar_objetos(obj_palestras, "PALESTRAS")
+                helpers_functions.listar_objetos(obj_workshops, "WORKSHOPS")
 
             elif escolha == 0:
                 break
@@ -84,10 +82,10 @@ def fazer_inscricao(obj_palestras, obj_workshops):
     escolha_evento = int(input())
 
     if escolha_evento == 1:
-        helpers_functions.add_participante(obj_palestras) 
+        helpers_functions.add_participante(obj_palestras, "PALESTRAS")
 
     elif escolha_evento == 2:   
-        helpers_functions.add_participante(obj_workshops)
+        helpers_functions.add_participante(obj_workshops, "WORKSHOPS")
     
     else:
         pass

@@ -33,10 +33,10 @@ while True:
                 menu_functions.adicionar_evento()
                 
             case 2:
-                menu_functions.mostrar_eventos()
+                menu_functions.mostrar_eventos(objetos_palestras, objetos_workshops)
 
             case 3:
-                menu_functions.fazer_inscricao(objetos_palestras, objetos_workshops)        
+                menu_functions.fazer_inscricao(objetos_palestras, objetos_workshops)
 
             case 4:
                 menu_functions.cancelar_inscricao()
