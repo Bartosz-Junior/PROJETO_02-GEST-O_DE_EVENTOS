@@ -40,7 +40,7 @@ class Evento:
             f"Data: {self.data}\n"
             f"Local: {self.local}\n"
             f"Capacidade_max: {self.capacidade_max}\n"
-            f"Inscritos: {self.numero_inscritos}"
+            f"Inscritos: {self.numero_inscritos}\n"
             f"Categoria: {self.categoria}\n"
             f"Preço: R$ {self.preco:.2f}\n"
         )       
