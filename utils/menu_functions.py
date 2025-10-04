@@ -93,6 +93,32 @@ def fazer_inscricao(obj_palestras, obj_workshops):
 def cancelar_inscricao():
     pass
 
-def relatorios():
-    print("________ RELATÓRIOS ________")
-    pass
+def relatorios(palestras, workshops, participantes):
+    print("\n===== RELATÓRIOS =====\n")
+
+    # Totais
+    total_palestras = len(palestras)
+    total_workshops = len(workshops)
+    print(f"Total de palestras: {total_palestras}")
+    print(f"Total de workshops: {total_workshops}")
+    print(f"Total de eventos: {total_palestras + total_workshops}\n")
+
+    # Inscrições por evento
+    print(" Inscrições por evento:")
+    for evento in palestras + workshops:
+        print(f"- {evento.nome}: {evento.numero_inscritos} inscritos")
+
+    # Total de participantes
+    total_participantes = sum(e.numero_inscritos for e in palestras + workshops)
+    print(f"\nTotal de participantes (contagem geral): {total_participantes}\n")
+
+    # Evento mais popular
+    if palestras + workshops:
+        mais_popular = max(palestras + workshops, key=lambda e: e.numero_inscritos)
+        if mais_popular.numero_inscritos > 0:
+            print(f" Evento mais popular: {mais_popular.nome} ({mais_popular.numero_inscritos} inscritos)")
+        else:
+            print("Nenhum evento tem inscritos ainda.")
+    else:
+        print("Nenhum evento cadastrado.")
+
