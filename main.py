@@ -23,7 +23,7 @@ while True:
         print("[2] Mostrar eventos")
         print("[3] Fazer inscrição")
         print("[4] Cancelar inscrição")
-        print("[5] pass")
+        print("[5] Relatório")
         print("[0] Sair")
         print('_' * 35)
         escolha = int(input("Escolha uma opção: "))
@@ -42,7 +42,8 @@ while True:
                 menu_functions.cancelar_inscricao()
 
             case 5:
-                menu_functions.relatorios()
+                menu_functions.relatorios(objetos_palestras, objetos_workshops, participantes)
+
 
             case 0:
                 print("Saindo...")
