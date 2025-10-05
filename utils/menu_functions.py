@@ -10,6 +10,7 @@ def adicionar_evento():
     while True:
         try:
             print("__________ ADICIONAR EVENTO __________")
+            print()
             print("Digite [1] para PALESTRAS:")
             print("Digite [2] para WORKSHOPS:")
             print("Digite [0] para VOLTAR:")
@@ -26,6 +27,7 @@ def adicionar_evento():
 
         except ValueError:
             print("Opção inválida!")
+
 
 def mostrar_eventos(obj_palestras, obj_workshops):
     while True:

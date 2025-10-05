@@ -7,22 +7,31 @@ from datetime import datetime
 import json, os, datetime
 
 
-def add_palestra():
-    hoje = datetime.date.today()
+def add_palestra(tipo_evento):
+    hoje = datetime.datetime.today()
     try:                            
         print("__________ Adicionar Palestra __________" )
 
         nome = str(input("Tema da palestra: "))
 
         while True:
-            data_evento = str(input("Data de realização dd/mm/aaaa:"))
-            data_formatada = datetime.datetime.strptime(data_evento, "%d/%m/%Y")
-
-            if data_formatada < hoje:
-                print("A data do evento não pode ser menor que a data atual!")
-                continue
-            else:
+            try:
+                data_evento = input("Data de realização (dd/mm/aaaa): ")
+                
+                # tenta converter
+                data_formatada = datetime.datetime.strptime(data_evento, "%d/%m/%Y")
+                
+                # valida se é no passado
+                if data_formatada < hoje:
+                    print("A data do evento não pode ser menor que a data atual!")
+                    continue
+                
+                # se tudo certo, sai do loop
                 break
+
+            except ValueError:
+                print("Formato inválido! Digite a data no formato dd/mm/aaaa.\n")
+                continue
 
         local_evento = str(input("Local: "))
         
@@ -45,31 +54,45 @@ def add_palestra():
             else:
                 break
 
-        
-        nova_palestra = Palestra(nome, data_formatada, local_evento, capacidade_max, categoria, numero_inscritos, preco_ingresso)
+        if tipo_evento == "palestra":
+            novo_evento = Palestra(nome, data_formatada, local_evento, capacidade_max, categoria, numero_inscritos, preco_ingresso)
 
-        nova_palestra.listar_eventos()
+            novo_evento.salvar_palestra()
+
+        elif tipo_evento == "workshop":
+            novo_evento = Workshop(nome, data_formatada, local_evento, capacidade_max, categoria, numero_inscritos, preco_ingresso)
+
+            novo_evento.salvar_workshop()
 
     except ValueError:
         print("Opção inválida!")
 
 
 def add_workshop():
-    hoje = datetime.date.today()
+    hoje = datetime.datetime.today()
     try:                            
         print("__________ Adicionar workshop __________" )
 
         nome = str(input("Tema do workshop: "))
 
         while True:
-            data_evento = str(input("Data de realização dd/mm/aaaa: "))
-            data_formatada = datetime.datetime.strptime(data_evento, "%d/%m/%Y")
-
-            if data_formatada < hoje:
-                print("A data do evento não pode ser menor que a data atual!")
-                continue
-            else:
+            try:
+                data_evento = input("Data de realização (dd/mm/aaaa): ")
+                
+                # tenta converter
+                data_formatada = datetime.datetime.strptime(data_evento, "%d/%m/%Y")
+                
+                # valida se é no passado
+                if data_formatada < hoje:
+                    print("A data do evento não pode ser menor que a data atual!")
+                    continue
+                
+                # se tudo certo, sai do loop
                 break
+
+            except ValueError:
+                print("Formato inválido! Digite a data no formato dd/mm/aaaa.\n")
+                continue
 
         local_evento = str(input("Local: "))
         
@@ -95,7 +118,7 @@ def add_workshop():
         
         novo_workshop = Workshop(nome, data_formatada, local_evento, capacidade_max, categoria, numero_inscritos, preco_ingresso)
 
-        novo_workshop.listar_eventos()
+        print(novo_workshop)
 
     except ValueError:
         print("Opção inválida!")
@@ -115,37 +138,6 @@ def listar_objetos(objetos, tipo):
         print(objeto)
 
     print("\n" + "="*30)
-
-# def listar_palestras(objeto):
-#     print("\n" + "="*30)
-#     print("      LISTA DE PALESTRAS")
-#     print("="*30)
-
-#     if not objeto:
-#         print("Nenhuma palestra cadastrado ainda.")
-#         return
-
-#     for i, evento in enumerate(objeto):
-#         print(f"\n--- Palestra {i} ---")
-#         print(evento)
-
-#     print("\n" + "="*30)
-
-
-# def listar_workshops(objeto):
-#     print("\n" + "="*30)
-#     print("      LISTA DE WORKSHOPS")
-#     print("="*30)
-
-#     if not objeto:
-#         print("Nenhum workshop cadastrado ainda.")
-#         return
-
-#     for i, evento in enumerate(objeto):
-#         print(f"\n--- Workshop {i} ---")
-#         print(evento)
-
-#     print("\n" + "="*30)
 
 
 def add_participante(evento, tipo):
@@ -195,10 +187,10 @@ def add_participante(evento, tipo):
 
 
 def buscar_evento_data():
-    with open("database\palestras.json", "r", encoding="utf-8") as file:
+    with open("database/palestras.json", "r", encoding="utf-8") as file:
         carrega_palestras = json.load(file)
 
-    with open("database\wokshops.json", "r", encoding="utf-8") as file:
+    with open("database/workshops.json", "r", encoding="utf-8") as file:
         carrega_workshops = json.load(file)
 
         data_busca = str(input("Informe a data do evento (dd/mm/aaaa): "))
@@ -224,10 +216,10 @@ def buscar_evento_data():
                 print(f"Preço: R${v["Preço ingresso"]:5.2f}\n")
 
 def buscar_evento_categoria():
-    with open("database\palestras.json", "r", encoding="utf-8") as file:
+    with open("database/palestras.json", "r", encoding="utf-8") as file:
         carrega_palestras = json.load(file)
 
-    with open("database\wokshops.json", "r", encoding="utf-8") as file:
+    with open("database/workshops.json", "r", encoding="utf-8") as file:
         carrega_workshops = json.load(file)
 
         categoria_busca = str(input("Informe a categoria do evento:")).lower().strip()
@@ -244,7 +236,7 @@ def buscar_evento_categoria():
 
         for i, v in enumerate(carrega_workshops):
             if v["Categoria"] == categoria_busca:
-                print(f"_____ WORKOSHOP {i + 1} _____")
+                print(f"_____ WORKSHOP {i + 1} _____")
                 print(f"Tema: {v["Tema"]:5}")
                 print(f"Data: {v["Data"]:5}") 
                 print(f"Local: {v["Local"]:5}")
