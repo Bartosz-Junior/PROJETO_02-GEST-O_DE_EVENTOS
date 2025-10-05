@@ -34,6 +34,7 @@ class Evento:
     def preco(self):
         return self._preco_ingresso
     
+
     def __str__(self):
         return (
             f"Tema: {self.nome}\n"
@@ -43,7 +44,4 @@ class Evento:
             f"Inscritos: {self.numero_inscritos}\n"
             f"Categoria: {self.categoria}\n"
             f"Preço: R$ {self.preco:.2f}\n"
-        )       
-                
-    def listar_eventos(self):
-        pass        
+        )     
