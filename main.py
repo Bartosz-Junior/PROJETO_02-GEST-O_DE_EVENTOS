@@ -3,7 +3,7 @@ from eventos.palestra import Palestra
 from eventos.workshop import Workshop
 
 DIRETORIO_PALESTRAS = 'database/palestras.json'
-DIRETORIO_WORKSHOPS = 'database/wokshops.json'
+DIRETORIO_WORKSHOPS = 'database/workshops.json'
 DIRETORIO_PARTICIPANTES = "database/participantes.json"
 
 # CARREGA OS DADOS DO JSON E A VARIAVEL RECEBER UM DICT
