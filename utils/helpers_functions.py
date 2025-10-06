@@ -135,60 +135,37 @@ def add_participante(evento, tipo):
         carrega_participantes = []
 
 
-def buscar_evento_data():
-    with open("database/palestras.json", "r", encoding="utf-8") as file:
-        carrega_palestras = json.load(file)
+def buscar_eventos(eventos_filtrados):
+    while True:
+        
+        print("______ BUSCAR EVENTO ______")
+        print()
+        filtro_tipo = str(input("Informe o tipo do evento [ENTER para ignorar filtro]: ")).lower()
+        filtro_data = str(input("Informe a data do evento (dd/mm/YY) [ENTER para ignorar filtro]: "))
+        filtro_categoria = str(input("Informe a categoria do evento [ENTER para ignorar filtro]: ")).lower()
 
-    with open("database/workshops.json", "r", encoding="utf-8") as file:
-        carrega_workshops = json.load(file)
+        if filtro_tipo:
+            if filtro_tipo == "palestras":
+                eventos_filtrados = [evento for evento in eventos_filtrados if isinstance(evento, Palestra)]
 
-        data_busca = str(input("Informe a data do evento (dd/mm/aaaa): "))
+            elif filtro_tipo == "workshops":
+                eventos_filtrados = [evento for evento in eventos_filtrados if isinstance(evento, Workshop)]
 
-        for i, v in enumerate(carrega_palestras):
-            if v["Data"] == data_busca:
-                print(f"_____ PALESTRA {i + 1} _____")
-                print(f"Tema: {v["Tema"]:5}")
-                print(f"Data: {v["Data"]:5}")
-                print(f"Local: {v["Local"]:5}")
-                print(f"Capacidade: {v["Capacidade_max"]:5}")
-                print(f"Categoria: {v["Categoria"]:5}")
-                print(f"Preço: R${v["Preço ingresso"]:5.2f}\n")
+        if filtro_categoria:
+            eventos_filtrados = [evento for evento in eventos_filtrados if evento.categoria == filtro_categoria]
 
-        for i, v in enumerate(carrega_workshops):
-            if v["Data"] == data_busca:
-                print(f"_____ WORKOSHOP {i + 1} _____")
-                print(f"Tema: {v["Tema"]:5}")
-                print(f"Data: {v["Data"]:5}") 
-                print(f"Local: {v["Local"]:5}")
-                print(f"Capacidade: {v["Capacidade_max"]:5}")
-                print(f"Categoria: {v["Categoria"]:5}")
-                print(f"Preço: R${v["Preço ingresso"]:5.2f}\n")
+        if filtro_data:
+            try:
+                filtro_data_formatada = datetime.datetime.strptime(filtro_data, "%d/%m/%Y")
+                eventos_filtrados = [evento for evento in eventos_filtrados if evento.data.date() == filtro_data_formatada.date()]
+                
+            except ValueError:
+                print("Data inválida. Use o formato dd/mm/aaaa.")
 
-def buscar_evento_categoria():
-    with open("database/palestras.json", "r", encoding="utf-8") as file:
-        carrega_palestras = json.load(file)
+        if eventos_filtrados:
+            pass
+            print(f"Total de {len(eventos_filtrados)} encontrados!")
+            listar_objetos(eventos_filtrados, "RESULTADOS")
 
-    with open("database/workshops.json", "r", encoding="utf-8") as file:
-        carrega_workshops = json.load(file)
-
-        categoria_busca = str(input("Informe a categoria do evento:")).lower().strip()
-
-        for i, v in enumerate(carrega_palestras):
-            if v["Categoria"] == categoria_busca:
-                print(f"_____ PALESTRA {i + 1} _____")
-                print(f"Tema: {v["Tema"]:5}")
-                print(f"Data: {v["Data"]:5}")
-                print(f"Local: {v["Local"]:5}")
-                print(f"Capacidade: {v["Capacidade_max"]:5}")
-                print(f"Categoria: {v["Categoria"]:5}")
-                print(f"Preço: R${v["Preço ingresso"]:5.2f}\n")
-
-        for i, v in enumerate(carrega_workshops):
-            if v["Categoria"] == categoria_busca:
-                print(f"_____ WORKSHOP {i + 1} _____")
-                print(f"Tema: {v["Tema"]:5}")
-                print(f"Data: {v["Data"]:5}") 
-                print(f"Local: {v["Local"]:5}")
-                print(f"Capacidade: {v["Capacidade_max"]:5}")
-                print(f"Categoria: {v["Categoria"]:5}")
-                print(f"Preço: R${v["Preço ingresso"]:5.2f}\n")
+        else:
+            print("Total de 0 eventos encontrados!")
