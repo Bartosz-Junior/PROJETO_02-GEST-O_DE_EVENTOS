@@ -1,28 +1,18 @@
 from .eventos import Evento
-from utils import db_functions
-import json, datetime
 
 class Palestra(Evento):
-    def __init__(self, nome, data_evento, local, capacidade_max, numero_inscritos, categoria, preco_ingresso):
-        super().__init__(nome, data_evento, local, capacidade_max, numero_inscritos, categoria, preco_ingresso)
+    def __init__(self, tema, data, local, capacidade_max, numero_inscritos, categoria, preco_ingresso):
 
-        self._data_atual = datetime.datetime.today()
+        super().__init__(tema, data, local, capacidade_max, numero_inscritos, categoria, preco_ingresso)
 
-    
-    def salvar_palestra(self):
 
-        dados_palestra = {
-            "Tema" : self.nome,
-            "Data" : self.data_evento,
-            "Local" : self.local_evento,
-            "Capacidade_max" : self.capacidade_max, 
-            "Numero_inscritos" : self.numero_inscritos,
-            "Categoria" : self.categoria,
-            "Preço ingresso" : self.preco_ingresso
-        }
-        
-        carrega_palestras = db_functions.carregar_json("database/palestras.json")
-        carrega_palestras.append(dados_palestra)
-        
-        with open("database/palestras.json", "w", encoding= "utf-8") as file:
-            json.dump(carrega_palestras, file, indent= 4, ensure_ascii= False)
+    def __str__(self):
+        return (
+            f"Tema: {self.tema}\n"
+            f"Data: {self.data}\n"
+            f"Local: {self.local}\n"
+            f"Capacidade_max: {self.capacidade_max}\n"
+            f"Inscritos: {self.numero_inscritos}\n"
+            f"Categoria: {self.categoria}\n"
+            f"Preço: R$ {self.preco:.2f}\n"
+        ) 

@@ -1,9 +1,10 @@
-import datetime, json
+import datetime
 
 class Evento:
-    def __init__(self, nome, data_evento, local, capacidade_max, numero_inscritos, categoria, preco_ingresso):
-        self._nome = nome
-        self._data_evento = data_evento
+    def __init__(self, tema, data, local, capacidade_max, numero_inscritos, categoria, preco_ingresso):
+        
+        self._tema = tema
+        self._data = data
         self._local  = local
         self._capacidade_max = capacidade_max
         self.numero_inscritos = numero_inscritos
@@ -11,12 +12,12 @@ class Evento:
         self._preco_ingresso = preco_ingresso
 
     @property
-    def nome(self):
-        return self._nome
+    def tema(self):
+        return self._tema
     
     @property
     def data(self):
-        return self._data_evento
+        return self._data
     
     @property
     def local(self):
@@ -34,14 +35,32 @@ class Evento:
     def preco(self):
         return self._preco_ingresso
     
+    def gerar_dict(self):
+        
+        return {
+            "tema" : self.tema,
+            "data" : self.data,
+            "local" : self.local,
+            "capacidade_max" : self.capacidade_max, 
+            "numero_inscritos" : self.numero_inscritos,
+            "categoria" : self.categoria,
+            "preco_ingresso" : self.preco
+        }
 
+    #VERIFICAR SE A DATA É FUTURA
+    def verificar_data(self):
+        pass
+    
+    def remover_inscrito(self):
+        pass
+
+    def verificar_vagas(self):
+        pass
+
+    def adicionar_inscrito(self):
+        pass
+
+    # SUBSTITUI O METODO DETALHES() SOLICITADO NA DOCUMENTAÇÃO
     def __str__(self):
-        return (
-            f"Tema: {self.nome}\n"
-            f"Data: {self.data}\n"
-            f"Local: {self.local}\n"
-            f"Capacidade_max: {self.capacidade_max}\n"
-            f"Inscritos: {self.numero_inscritos}\n"
-            f"Categoria: {self.categoria}\n"
-            f"Preço: R$ {self.preco:.2f}\n"
-        )     
+
+        raise NotImplementedError("Este método deve ser subescrito pelas subclasses.")  
