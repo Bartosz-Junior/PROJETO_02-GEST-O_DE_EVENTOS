@@ -1,5 +1,6 @@
 # FUNÇÕES AUXILIARES
 
+from utils import db_functions
 from eventos.palestra import Palestra
 from eventos.workshop import Workshop
 from eventos.participantes import Participante
@@ -7,25 +8,22 @@ from datetime import datetime
 import json, os, datetime
 
 
-def add_palestra(tipo_evento):
+def add_evento(tipo_evento):
     hoje = datetime.datetime.today()
     try:                            
-        print("__________ Adicionar Palestra __________" )
+        print("__________ Adicionar Palestra __________")
 
-        nome = str(input("Tema da palestra: "))
+        tema = str(input("Tema: "))
 
         while True:
             try:
-                data_evento = input("Data de realização (dd/mm/aaaa): ")
-                
+                data = input("Data de realização (dd/mm/aaaa): ")
                 # tenta converter
-                data_formatada = datetime.datetime.strptime(data_evento, "%d/%m/%Y")
-                
+                data_formatada = datetime.datetime.strptime(data, "%d/%m/%Y")      
                 # valida se é no passado
                 if data_formatada < hoje:
                     print("A data do evento não pode ser menor que a data atual!")
-                    continue
-                
+                    continue 
                 # se tudo certo, sai do loop
                 break
 
@@ -55,70 +53,22 @@ def add_palestra(tipo_evento):
                 break
 
         if tipo_evento == "palestra":
-            novo_evento = Palestra(nome, data_formatada, local_evento, capacidade_max, categoria, numero_inscritos, preco_ingresso)
+            novo_evento = Palestra(tema, data, local_evento, capacidade_max, numero_inscritos, categoria, preco_ingresso)
 
-            novo_evento.salvar_palestra()
+            dados = db_functions.carregar_json("database/palestras.json")
+            dados.append(novo_evento.gerar_dict())
+            db_functions.salvar_json("database/palestras.json", dados)
+
 
         elif tipo_evento == "workshop":
-            novo_evento = Workshop(nome, data_formatada, local_evento, capacidade_max, categoria, numero_inscritos, preco_ingresso)
+            novo_evento = Workshop(tema, data, local_evento, capacidade_max, numero_inscritos, categoria, preco_ingresso)
 
-            novo_evento.salvar_workshop()
+            dados = db_functions.carregar_json("database/workshops.json")
+            dados.append(novo_evento.gerar_dict())
+            db_functions.salvar_json("database/workshops.json", dados)
 
-    except ValueError:
-        print("Opção inválida!")
 
-
-def add_workshop():
-    hoje = datetime.datetime.today()
-    try:                            
-        print("__________ Adicionar workshop __________" )
-
-        nome = str(input("Tema do workshop: "))
-
-        while True:
-            try:
-                data_evento = input("Data de realização (dd/mm/aaaa): ")
-                
-                # tenta converter
-                data_formatada = datetime.datetime.strptime(data_evento, "%d/%m/%Y")
-                
-                # valida se é no passado
-                if data_formatada < hoje:
-                    print("A data do evento não pode ser menor que a data atual!")
-                    continue
-                
-                # se tudo certo, sai do loop
-                break
-
-            except ValueError:
-                print("Formato inválido! Digite a data no formato dd/mm/aaaa.\n")
-                continue
-
-        local_evento = str(input("Local: "))
-        
-        while True:
-            capacidade_max = int(input("Capacidade de pessoas: "))
-            if capacidade_max <= 0:
-                print("O evento deve comportar um número maior que zero de pessoas.")
-                continue
-            else:
-                break
-
-        categoria = str(input("Categoria [Tech/Marketing]: ")).lower().strip()
-        numero_inscritos = 0
-
-        while True:
-            preco_ingresso = float(input("Preço da entrada: "))
-            if preco_ingresso < 0:
-                print("O preço não pode ser negativo.")
-                continue
-            else:
-                break
-
-        
-        novo_workshop = Workshop(nome, data_formatada, local_evento, capacidade_max, categoria, numero_inscritos, preco_ingresso)
-
-        print(novo_workshop)
+        print("Evento cadastrado com sucesso!")
 
     except ValueError:
         print("Opção inválida!")
@@ -146,7 +96,6 @@ def add_participante(evento, tipo):
             print("Nenhum evento disponível.")
             return
 
-        # Chama a função para listar
         listar_objetos(evento, tipo)
         indice = int(input("Informe qual evento deseja participar: "))
 
@@ -154,8 +103,8 @@ def add_participante(evento, tipo):
             print("Evento inválido!")
             return
         
-        nome = str(input("Informe o nome: ")).upper()
-        email = str(input("Informe o e-mail: ")).lower()
+        nome = str(input("Informe o nome do participante: ")).upper()
+        email = str(input("Informe o e-mail do particante: ")).lower()
         evento_escolhido = evento[indice]
         
         if nome and email and evento_escolhido:
