@@ -1,19 +1,6 @@
-from utils import menu_functions, helpers_functions, db_functions
-from eventos.palestra import Palestra
-from eventos.workshop import Workshop
+from utils import menu_functions, db_functions
 
-DIRETORIO_PALESTRAS = 'database/palestras.json'
-DIRETORIO_WORKSHOPS = 'database/workshops.json'
-DIRETORIO_PARTICIPANTES = "database/participantes.json"
-
-# CARREGA OS DADOS DO JSON E A VARIAVEL RECEBER UM DICT
-palestras = db_functions.carregar_json(DIRETORIO_PALESTRAS)
-workshops = db_functions.carregar_json(DIRETORIO_WORKSHOPS)
-participantes = db_functions.carregar_json(DIRETORIO_PARTICIPANTES)
-
-
-objetos_palestras = db_functions.carregar_instancias(palestras, Palestra)
-objetos_workshops = db_functions.carregar_instancias(workshops, Workshop)
+objetos_palestras, objetos_workshops = db_functions.carregar_todos_eventos()
 
 while True:
     try:
@@ -30,7 +17,12 @@ while True:
 
         match escolha:
             case 1:
+                # 1. Adiciona o evento e salva no JSON
                 menu_functions.adicionar_evento()
+                
+                # 2. RECARREGA OS DADOS!
+                # Atualiza as variáveis objetos_palestras e objetos_workshops
+                objetos_palestras, objetos_workshops = db_functions.carregar_todos_eventos()
                 
             case 2:
                 menu_functions.mostrar_eventos(objetos_palestras, objetos_workshops)
@@ -42,7 +34,7 @@ while True:
                 menu_functions.cancelar_inscricao()
 
             case 5:
-                menu_functions.relatorios(objetos_palestras, objetos_workshops, participantes)
+                menu_functions.relatorios(objetos_palestras, objetos_workshops)
 
 
             case 0:

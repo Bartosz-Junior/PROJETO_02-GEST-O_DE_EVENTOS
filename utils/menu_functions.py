@@ -1,9 +1,6 @@
 # FUNÇÕES RELACIONADAS A MAIN/MENU PRINCIPAL
 
 from utils import helpers_functions
-from eventos.palestra import Palestra
-from eventos.workshop import Workshop
-from eventos.participantes import Participante
 
 
 def adicionar_evento():
@@ -17,10 +14,10 @@ def adicionar_evento():
             escolha = int(input())
 
             if escolha == 1:
-                helpers_functions.add_palestra()
+                helpers_functions.add_evento("palestra")
 
             elif escolha == 2:
-                helpers_functions.add_workshop()
+                helpers_functions.add_evento("workshop")
 
             elif escolha == 0:
                 break
@@ -33,6 +30,7 @@ def mostrar_eventos(obj_palestras, obj_workshops):
     while True:
         try:
             print("________ EVENTOS DISPONIVEIS ________")
+            print()
             print("Digite [1] PALESTRAS:")
             print("Digite [2] WORKSHOPS:")
             print("Digite [3] BUSCAR POR:")
@@ -79,6 +77,7 @@ def mostrar_eventos(obj_palestras, obj_workshops):
 def fazer_inscricao(obj_palestras, obj_workshops):
 
     print("________ INSCREVER PARTICIPANTE ________")
+    print()
     print("Digite [1] para PALESTRAS:")
     print("Digite [2] para WORKSHOPS:")
     escolha_evento = int(input())
@@ -95,7 +94,7 @@ def fazer_inscricao(obj_palestras, obj_workshops):
 def cancelar_inscricao():
     pass
 
-def relatorios(palestras, workshops, participantes):
+def relatorios(palestras, workshops):
     print("\n===== RELATÓRIOS =====\n")
 
     # Totais
