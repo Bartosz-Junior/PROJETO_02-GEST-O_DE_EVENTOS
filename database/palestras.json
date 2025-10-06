@@ -1,110 +1,20 @@
 [
     {
-        "Tema": "Python para leigos",
-        "Data": "20/10/2025",
-        "Local": "teste",
-        "Capacidade_max": 120,
-        "Numero_inscritos": 0,
-        "Categoria": "Teste",
-        "Preço ingresso": 120.0
+        "tema": "php para noobs",
+        "data": "25/10/2025",
+        "local": "caxanga",
+        "capacidade_max": 60,
+        "numero_inscritos": 0,
+        "categoria": "tech",
+        "preco_ingresso": 25.0
     },
     {
-        "Tema": "Python para leigos",
-        "Data": "20/10/2025",
-        "Local": "teste",
-        "Capacidade_max": 120,
-        "Numero_inscritos": 0,
-        "Categoria": "Teste",
-        "Preço ingresso": 120.0
-    },
-    {
-        "Tema": "Python para leigos",
-        "Data": "20/10/2025",
-        "Local": "teste",
-        "Capacidade_max": 120,
-        "Numero_inscritos": 0,
-        "Categoria": "Teste",
-        "Preço ingresso": 120.0
-    },
-    {
-        "Tema": "Bartosz",
-        "Data": "29/12/2025",
-        "Local": "recife",
-        "Capacidade_max": 0,
-        "Numero_inscritos": 0,
-        "Categoria": "tech",
-        "Preço ingresso": 0.0
-    },
-    {
-        "Tema": "aniv camila",
-        "Data": "02/04/2026",
-        "Local": "Recife",
-        "Capacidade_max": 120,
-        "Numero_inscritos": 10,
-        "Categoria": "Tech",
-        "Preço ingresso": 0.0
-    },
-    {
-        "Tema": "Aniv. Junior",
-        "Data": "30/10/2025",
-        "Local": "Casa Recife",
-        "Capacidade_max": 120,
-        "Numero_inscritos": 0,
-        "Categoria": "Marketing",
-        "Preço ingresso": 0.0
-    },
-    {
-        "Tema": "Aniversário Bartosz",
-        "Data": "29/12/2025",
-        "Local": "Iputinga",
-        "Capacidade_max": 120,
-        "Numero_inscritos": 0,
-        "Categoria": "Festa",
-        "Preço ingresso": 0.0
-    },
-    {
-        "Tema": "reciclagem consciente",
-        "Data": "05/10/2025",
-        "Local": "Tabatinga",
-        "Capacidade_max": 30,
-        "Numero_inscritos": 0,
-        "Categoria": "meio ambiente",
-        "Preço ingresso": 15.0
-    },
-    {
-        "Tema": "Teste002",
-        "Data": "01/01/2026",
-        "Local": "Recife",
-        "Capacidade_max": 10,
-        "Numero_inscritos": 0,
-        "Categoria": "tech",
-        "Preço ingresso": 10.0
-    },
-    {
-        "Tema": "Teste004",
-        "Data": "30/10/2027",
-        "Local": "Jaboatão",
-        "Capacidade_max": 90,
-        "Numero_inscritos": 0,
-        "Categoria": "tech",
-        "Preço ingresso": 0.0
-    },
-    {
-        "Tema": "Teste666",
-        "Data": "20/10/2025",
-        "Local": "Ìtambé",
-        "Capacidade_max": 10,
-        "Numero_inscritos": 0,
-        "Categoria": "tech",
-        "Preço ingresso": 15.0
-    },
-    {
-        "Tema": "teste999",
-        "Data": "23/10/2025",
-        "Local": "fortaleza",
-        "Capacidade_max": 90,
-        "Numero_inscritos": 0,
-        "Categoria": "marketing",
-        "Preço ingresso": 90.0
+        "tema": "POO com python",
+        "data": "30/01/2026",
+        "local": "camaragibe",
+        "capacidade_max": 100,
+        "numero_inscritos": 0,
+        "categoria": "tech",
+        "preco_ingresso": 40.0
     }
 ]

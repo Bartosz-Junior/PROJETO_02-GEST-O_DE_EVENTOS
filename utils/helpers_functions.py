@@ -1,5 +1,6 @@
 # FUNÇÕES AUXILIARES
 
+from utils import db_functions
 from eventos.palestra import Palestra
 from eventos.workshop import Workshop
 from eventos.participantes import Participante
@@ -7,22 +8,28 @@ from datetime import datetime
 import json, os, datetime
 
 
-def add_palestra():
-    hoje = datetime.date.today()
+def add_evento(tipo_evento):
+    hoje = datetime.datetime.today()
     try:                            
-        print("__________ Adicionar Palestra __________" )
+        print("__________ Adicionar Palestra __________")
 
-        nome = str(input("Tema da palestra: "))
+        tema = str(input("Tema: "))
 
         while True:
-            data_evento = str(input("Data de realização dd/mm/aaaa:"))
-            data_formatada = datetime.datetime.strptime(data_evento, "%d/%m/%Y")
-
-            if data_formatada < hoje:
-                print("A data do evento não pode ser menor que a data atual!")
-                continue
-            else:
+            try:
+                data = input("Data de realização (dd/mm/aaaa): ")
+                # tenta converter
+                data_formatada = datetime.datetime.strptime(data, "%d/%m/%Y")      
+                # valida se é no passado
+                if data_formatada < hoje:
+                    print("A data do evento não pode ser menor que a data atual!")
+                    continue 
+                # se tudo certo, sai do loop
                 break
+
+            except ValueError:
+                print("Formato inválido! Digite a data no formato dd/mm/aaaa.\n")
+                continue
 
         local_evento = str(input("Local: "))
         
@@ -45,57 +52,23 @@ def add_palestra():
             else:
                 break
 
-        
-        nova_palestra = Palestra(nome, data_formatada, local_evento, capacidade_max, categoria, numero_inscritos, preco_ingresso)
+        if tipo_evento == "palestra":
+            novo_evento = Palestra(tema, data, local_evento, capacidade_max, numero_inscritos, categoria, preco_ingresso)
 
-        nova_palestra.listar_eventos()
+            dados = db_functions.carregar_json("database/palestras.json")
+            dados.append(novo_evento.gerar_dict())
+            db_functions.salvar_json("database/palestras.json", dados)
 
-    except ValueError:
-        print("Opção inválida!")
+
+        elif tipo_evento == "workshop":
+            novo_evento = Workshop(tema, data, local_evento, capacidade_max, numero_inscritos, categoria, preco_ingresso)
+
+            dados = db_functions.carregar_json("database/workshops.json")
+            dados.append(novo_evento.gerar_dict())
+            db_functions.salvar_json("database/workshops.json", dados)
 
 
-def add_workshop():
-    hoje = datetime.date.today()
-    try:                            
-        print("__________ Adicionar workshop __________" )
-
-        nome = str(input("Tema do workshop: "))
-
-        while True:
-            data_evento = str(input("Data de realização dd/mm/aaaa: "))
-            data_formatada = datetime.datetime.strptime(data_evento, "%d/%m/%Y")
-
-            if data_formatada < hoje:
-                print("A data do evento não pode ser menor que a data atual!")
-                continue
-            else:
-                break
-
-        local_evento = str(input("Local: "))
-        
-        while True:
-            capacidade_max = int(input("Capacidade de pessoas: "))
-            if capacidade_max <= 0:
-                print("O evento deve comportar um número maior que zero de pessoas.")
-                continue
-            else:
-                break
-
-        categoria = str(input("Categoria [Tech/Marketing]: ")).lower().strip()
-        numero_inscritos = 0
-
-        while True:
-            preco_ingresso = float(input("Preço da entrada: "))
-            if preco_ingresso < 0:
-                print("O preço não pode ser negativo.")
-                continue
-            else:
-                break
-
-        
-        novo_workshop = Workshop(nome, data_formatada, local_evento, capacidade_max, categoria, numero_inscritos, preco_ingresso)
-
-        novo_workshop.listar_eventos()
+        print("Evento cadastrado com sucesso!")
 
     except ValueError:
         print("Opção inválida!")
@@ -116,37 +89,6 @@ def listar_objetos(objetos, tipo):
 
     print("\n" + "="*30)
 
-# def listar_palestras(objeto):
-#     print("\n" + "="*30)
-#     print("      LISTA DE PALESTRAS")
-#     print("="*30)
-
-#     if not objeto:
-#         print("Nenhuma palestra cadastrado ainda.")
-#         return
-
-#     for i, evento in enumerate(objeto):
-#         print(f"\n--- Palestra {i} ---")
-#         print(evento)
-
-#     print("\n" + "="*30)
-
-
-# def listar_workshops(objeto):
-#     print("\n" + "="*30)
-#     print("      LISTA DE WORKSHOPS")
-#     print("="*30)
-
-#     if not objeto:
-#         print("Nenhum workshop cadastrado ainda.")
-#         return
-
-#     for i, evento in enumerate(objeto):
-#         print(f"\n--- Workshop {i} ---")
-#         print(evento)
-
-#     print("\n" + "="*30)
-
 
 def add_participante(evento, tipo):
     try:
@@ -154,7 +96,6 @@ def add_participante(evento, tipo):
             print("Nenhum evento disponível.")
             return
 
-        # Chama a função para listar
         listar_objetos(evento, tipo)
         indice = int(input("Informe qual evento deseja participar: "))
 
@@ -162,8 +103,8 @@ def add_participante(evento, tipo):
             print("Evento inválido!")
             return
         
-        nome = str(input("Informe o nome: ")).upper()
-        email = str(input("Informe o e-mail: ")).lower()
+        nome = str(input("Informe o nome do participante: ")).upper()
+        email = str(input("Informe o e-mail do particante: ")).lower()
         evento_escolhido = evento[indice]
         
         if nome and email and evento_escolhido:
@@ -194,60 +135,37 @@ def add_participante(evento, tipo):
         carrega_participantes = []
 
 
-def buscar_evento_data():
-    with open("database\palestras.json", "r", encoding="utf-8") as file:
-        carrega_palestras = json.load(file)
+def buscar_eventos(eventos_filtrados):
+    while True:
+        
+        print("______ BUSCAR EVENTO ______")
+        print()
+        filtro_tipo = str(input("Informe o tipo do evento [ENTER para ignorar filtro]: ")).lower()
+        filtro_data = str(input("Informe a data do evento (dd/mm/YY) [ENTER para ignorar filtro]: "))
+        filtro_categoria = str(input("Informe a categoria do evento [ENTER para ignorar filtro]: ")).lower()
 
-    with open("database\wokshops.json", "r", encoding="utf-8") as file:
-        carrega_workshops = json.load(file)
+        if filtro_tipo:
+            if filtro_tipo == "palestras":
+                eventos_filtrados = [evento for evento in eventos_filtrados if isinstance(evento, Palestra)]
 
-        data_busca = str(input("Informe a data do evento (dd/mm/aaaa): "))
+            elif filtro_tipo == "workshops":
+                eventos_filtrados = [evento for evento in eventos_filtrados if isinstance(evento, Workshop)]
 
-        for i, v in enumerate(carrega_palestras):
-            if v["Data"] == data_busca:
-                print(f"_____ PALESTRA {i + 1} _____")
-                print(f"Tema: {v["Tema"]:5}")
-                print(f"Data: {v["Data"]:5}")
-                print(f"Local: {v["Local"]:5}")
-                print(f"Capacidade: {v["Capacidade_max"]:5}")
-                print(f"Categoria: {v["Categoria"]:5}")
-                print(f"Preço: R${v["Preço ingresso"]:5.2f}\n")
+        if filtro_categoria:
+            eventos_filtrados = [evento for evento in eventos_filtrados if evento.categoria == filtro_categoria]
 
-        for i, v in enumerate(carrega_workshops):
-            if v["Data"] == data_busca:
-                print(f"_____ WORKOSHOP {i + 1} _____")
-                print(f"Tema: {v["Tema"]:5}")
-                print(f"Data: {v["Data"]:5}") 
-                print(f"Local: {v["Local"]:5}")
-                print(f"Capacidade: {v["Capacidade_max"]:5}")
-                print(f"Categoria: {v["Categoria"]:5}")
-                print(f"Preço: R${v["Preço ingresso"]:5.2f}\n")
+        if filtro_data:
+            try:
+                filtro_data_formatada = datetime.datetime.strptime(filtro_data, "%d/%m/%Y")
+                eventos_filtrados = [evento for evento in eventos_filtrados if evento.data.date() == filtro_data_formatada.date()]
+                
+            except ValueError:
+                print("Data inválida. Use o formato dd/mm/aaaa.")
 
-def buscar_evento_categoria():
-    with open("database\palestras.json", "r", encoding="utf-8") as file:
-        carrega_palestras = json.load(file)
+        if eventos_filtrados:
+            pass
+            print(f"Total de {len(eventos_filtrados)} encontrados!")
+            listar_objetos(eventos_filtrados, "RESULTADOS")
 
-    with open("database\wokshops.json", "r", encoding="utf-8") as file:
-        carrega_workshops = json.load(file)
-
-        categoria_busca = str(input("Informe a categoria do evento:")).lower().strip()
-
-        for i, v in enumerate(carrega_palestras):
-            if v["Categoria"] == categoria_busca:
-                print(f"_____ PALESTRA {i + 1} _____")
-                print(f"Tema: {v["Tema"]:5}")
-                print(f"Data: {v["Data"]:5}")
-                print(f"Local: {v["Local"]:5}")
-                print(f"Capacidade: {v["Capacidade_max"]:5}")
-                print(f"Categoria: {v["Categoria"]:5}")
-                print(f"Preço: R${v["Preço ingresso"]:5.2f}\n")
-
-        for i, v in enumerate(carrega_workshops):
-            if v["Categoria"] == categoria_busca:
-                print(f"_____ WORKOSHOP {i + 1} _____")
-                print(f"Tema: {v["Tema"]:5}")
-                print(f"Data: {v["Data"]:5}") 
-                print(f"Local: {v["Local"]:5}")
-                print(f"Capacidade: {v["Capacidade_max"]:5}")
-                print(f"Categoria: {v["Categoria"]:5}")
-                print(f"Preço: R${v["Preço ingresso"]:5.2f}\n")
+        else:
+            print("Total de 0 eventos encontrados!")

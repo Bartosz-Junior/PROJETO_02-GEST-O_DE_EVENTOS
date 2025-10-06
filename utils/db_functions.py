@@ -1,44 +1,58 @@
 # FUNÇOES RELACIONADAS AOS BANCO DE DADOS
-
+from eventos.palestra import Palestra
+from eventos.workshop import Workshop
 import json
 import os # para verificar se o arquivo json existe
 
 
 # TENTA CARREGAR QUALQUER LISTA DE UM ARQUIVO JSON E RETORNA UM DICT
-def carregar_json(arquivo):
+def carregar_json(diretorio):
 
-    if not os.path.exists(arquivo):
+    if not os.path.exists(diretorio):
         return []
 
     try:
-        with open(arquivo, "r", encoding="utf-8") as file:
+        with open(diretorio, "r", encoding="utf-8") as file:
             dados = json.load(file)
             return dados
 
     except json.JSONDecodeError:
-        print(f"Erro ao decodificar JSON do arquivo '{arquivo}'")
+        print(f"Erro ao decodificar JSON do arquivo '{diretorio}'")
         return []
     
     except Exception as e:
         print(f"Erro inesperado: {e}")
         return []
 
+def salvar_json(diretorio, dados):
+
+    with open(diretorio, "w", encoding="utf-8") as file:
+        json.dump(dados, file, indent=4, ensure_ascii=False)
+
 
 # REINSTÂNCIA TODOS OS OBJETOS CARREGADOS DO JSON
-def carregar_instancias(dados, instancia_evento):
+def carregar_instancias(dados, classe):
 
     eventos = []
     for dado in dados:
         
-        p = instancia_evento(
-            dado["Tema"],
-            dado["Data"],
-            dado["Local"],
-            dado["Capacidade_max"],
-            dado["Numero_inscritos"],
-            dado["Categoria"],
-            dado["Preço ingresso"]
-        )
+        p = classe(**dado)
         eventos.append(p)
 
     return eventos
+
+def carregar_todos_eventos():
+    DIRETORIO_PALESTRAS = "database/palestras.json"
+    DIRETORIO_WORKSHOPS = "database/workshops.json"
+    DIRETORIO_PARTICIPANTES = "database/participantes.json"
+
+    # CARREGA OS DADOS DO JSON E A VARIAVEL RECEBER UM DICT
+    dict_palestras = carregar_json(DIRETORIO_PALESTRAS)
+    dict_workshops = carregar_json(DIRETORIO_WORKSHOPS)
+    participantes = carregar_json(DIRETORIO_PARTICIPANTES)
+
+
+    objetos_palestras = carregar_instancias(dict_palestras, Palestra)
+    objetos_workshops = carregar_instancias(dict_workshops, Workshop)
+
+    return objetos_palestras, objetos_workshops
