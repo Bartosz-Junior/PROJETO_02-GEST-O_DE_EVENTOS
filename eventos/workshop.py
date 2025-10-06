@@ -7,9 +7,11 @@ class Workshop(Evento):
         super().__init__(tema, data, local, capacidade_max, numero_inscritos, categoria, preco_ingresso)
 
     def __str__(self):
+        
+        data_str = self.data.strftime("%d/%m/%Y")
         return (
             f"Tema: {self.tema}\n"
-            f"Data: {self.data}\n"
+            f"Data: {data_str}\n"
             f"Local: {self.local}\n"
             f"Capacidade_max: {self.capacidade_max}\n"
             f"Inscritos: {self.numero_inscritos}\n"

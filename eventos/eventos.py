@@ -1,10 +1,10 @@
-import datetime
+from datetime import datetime
 
 class Evento:
     def __init__(self, tema, data, local, capacidade_max, numero_inscritos, categoria, preco_ingresso):
         
         self._tema = tema
-        self._data = data
+        self._data = datetime.strptime(data, "%d/%m/%Y")
         self._local  = local
         self._capacidade_max = capacidade_max
         self.numero_inscritos = numero_inscritos
@@ -37,9 +37,11 @@ class Evento:
     
     def gerar_dict(self):
         
+        data_str = self.data.strftime("%d/%m/%Y")
+
         return {
             "tema" : self.tema,
-            "data" : self.data,
+            "data" : data_str,
             "local" : self.local,
             "capacidade_max" : self.capacidade_max, 
             "numero_inscritos" : self.numero_inscritos,
