@@ -21,15 +21,13 @@ class Participante:
     def evento(self):
         return self._evento
     
-    def salvar_participante(self, dados_participante, evento_escolhido):
-        with open("database/participantes.json", "r", encoding= "utf-8") as file:
-            carrega_participantes = json.load(file)
-            carrega_participantes.append(dados_participante)
-                    
-        with open("database/participantes.json", "w", encoding= "utf-8") as file:
-            json.dump(carrega_participantes, file, indent= 4, ensure_ascii= False)
+    def gerar_dict(self):
 
-        evento_escolhido.adicionar_inscrito()
+        return {
+            "nome" : self.nome,
+            "email" : self.email,
+            "evento_escolhido" : self.evento
+        }
 
     def __str__(self):
         return f"{self._nome} <{self._email}> <{self._evento}>"

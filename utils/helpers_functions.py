@@ -111,13 +111,14 @@ def add_participante(evento, tipo):
             participante = Participante(nome, email, evento_escolhido.nome)
             print(participante)
 
-            dados_participante = {
-                "Nome:": participante.nome,
-                "E-mail": participante.email,
-                "Evento escolhido": participante.evento
-            }
+            dados = db_functions.carregar_json("database/participantes.json")
+            dados.append(participante.gerar_dict())
+            db_functions.salvar_json("database/participantes.json", dados)
 
-            participante.salvar_participante(dados_participante, evento_escolhido)
+            print("Participante cadastrado com sucesso!")
+            
+        else:
+            print("Informe todos os dados.")
 
     except ValueError:
         print("Dados informados inválidos")
@@ -125,14 +126,14 @@ def add_participante(evento, tipo):
     except IndexError:
         print("Evento inválido! O número do evento não existe na lista.")
 
-    except FileNotFoundError:
-        # Se o arquivo não existir, inicia a lista vazia
-        carrega_participantes = []
+    # except FileNotFoundError:
+    #     # Se o arquivo não existir, inicia a lista vazia
+    #     carrega_participantes = []
 
-    except json.JSONDecodeError:
-        # Se o arquivo estiver vazio/inválido, inicia a lista vazia e avisa
-        print("Aviso: Arquivo de participantes inválido ou vazio. Iniciando nova lista.")
-        carrega_participantes = []
+    # except json.JSONDecodeError:
+    #     # Se o arquivo estiver vazio/inválido, inicia a lista vazia e avisa
+    #     print("Aviso: Arquivo de participantes inválido ou vazio. Iniciando nova lista.")
+    #     carrega_participantes = []
 
 
 def buscar_eventos(eventos_filtrados):
