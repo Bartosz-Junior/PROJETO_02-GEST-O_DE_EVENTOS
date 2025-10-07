@@ -1,6 +1,6 @@
 from utils import menu_functions, db_functions
 
-objetos_palestras, objetos_workshops = db_functions.carregar_todos_eventos()
+obj_palestras, obj_workshops, obj_participantes = db_functions.carregar_todos_objetos()
 
 while True:
     try:
@@ -17,25 +17,25 @@ while True:
 
         match escolha:
             case 1:
-                # 1. Adiciona o evento e salva no JSON
+                # Adiciona o evento e salva no JSON
                 menu_functions.adicionar_evento()
                 
-                # 2. RECARREGA OS DADOS!
-                # Atualiza as variáveis objetos_palestras e objetos_workshops
-                objetos_palestras, objetos_workshops = db_functions.carregar_todos_eventos()
+                # RECARREGA OS DADOS! apos a adição do evento
+                obj_palestras, obj_workshops, obj_participantes = db_functions.carregar_todos_objetos()
                 
             case 2:
-                menu_functions.mostrar_eventos(objetos_palestras, objetos_workshops)
+                menu_functions.mostrar_eventos(obj_palestras, obj_workshops)
 
             case 3:
-                menu_functions.fazer_inscricao(objetos_palestras, objetos_workshops)
+                menu_functions.fazer_inscricao(obj_palestras, obj_workshops)
+
+                obj_palestras, obj_workshops, obj_participantes = db_functions.carregar_todos_objetos()
 
             case 4:
                 menu_functions.cancelar_inscricao()
 
             case 5:
-                menu_functions.relatorios(objetos_palestras, objetos_workshops)
-
+                menu_functions.relatorios(obj_palestras, obj_workshops)
 
             case 0:
                 print("Saindo...")

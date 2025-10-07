@@ -1,6 +1,7 @@
 # FUNÇOES RELACIONADAS AOS BANCO DE DADOS
 from eventos.palestra import Palestra
 from eventos.workshop import Workshop
+from eventos.participantes import Participante
 import json
 import os # para verificar se o arquivo json existe
 
@@ -33,15 +34,15 @@ def salvar_json(diretorio, dados):
 # REINSTÂNCIA TODOS OS OBJETOS CARREGADOS DO JSON
 def carregar_instancias(dados, classe):
 
-    eventos = []
+    lista_instancias = []
     for dado in dados:
         
         p = classe(**dado)
-        eventos.append(p)
+        lista_instancias.append(p)
 
-    return eventos
+    return lista_instancias
 
-def carregar_todos_eventos():
+def carregar_todos_objetos():
     DIRETORIO_PALESTRAS = "database/palestras.json"
     DIRETORIO_WORKSHOPS = "database/workshops.json"
     DIRETORIO_PARTICIPANTES = "database/participantes.json"
@@ -49,10 +50,11 @@ def carregar_todos_eventos():
     # CARREGA OS DADOS DO JSON E A VARIAVEL RECEBER UM DICT
     dict_palestras = carregar_json(DIRETORIO_PALESTRAS)
     dict_workshops = carregar_json(DIRETORIO_WORKSHOPS)
-    participantes = carregar_json(DIRETORIO_PARTICIPANTES)
+    dict_participantes = carregar_json(DIRETORIO_PARTICIPANTES)
 
 
     objetos_palestras = carregar_instancias(dict_palestras, Palestra)
     objetos_workshops = carregar_instancias(dict_workshops, Workshop)
+    objetos_participantes = carregar_instancias(dict_participantes, Participante)
 
-    return objetos_palestras, objetos_workshops
+    return objetos_palestras, objetos_workshops, objetos_participantes
