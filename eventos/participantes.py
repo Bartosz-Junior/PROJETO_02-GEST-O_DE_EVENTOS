@@ -1,7 +1,5 @@
-from eventos.palestra import Palestra
-from eventos.workshop import Workshop
-import json
-import os
+from utils import db_functions
+
 
 class Participante:
     def __init__(self, nome, email, evento_escolhido):
@@ -28,6 +26,17 @@ class Participante:
             "email" : self.email,
             "evento_escolhido" : self.evento
         }
+    
+    def verificar_email(self):
+        dados = db_functions.carregar_json("database/participantes.json")
+
+        for dado in dados:
+            if dado["email"] == self.email:
+                print(f"O e-mail: {self.email} já está cadastrado!")
+                return True
+
+    def cancelar_inscricao(self):
+        pass
 
     def __str__(self):
         return f"{self._nome} <{self._email}> <{self._evento}>"
