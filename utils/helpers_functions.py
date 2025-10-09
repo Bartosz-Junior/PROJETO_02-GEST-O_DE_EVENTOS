@@ -55,17 +55,13 @@ def add_evento(tipo_evento):
         if tipo_evento == "palestra":
             novo_evento = Palestra(tema, data, local_evento, capacidade_max, numero_inscritos, categoria, preco_ingresso)
 
-            dados = db_functions.carregar_json("database/palestras.json")
-            dados.append(novo_evento.gerar_dict())
-            db_functions.salvar_json("database/palestras.json", dados)
+            novo_evento.salvar_evento_json()
 
 
         elif tipo_evento == "workshop":
             novo_evento = Workshop(tema, data, local_evento, capacidade_max, numero_inscritos, categoria, preco_ingresso)
 
-            dados = db_functions.carregar_json("database/workshops.json")
-            dados.append(novo_evento.gerar_dict())
-            db_functions.salvar_json("database/workshops.json", dados)
+            novo_evento.salvar_evento_json()
 
 
         print("Evento cadastrado com sucesso!")
@@ -90,34 +86,35 @@ def listar_objetos(objetos, tipo):
     print("\n" + "="*30)
 
 
-def add_participante(evento, tipo):
+def add_participante(eventos, tipo):
     try:
-        if not evento:
+        if not eventos:
             print("Nenhum evento disponível.")
             return
 
-        listar_objetos(evento, tipo)
+        listar_objetos(eventos, tipo)
         indice = int(input("Informe qual evento deseja participar: "))
 
-        if (indice < 0) or (indice >= len(evento)):
+        if (indice < 0) or (indice >= len(eventos)):
             print("Evento inválido!")
             return
         
         nome = str(input("Informe o nome do participante: ")).upper()
         email = str(input("Informe o e-mail do particante: ")).lower()
-        evento_escolhido = evento[indice]
+        evento_escolhido = eventos[indice]
         
         if nome and email and evento_escolhido:
-            participante = Participante(nome, email, evento_escolhido.nome)
+            participante = Participante(nome, email, evento_escolhido.tema)
             print(participante)
 
-            dados_participante = {
-                "Nome:": participante.nome,
-                "E-mail": participante.email,
-                "Evento escolhido": participante.evento
-            }
+            participante.salvar_participante_json()
 
-            participante.salvar_participante(dados_participante, evento_escolhido)
+            evento_escolhido.aumentar_numero_inscritos()
+
+            print("Participante cadastrado com sucesso!")
+
+        else:
+            print("Informe todos os dados.")
 
     except ValueError:
         print("Dados informados inválidos")
@@ -125,14 +122,14 @@ def add_participante(evento, tipo):
     except IndexError:
         print("Evento inválido! O número do evento não existe na lista.")
 
-    except FileNotFoundError:
-        # Se o arquivo não existir, inicia a lista vazia
-        carrega_participantes = []
+    # except FileNotFoundError:
+    #     # Se o arquivo não existir, inicia a lista vazia
+    #     carrega_participantes = []
 
-    except json.JSONDecodeError:
-        # Se o arquivo estiver vazio/inválido, inicia a lista vazia e avisa
-        print("Aviso: Arquivo de participantes inválido ou vazio. Iniciando nova lista.")
-        carrega_participantes = []
+    # except json.JSONDecodeError:
+    #     # Se o arquivo estiver vazio/inválido, inicia a lista vazia e avisa
+    #     print("Aviso: Arquivo de participantes inválido ou vazio. Iniciando nova lista.")
+    #     carrega_participantes = []
 
 
 def buscar_eventos(eventos_filtrados):
@@ -163,7 +160,6 @@ def buscar_eventos(eventos_filtrados):
                 print("Data inválida. Use o formato dd/mm/aaaa.")
 
         if eventos_filtrados:
-            pass
             print(f"Total de {len(eventos_filtrados)} encontrados!")
             listar_objetos(eventos_filtrados, "RESULTADOS")
 

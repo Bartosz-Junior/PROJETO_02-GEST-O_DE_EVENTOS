@@ -1,3 +1,4 @@
+from utils import db_functions
 from datetime import datetime
 
 class Evento:
@@ -7,7 +8,7 @@ class Evento:
         self._data = datetime.strptime(data, "%d/%m/%Y")
         self._local  = local
         self._capacidade_max = capacidade_max
-        self.numero_inscritos = numero_inscritos
+        self._numero_inscritos = numero_inscritos
         self._categoria = categoria
         self._preco_ingresso = preco_ingresso
 
@@ -28,6 +29,10 @@ class Evento:
         return self._capacidade_max
     
     @property
+    def numero_inscritos(self):
+        return self._numero_inscritos
+    
+    @property
     def categoria(self):
         return self._categoria
     
@@ -35,11 +40,11 @@ class Evento:
     def preco(self):
         return self._preco_ingresso
     
-    def gerar_dict(self):
+    def salvar_evento_json(self):
         
         data_str = self.data.strftime("%d/%m/%Y")
 
-        return {
+        dict_evento = {
             "tema" : self.tema,
             "data" : data_str,
             "local" : self.local,
@@ -49,18 +54,24 @@ class Evento:
             "preco_ingresso" : self.preco
         }
 
+        dados = db_functions.carregar_json("database/palestras.json")
+        dados.append(dict_evento)
+        db_functions.salvar_json("database/palestras.json", dados)
+
     #VERIFICAR SE A DATA É FUTURA
     def verificar_data(self):
         pass
     
-    def remover_inscrito(self):
-        pass
+    def reduzir_numero_inscritos(self):
+        raise NotImplementedError("Este método deve ser subescrito pelas subclasses.")  
+        
 
     def verificar_vagas(self):
         pass
 
-    def adicionar_inscrito(self):
-        pass
+    def aumentar_numero_inscritos(self):
+        raise NotImplementedError("Este método deve ser subescrito pelas subclasses.")
+        
 
     # SUBSTITUI O METODO DETALHES() SOLICITADO NA DOCUMENTAÇÃO
     def __str__(self):

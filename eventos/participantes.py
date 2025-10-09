@@ -1,13 +1,13 @@
-from eventos.palestra import Palestra
-from eventos.workshop import Workshop
-import json
-import os
+from utils import db_functions
+
 
 class Participante:
     def __init__(self, nome, email, evento_escolhido):
         self._nome = nome
         self._email = email
         self._evento = evento_escolhido
+
+    diretorio = "database/participantes.json"
 
     @property
     def nome(self):
@@ -21,15 +21,28 @@ class Participante:
     def evento(self):
         return self._evento
     
-    def salvar_participante(self, dados_participante, evento_escolhido):
-        with open("database/participantes.json", "r", encoding= "utf-8") as file:
-            carrega_participantes = json.load(file)
-            carrega_participantes.append(dados_participante)
-                    
-        with open("database/participantes.json", "w", encoding= "utf-8") as file:
-            json.dump(carrega_participantes, file, indent= 4, ensure_ascii= False)
+    def salvar_participante_json(self, diretorio):
 
-        evento_escolhido.adicionar_inscrito()
+        dict_participante = {
+            "nome" : self.nome,
+            "email" : self.email,
+            "evento_escolhido" : self.evento
+        }
+
+        dados = db_functions.carregar_json(diretorio)
+        dados.append(dict_participante)
+        db_functions.salvar_json(diretorio)
+    
+    def verificar_email(self, diretorio):
+        dados = db_functions.carregar_json(diretorio)
+
+        for dado in dados:
+            if dado["email"] == self.email:
+                print(f"O e-mail: {self.email} já está cadastrado!")
+                return True
+
+    def cancelar_inscricao(self):
+        pass
 
     def __str__(self):
         return f"{self._nome} <{self._email}> <{self._evento}>"

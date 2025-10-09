@@ -5,7 +5,7 @@
         "local": "teste",
         "capacidade_max": 120,
         "numero_inscritos": 0,
-        "categoria": "Teste",
+        "categoria": "teste",
         "preco_ingresso": 120.0
     },
     {
@@ -14,7 +14,7 @@
         "local": "Iputinga",
         "capacidade_max": 120,
         "numero_inscritos": 0,
-        "categoria": "Festa",
+        "categoria": "festa",
         "preco_ingresso": 0.0
     },
     {

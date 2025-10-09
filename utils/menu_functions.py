@@ -85,7 +85,7 @@ def relatorios(palestras, workshops):
     # Inscrições por evento
     print(" Inscrições por evento:")
     for evento in palestras + workshops:
-        print(f"- {evento.nome}: {evento.numero_inscritos} inscritos")
+        print(f"- {evento.tema}: {evento.numero_inscritos} inscritos")
 
     # Total de participantes
     total_participantes = sum(e.numero_inscritos for e in palestras + workshops)

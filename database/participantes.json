@@ -1,22 +1,27 @@
 [
     {
-        "Nome:": "CARL",
-        "E-mail": "carl@gmail.com",
-        "Evento escolhido": "Aniv. Junior"
+        "nome": "CARL",
+        "email": "carl@gmail.com",
+        "evento_escolhido": "Aniv. Junior"
     },
     {
-        "Nome:": "ED JUNIOR",
-        "E-mail": "edjr@gmail.com",
-        "Evento escolhido": "Python para leigos"
+        "nome": "ED JUNIOR",
+        "email": "edjr@gmail.com",
+        "evento_escolhido": "Python para leigos"
     },
     {
-        "Nome:": "FERNANDA SILVA",
-        "E-mail": "fe@gmail.com",
-        "Evento escolhido": "Aniversário Bartosz"
+        "nome": "FERNANDA SILVA",
+        "email": "fe@gmail.com",
+        "evento_escolhido": "Aniversário Bartosz"
     },
     {
-        "Nome:": "JUNIOR",
-        "E-mail": "edvaldo.sjr94@gmail.com",
-        "Evento escolhido": "Aniversário Bartosz"
+        "nome": "JUNIOR",
+        "email": "edvaldo.sjr94@gmail.com",
+        "evento_escolhido": "Aniversário Bartosz"
+    },
+    {
+        "nome": "CARLOS",
+        "email": "carlitotevez@gmail.com",
+        "evento_escolhido": "POO com python"
     }
 ]
