@@ -7,7 +7,7 @@ class Evento:
         self._data = datetime.strptime(data, "%d/%m/%Y")
         self._local  = local
         self._capacidade_max = capacidade_max
-        self.numero_inscritos = numero_inscritos
+        self._numero_inscritos = numero_inscritos
         self._categoria = categoria
         self._preco_ingresso = preco_ingresso
 
@@ -26,6 +26,10 @@ class Evento:
     @property
     def capacidade_max(self):
         return self._capacidade_max
+    
+    @property
+    def numero_inscritos(self):
+        return self._numero_inscritos
     
     @property
     def categoria(self):
@@ -53,14 +57,20 @@ class Evento:
     def verificar_data(self):
         pass
     
-    def remover_inscrito(self):
-        pass
+    def reduzir_numero_inscritos(self):
+        if self.numero_inscritos > 0:
+            self.numero_inscritos -= 1
+        else:
+            print("O número de inscritos já está em 0.")
 
     def verificar_vagas(self):
         pass
 
-    def adicionar_inscrito(self):
-        pass
+    def aumentar_numero_inscritos(self):
+        if self.numero_inscritos > self.capacidade_max:
+            self.numero_inscritos += 1
+        else:
+            print("Evento com a capacidade máxima atingida!")
 
     # SUBSTITUI O METODO DETALHES() SOLICITADO NA DOCUMENTAÇÃO
     def __str__(self):

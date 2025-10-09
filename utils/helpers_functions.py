@@ -90,33 +90,35 @@ def listar_objetos(objetos, tipo):
     print("\n" + "="*30)
 
 
-def add_participante(evento, tipo):
+def add_participante(eventos, tipo):
     try:
-        if not evento:
+        if not eventos:
             print("Nenhum evento disponível.")
             return
 
-        listar_objetos(evento, tipo)
+        listar_objetos(eventos, tipo)
         indice = int(input("Informe qual evento deseja participar: "))
 
-        if (indice < 0) or (indice >= len(evento)):
+        if (indice < 0) or (indice >= len(eventos)):
             print("Evento inválido!")
             return
         
         nome = str(input("Informe o nome do participante: ")).upper()
         email = str(input("Informe o e-mail do particante: ")).lower()
-        evento_escolhido = evento[indice]
+        evento_escolhido = eventos[indice]
         
         if nome and email and evento_escolhido:
-            participante = Participante(nome, email, evento_escolhido.nome)
+            participante = Participante(nome, email, evento_escolhido.tema)
             print(participante)
 
             dados = db_functions.carregar_json("database/participantes.json")
             dados.append(participante.gerar_dict())
             db_functions.salvar_json("database/participantes.json", dados)
 
+            evento_escolhido.aumentar_numero_inscritos()
+
             print("Participante cadastrado com sucesso!")
-            
+
         else:
             print("Informe todos os dados.")
 
@@ -164,7 +166,6 @@ def buscar_eventos(eventos_filtrados):
                 print("Data inválida. Use o formato dd/mm/aaaa.")
 
         if eventos_filtrados:
-            pass
             print(f"Total de {len(eventos_filtrados)} encontrados!")
             listar_objetos(eventos_filtrados, "RESULTADOS")
 
