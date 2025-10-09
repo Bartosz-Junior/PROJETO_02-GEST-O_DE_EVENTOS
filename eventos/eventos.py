@@ -1,3 +1,4 @@
+from utils import db_functions
 from datetime import datetime
 
 class Evento:
@@ -39,11 +40,11 @@ class Evento:
     def preco(self):
         return self._preco_ingresso
     
-    def gerar_dict(self):
+    def salvar_evento_json(self):
         
         data_str = self.data.strftime("%d/%m/%Y")
 
-        return {
+        dict_evento = {
             "tema" : self.tema,
             "data" : data_str,
             "local" : self.local,
@@ -53,24 +54,24 @@ class Evento:
             "preco_ingresso" : self.preco
         }
 
+        dados = db_functions.carregar_json("database/palestras.json")
+        dados.append(dict_evento)
+        db_functions.salvar_json("database/palestras.json", dados)
+
     #VERIFICAR SE A DATA É FUTURA
     def verificar_data(self):
         pass
     
     def reduzir_numero_inscritos(self):
-        if self.numero_inscritos > 0:
-            self.numero_inscritos -= 1
-        else:
-            print("O número de inscritos já está em 0.")
+        raise NotImplementedError("Este método deve ser subescrito pelas subclasses.")  
+        
 
     def verificar_vagas(self):
         pass
 
     def aumentar_numero_inscritos(self):
-        if self.numero_inscritos > self.capacidade_max:
-            self.numero_inscritos += 1
-        else:
-            print("Evento com a capacidade máxima atingida!")
+        raise NotImplementedError("Este método deve ser subescrito pelas subclasses.")
+        
 
     # SUBSTITUI O METODO DETALHES() SOLICITADO NA DOCUMENTAÇÃO
     def __str__(self):

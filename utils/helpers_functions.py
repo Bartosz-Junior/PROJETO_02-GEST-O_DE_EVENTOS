@@ -55,17 +55,13 @@ def add_evento(tipo_evento):
         if tipo_evento == "palestra":
             novo_evento = Palestra(tema, data, local_evento, capacidade_max, numero_inscritos, categoria, preco_ingresso)
 
-            dados = db_functions.carregar_json("database/palestras.json")
-            dados.append(novo_evento.gerar_dict())
-            db_functions.salvar_json("database/palestras.json", dados)
+            novo_evento.salvar_evento_json()
 
 
         elif tipo_evento == "workshop":
             novo_evento = Workshop(tema, data, local_evento, capacidade_max, numero_inscritos, categoria, preco_ingresso)
 
-            dados = db_functions.carregar_json("database/workshops.json")
-            dados.append(novo_evento.gerar_dict())
-            db_functions.salvar_json("database/workshops.json", dados)
+            novo_evento.salvar_evento_json()
 
 
         print("Evento cadastrado com sucesso!")
