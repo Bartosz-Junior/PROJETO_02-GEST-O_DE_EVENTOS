@@ -107,9 +107,7 @@ def add_participante(eventos, tipo):
             participante = Participante(nome, email, evento_escolhido.tema)
             print(participante)
 
-            dados = db_functions.carregar_json("database/participantes.json")
-            dados.append(participante.gerar_dict())
-            db_functions.salvar_json("database/participantes.json", dados)
+            participante.salvar_participante_json()
 
             evento_escolhido.aumentar_numero_inscritos()
 

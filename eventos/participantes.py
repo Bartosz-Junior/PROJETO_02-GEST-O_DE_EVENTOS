@@ -7,6 +7,8 @@ class Participante:
         self._email = email
         self._evento = evento_escolhido
 
+    diretorio = "database/participantes.json"
+
     @property
     def nome(self):
         return self._nome
@@ -19,16 +21,20 @@ class Participante:
     def evento(self):
         return self._evento
     
-    def gerar_dict(self):
+    def salvar_participante_json(self, diretorio):
 
-        return {
+        dict_participante = {
             "nome" : self.nome,
             "email" : self.email,
             "evento_escolhido" : self.evento
         }
+
+        dados = db_functions.carregar_json(diretorio)
+        dados.append(dict_participante)
+        db_functions.salvar_json(diretorio)
     
-    def verificar_email(self):
-        dados = db_functions.carregar_json("database/participantes.json")
+    def verificar_email(self, diretorio):
+        dados = db_functions.carregar_json(diretorio)
 
         for dado in dados:
             if dado["email"] == self.email:
