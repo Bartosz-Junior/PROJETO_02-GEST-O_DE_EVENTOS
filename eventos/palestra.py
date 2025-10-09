@@ -1,10 +1,35 @@
 from .eventos import Evento
+from utils import db_functions
 
 class Palestra(Evento):
     def __init__(self, tema, data, local, capacidade_max, numero_inscritos, categoria, preco_ingresso):
 
         super().__init__(tema, data, local, capacidade_max, numero_inscritos, categoria, preco_ingresso)
 
+    def aumentar_numero_inscritos(self):
+        super().aumentar_numero_inscritos()
+        if self.numero_inscritos > self.capacidade_max:
+
+            dados = db_functions.carregar_json("database/palestras.json")
+            for dado in dados:
+                if dado["tema"] == self.tema:
+                    dado["numero_inscritos"] += 1
+
+            db_functions.salvar_json("database/palestras.json", dados)
+        else:
+            print("Evento com a capacidade máxima atingida!")
+
+    def reduzir_numero_inscritos(self):
+        super().reduzir_numero_inscritos()
+        if self.numero_inscritos > 0:
+        
+            dados = db_functions.carregar_json("database/palestras.json")
+            for dado in dados:
+                if dado["tema"] == self.tema:
+                    dado["numero_inscritos"] -= 1
+            db_functions.salvar_json("database/palestras.json")
+        else:
+            print("O número de inscritos já está em 0.")
 
     def __str__(self):
 
