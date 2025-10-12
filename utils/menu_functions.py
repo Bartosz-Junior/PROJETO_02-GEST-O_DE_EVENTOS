@@ -61,10 +61,10 @@ def fazer_inscricao(obj_palestras, obj_workshops):
     escolha_evento = int(input())
 
     if escolha_evento == 1:
-        helpers_functions.add_participante(obj_palestras, "PALESTRAS")
+        helpers_functions.add_participante(obj_palestras, "PALESTRAS", "database/palestras.json")
 
     elif escolha_evento == 2:   
-        helpers_functions.add_participante(obj_workshops, "WORKSHOPS")
+        helpers_functions.add_participante(obj_workshops, "WORKSHOPS", "database/workshops.json")
     
     else:
         pass
@@ -95,7 +95,7 @@ def relatorios(palestras, workshops):
     if palestras + workshops:
         mais_popular = max(palestras + workshops, key=lambda e: e.numero_inscritos)
         if mais_popular.numero_inscritos > 0:
-            print(f" Evento mais popular: {mais_popular.nome} ({mais_popular.numero_inscritos} inscritos)")
+            print(f" Evento mais popular: {mais_popular.tema} ({mais_popular.numero_inscritos} inscritos)")
         else:
             print("Nenhum evento tem inscritos ainda.")
     else:

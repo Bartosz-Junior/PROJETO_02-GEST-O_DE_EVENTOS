@@ -86,7 +86,7 @@ def listar_objetos(objetos, tipo):
     print("\n" + "="*30)
 
 
-def add_participante(eventos, tipo):
+def add_participante(eventos, tipo, diretorio_evento):
     try:
         if not eventos:
             print("Nenhum evento disponível.")
@@ -107,9 +107,12 @@ def add_participante(eventos, tipo):
             participante = Participante(nome, email, evento_escolhido.tema)
             print(participante)
 
-            participante.salvar_participante_json()
+            if participante.verificar_email("database/participantes.json"):
+                return
 
-            evento_escolhido.aumentar_numero_inscritos()
+            participante.salvar_participante_json("database/participantes.json")
+
+            evento_escolhido.aumentar_numero_inscritos(diretorio_evento)
 
             print("Participante cadastrado com sucesso!")
 
@@ -121,15 +124,6 @@ def add_participante(eventos, tipo):
 
     except IndexError:
         print("Evento inválido! O número do evento não existe na lista.")
-
-    # except FileNotFoundError:
-    #     # Se o arquivo não existir, inicia a lista vazia
-    #     carrega_participantes = []
-
-    # except json.JSONDecodeError:
-    #     # Se o arquivo estiver vazio/inválido, inicia a lista vazia e avisa
-    #     print("Aviso: Arquivo de participantes inválido ou vazio. Iniciando nova lista.")
-    #     carrega_participantes = []
 
 
 def buscar_eventos(eventos_filtrados):
