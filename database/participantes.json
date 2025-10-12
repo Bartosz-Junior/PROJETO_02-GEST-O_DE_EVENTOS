@@ -2,11 +2,13 @@
     {
         "nome": "CARLOS HENRIQUE",
         "email": "carl@gmail.com",
-        "evento_escolhido": "php para noobs"
+        "evento_escolhido": "php para noobs",
+        "checkin": true
     },
     {
         "nome": "RADICAIS LIVRES",
         "email": "vitoriacami@gmail.com",
-        "evento_escolhido": "sexshop for devs"
+        "evento_escolhido": "sexshop for devs",
+        "checkin": false
     }
 ]
