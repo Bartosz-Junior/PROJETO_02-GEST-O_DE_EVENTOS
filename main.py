@@ -1,11 +1,10 @@
 from utils import menu_functions, db_functions
 
-objs_palestras, objs_workshops, objs_participantes = db_functions.carregar_todos_objetos()
 
 
 while True:
-    for p in objs_participantes:
-        print(p)
+
+    objs_palestras, objs_workshops, objs_participantes = db_functions.carregar_todos_objetos()
 
     try:
         print("______________ MENU _______________")
@@ -25,26 +24,17 @@ while True:
                 # Adiciona o evento e salva no JSON
                 menu_functions.adicionar_evento()
                 
-                # RECARREGA OS DADOS! apos a adição do evento
-                objs_palestras, objs_workshops, objs_participantes = db_functions.carregar_todos_objetos()
-                
             case 2:
                 menu_functions.mostrar_eventos(objs_palestras, objs_workshops)
 
             case 3:
                 menu_functions.fazer_inscricao(objs_palestras, objs_workshops)
 
-                objs_palestras, objs_workshops, objs_participantes = db_functions.carregar_todos_objetos()
-
             case 4:
-                menu_functions.cancelar_inscricao_participante()
-
-                objs_palestras, objs_workshops, objs_participantes = db_functions.carregar_todos_objetos()
+                menu_functions.cancelar_inscricao_participante(objs_participantes, objs_palestras, objs_workshops)
 
             case 5:
                 menu_functions.fazer_checkin_participante(objs_participantes)
-
-                objs_palestras, objs_workshops, objs_participantes = db_functions.carregar_todos_objetos()
 
             case 6:
                 menu_functions.relatorios(objs_palestras, objs_workshops)
