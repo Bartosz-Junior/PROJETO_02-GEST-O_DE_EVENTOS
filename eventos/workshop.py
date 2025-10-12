@@ -6,10 +6,9 @@ class Workshop(Evento):
 
         super().__init__(tema, data, local, capacidade_max, numero_inscritos, categoria, preco_ingresso)
 
-    diretorio = "database/workshops.json"
 
     def aumentar_numero_inscritos(self, diretorio):
-        super().aumentar_numero_inscritos()
+
         if self.numero_inscritos > self.capacidade_max:
 
             dados = db_functions.carregar_json(diretorio)
@@ -23,7 +22,6 @@ class Workshop(Evento):
             print("Evento com a capacidade máxima atingida!")
 
     def reduzir_numero_inscritos(self, diretorio):
-        super().reduzir_numero_inscritos()
 
         if self.numero_inscritos > 0:
 
