@@ -65,7 +65,6 @@ class Evento:
     def reduzir_numero_inscritos(self):
         raise NotImplementedError("Este método deve ser subescrito pelas subclasses.")  
         
-
     def verificar_vagas(self):
         pass
 

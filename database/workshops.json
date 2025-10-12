@@ -13,7 +13,7 @@
         "data": "29/12/2025",
         "local": "Iputinga",
         "capacidade_max": 120,
-        "numero_inscritos": 0,
+        "numero_inscritos": 1,
         "categoria": "festa",
         "preco_ingresso": 0.0
     },
@@ -22,7 +22,7 @@
         "data": "09/10/2025",
         "local": "cecine UFPE polo recife",
         "capacidade_max": 120,
-        "numero_inscritos": 1,
+        "numero_inscritos": 0,
         "categoria": "tech",
         "preco_ingresso": 20.0
     }
