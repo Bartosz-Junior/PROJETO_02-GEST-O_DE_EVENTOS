@@ -27,7 +27,7 @@ def adicionar_evento():
             print("Opção inválida!")
 
 
-def mostrar_eventos(obj_palestras, obj_workshops):
+def mostrar_eventos(objs_palestras, objs_workshops):
     while True:
         try:
             print("________ EVENTOS DISPONIVEIS ________")
@@ -38,11 +38,11 @@ def mostrar_eventos(obj_palestras, obj_workshops):
             escolha = int(input())
 
             if escolha == 1:
-                helpers_functions.listar_objetos(obj_palestras, "PALESTRAS")
-                helpers_functions.listar_objetos(obj_workshops, "WORKSHOPS")
+                helpers_functions.listar_objetos(objs_palestras, "PALESTRAS")
+                helpers_functions.listar_objetos(objs_workshops, "WORKSHOPS")
 
             elif escolha == 2:
-                todos_eventos = obj_palestras + obj_workshops  # juntar tudo
+                todos_eventos = objs_palestras + objs_workshops  # juntar tudo
                 helpers_functions.buscar_eventos(todos_eventos)
             
             elif escolha == 0:
@@ -52,7 +52,7 @@ def mostrar_eventos(obj_palestras, obj_workshops):
             print("Opção inválida!")
 
 
-def fazer_inscricao(obj_palestras, obj_workshops):
+def fazer_inscricao(objs_palestras, objs_workshops):
 
     print("________ INSCREVER PARTICIPANTE ________")
     print()
@@ -61,16 +61,25 @@ def fazer_inscricao(obj_palestras, obj_workshops):
     escolha_evento = int(input())
 
     if escolha_evento == 1:
-        helpers_functions.add_participante(obj_palestras, "PALESTRAS", "database/palestras.json")
+        helpers_functions.add_participante(objs_palestras, "PALESTRAS", "database/palestras.json")
 
     elif escolha_evento == 2:   
-        helpers_functions.add_participante(obj_workshops, "WORKSHOPS", "database/workshops.json")
+        helpers_functions.add_participante(objs_workshops, "WORKSHOPS", "database/workshops.json")
     
     else:
         pass
 
-def cancelar_inscricao():
+def cancelar_inscricao_participante(objs_participantes):
     pass
+
+def fazer_checkin_participante(objs_participantes):
+
+    email = str(input("Escolha o e-mail para realizar o check-in: "))
+
+    for participante in objs_participantes:
+
+        if email == participante.email:
+            participante.fazer_checkin()
 
 def relatorios(palestras, workshops):
     print("\n===== RELATÓRIOS =====\n")
