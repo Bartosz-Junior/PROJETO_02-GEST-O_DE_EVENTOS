@@ -3,5 +3,10 @@
         "nome": "CARLOS HENRIQUE",
         "email": "carl@gmail.com",
         "evento_escolhido": "php para noobs"
+    },
+    {
+        "nome": "RADICAIS LIVRES",
+        "email": "vitoriacami@gmail.com",
+        "evento_escolhido": "sexshop for devs"
     }
 ]

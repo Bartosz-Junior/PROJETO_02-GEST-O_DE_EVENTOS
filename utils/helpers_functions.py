@@ -107,6 +107,9 @@ def add_participante(eventos, tipo, diretorio_evento):
             participante = Participante(nome, email, evento_escolhido.tema)
             print(participante)
 
+            if participante.verificar_email("database/participantes.json"):
+                return
+
             participante.salvar_participante_json("database/participantes.json")
 
             evento_escolhido.aumentar_numero_inscritos(diretorio_evento)

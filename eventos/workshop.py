@@ -9,7 +9,7 @@ class Workshop(Evento):
 
     def aumentar_numero_inscritos(self, diretorio):
 
-        if self.numero_inscritos > self.capacidade_max:
+        if self.numero_inscritos < self.capacidade_max:
 
             dados = db_functions.carregar_json(diretorio)
 
