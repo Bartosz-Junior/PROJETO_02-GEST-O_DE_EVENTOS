@@ -69,8 +69,21 @@ def fazer_inscricao(objs_palestras, objs_workshops):
     else:
         pass
 
-def cancelar_inscricao_participante(objs_participantes):
-    pass
+def cancelar_inscricao_participante(objs_participantes, objs_palestras, objs_workshops):
+    email = str(input("Escolha o e-mail para realizar o cancelamento da inscrição: "))
+
+    for participante in objs_participantes:
+        if email == participante.email:
+            evento_remover = participante.remover_inscrito()
+
+            print(evento_remover)
+            for evento in (objs_palestras + objs_workshops):
+                if evento.tema == evento_remover:
+                    evento.reduzir_numero_inscritos()
+                    break
+            
+            else:
+                    print("Evento não encontrado")
 
 def fazer_checkin_participante(objs_participantes):
 

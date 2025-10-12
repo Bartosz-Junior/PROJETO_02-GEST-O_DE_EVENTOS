@@ -50,7 +50,14 @@ class Participante:
                 return True
 
     def remover_inscrito(self):
-        pass
+        dados = db_functions.carregar_json("database/participantes.json")
+
+        for dado in dados:
+            if dado["email"] == self.email:
+                dados.remove(dado)
+                db_functions.salvar_json("database/participantes.json", dados)
+                print("Participante excluido do sistema")
+                return self.evento
 
     def fazer_checkin(self):
         if self.checkin == True:
