@@ -1,27 +1,7 @@
 [
     {
-        "nome": "CARL",
+        "nome": "CARLOS HENRIQUE",
         "email": "carl@gmail.com",
-        "evento_escolhido": "Aniv. Junior"
-    },
-    {
-        "nome": "ED JUNIOR",
-        "email": "edjr@gmail.com",
-        "evento_escolhido": "Python para leigos"
-    },
-    {
-        "nome": "FERNANDA SILVA",
-        "email": "fe@gmail.com",
-        "evento_escolhido": "Aniversário Bartosz"
-    },
-    {
-        "nome": "JUNIOR",
-        "email": "edvaldo.sjr94@gmail.com",
-        "evento_escolhido": "Aniversário Bartosz"
-    },
-    {
-        "nome": "CARLOS",
-        "email": "carlitotevez@gmail.com",
-        "evento_escolhido": "POO com python"
+        "evento_escolhido": "php para noobs"
     }
 ]

@@ -7,8 +7,6 @@ class Participante:
         self._email = email
         self._evento = evento_escolhido
 
-    diretorio = "database/participantes.json"
-
     @property
     def nome(self):
         return self._nome
@@ -31,7 +29,7 @@ class Participante:
 
         dados = db_functions.carregar_json(diretorio)
         dados.append(dict_participante)
-        db_functions.salvar_json(diretorio)
+        db_functions.salvar_json(diretorio, dados)
     
     def verificar_email(self, diretorio):
         dados = db_functions.carregar_json(diretorio)
