@@ -10,66 +10,107 @@ import json, os, datetime
 
 def add_evento(tipo_evento):
     hoje = datetime.datetime.today()
-    try:                            
-        print(f"__________ Adicionar {tipo_evento.capitalize()} __________")
+    
+    print(f"__________ Adicionar {tipo_evento.capitalize()} __________")
 
-        tema = str(input("Tema: "))
+    # 1. Validação de Tema
+    while True:
+        tema = str(input("Tema: ")).strip()
+        if not tema:
+            print("O tema não pode ser vazio!")
+            continue
+        break
 
-        while True:
-            try:
-                data = input("Data de realização (dd/mm/aaaa): ")
-                # tenta converter
-                data_formatada = datetime.datetime.strptime(data, "%d/%m/%Y")      
-                # valida se é no passado
-                if data_formatada < hoje:
-                    print("A data do evento não pode ser menor que a data atual!")
-                    continue 
-                # se tudo certo, sai do loop
-                break
+    # 2. Validação de Data (já está boa, apenas movendo o try/except para dentro)
+    while True:
+        try:
+            data = input("Data de realização (dd/mm/aaaa): ")
+            # tenta converter
+            data_formatada = datetime.datetime.strptime(data, "%d/%m/%Y")      
+            # valida se é no passado
+            if data_formatada < hoje:
+                print("A data do evento não pode ser menor que a data atual!")
+                continue 
+            # se tudo certo, sai do loop
+            break
 
-            except ValueError:
-                print("Formato inválido! Digite a data no formato dd/mm/aaaa.\n")
-                continue
+        except ValueError:
+            print("Formato inválido! Digite a data no formato dd/mm/aaaa.\n")
+            continue
 
-        local_evento = str(input("Local: "))
-        
-        while True:
-            capacidade_max = int(input("Capacidade de pessoas: "))
+    # 3. Validação de Local
+    while True:
+        local_evento = str(input("Local: ")).strip()
+        if not local_evento:
+            print("O local não pode ser vazio!")
+            continue
+        break
+    
+    # 4. Validação de Capacidade Máxima (incluindo try/except para int)
+    while True:
+        try:
+            capacidade_max_str = input("Capacidade de pessoas: ")
+            capacidade_max = int(capacidade_max_str)
             if capacidade_max <= 0:
                 print("O evento deve comportar um número maior que zero de pessoas.")
                 continue
             else:
                 break
+        except ValueError:
+            print("Capacidade inválida! Digite um número inteiro maior que zero.\n")
+            continue
 
+
+    while True:
         categoria = str(input("Categoria [Tech/Marketing]: ")).lower().strip()
-        numero_inscritos = 0
+        if not categoria:
+             print("A categoria não pode ser vazia!")
+             continue
 
-        while True:
-            preco_ingresso = float(input("Preço da entrada: "))
+        break
+        
+    numero_inscritos = 0
+
+    # 6. Validação de Preço (incluindo try/except para float)
+    while True:
+        try:
+            preco_ingresso_str = input("Preço da entrada: ")
+            preco_ingresso = float(preco_ingresso_str)
             if preco_ingresso < 0:
                 print("O preço não pode ser negativo.")
                 continue
             else:
                 break
+        except ValueError:
+            print("Preço inválido! Digite um número (ex: 50.00).\n")
+            continue
 
+    try:
         if tipo_evento == "palestra":
             tipo = tipo_evento
+            
             novo_evento = Palestra(tema, data, local_evento, capacidade_max, numero_inscritos, categoria, tipo, preco_ingresso)
-
             novo_evento.salvar_evento_json()
+            print(f"Evento 'Palestra' criado (Tema: {tema}, Data: {data}, Preço: {preco_ingresso})")
 
 
         elif tipo_evento == "workshop":
             tipo = tipo_evento
+            
             novo_evento = Workshop(tema, data, local_evento, capacidade_max, numero_inscritos, categoria, tipo, preco_ingresso)
-
             novo_evento.salvar_evento_json()
-
+            print(f"Evento 'Workshop' criado (Tema: {tema}, Data: {data}, Preço: {preco_ingresso})")
+        
+        else:
+            # Caso o 'tipo_evento' passado para a função seja inválido
+            print(f"Erro: Tipo de evento '{tipo_evento}' não suportado.")
+            return
 
         print("Evento cadastrado com sucesso!")
 
-    except ValueError:
-        print("Opção inválida!")
+    except Exception as e:
+        # Tratamento genérico para erros durante a instanciação ou salvamento
+        print(f"Ocorreu um erro inesperado ao salvar o evento: {e}")
 
 
 def listar_dados(dados, tipo):
@@ -190,6 +231,7 @@ def buscar_eventos(eventos_filtrados):
         if eventos_filtrados:
             print(f"Total de {len(eventos_filtrados)} encontrados!")
             listar_dados(eventos_filtrados, "resultados")
+            break
 
         else:
             print("Total de 0 eventos encontrados!")
