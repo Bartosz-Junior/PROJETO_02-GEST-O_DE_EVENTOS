@@ -69,22 +69,17 @@ def fazer_inscricao(dicts_palestras, dicts_workshops):
     else:
         pass
 
-def cancelar_inscricao_participante(dicts_participantes, dicts_palestras, dicts_workshops):
+def buscar_email_cancelamento(dicts_participantes):
     email = str(input("Escolha o e-mail para realizar o cancelamento da inscrição: "))
 
     for participante in dicts_participantes:
-        if email == participante.email:
-            evento_remover = participante.remover_inscrito()
+        if email == participante["email"]:
+            helpers_functions.cancelar_inscricao_participante(participante)
+            break
+    else:
+        print("E-mail não encontrado.") 
 
-            for evento in (dicts_palestras + dicts_workshops):
-                if evento.tema == evento_remover:
-                    evento.reduzir_numero_inscritos()
-                    break
-            
-            else:
-                    print("Evento não encontrado")
-
-def buscar_email_participante(dicts_participantes):
+def buscar_email_checkin(dicts_participantes):
 
     email = str(input("Escolha o e-mail para realizar o check-in: "))
 
@@ -93,7 +88,7 @@ def buscar_email_participante(dicts_participantes):
         if email == participante["email"]:
             helpers_functions.fazer_checkin_participante(participante)
             break
-
+    else:
         print("E-mail não encontrado.")
 
 def relatorios(palestras, workshops):

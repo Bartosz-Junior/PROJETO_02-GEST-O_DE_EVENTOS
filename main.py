@@ -30,10 +30,10 @@ while True:
                 menu_functions.fazer_inscricao(dicts_palestras, dicts_workshops)
 
             case 4:
-                menu_functions.cancelar_inscricao_participante(dicts_participantes, dicts_palestras, dicts_workshops)
+                menu_functions.buscar_email_cancelamento(dicts_participantes)
 
             case 5:
-                menu_functions.buscar_email_participante(dicts_participantes)
+                menu_functions.buscar_email_checkin(dicts_participantes)
 
             case 6:
                 menu_functions.relatorios(dicts_palestras, dicts_workshops)
