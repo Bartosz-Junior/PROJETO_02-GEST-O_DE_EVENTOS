@@ -6,6 +6,7 @@
         "capacidade_max": 60,
         "numero_inscritos": 1,
         "categoria": "tech",
+        "tipo": "palestra",
         "preco_ingresso": 25.0
     },
     {
@@ -13,8 +14,9 @@
         "data": "30/01/2026",
         "local": "camaragibe",
         "capacidade_max": 100,
-        "numero_inscritos": 0,
+        "numero_inscritos": 1,
         "categoria": "tech",
+        "tipo": "palestra",
         "preco_ingresso": 40.0
     }
 ]

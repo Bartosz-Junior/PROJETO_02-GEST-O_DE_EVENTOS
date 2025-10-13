@@ -2,9 +2,9 @@ from .eventos import Evento
 from utils import db_functions
 
 class Palestra(Evento):
-    def __init__(self, tema, data, local, capacidade_max, numero_inscritos, categoria, preco_ingresso):
+    def __init__(self, tema, data, local, capacidade_max, numero_inscritos, categoria, tipo, preco_ingresso):
 
-        super().__init__(tema, data, local, capacidade_max, numero_inscritos, categoria, preco_ingresso)
+        super().__init__(tema, data, local, capacidade_max, numero_inscritos, categoria, tipo, preco_ingresso)
 
     def aumentar_numero_inscritos(self, diretorio):
 
@@ -40,5 +40,6 @@ class Palestra(Evento):
             f"Capacidade_max: {self.capacidade_max}\n"
             f"Inscritos: {self.numero_inscritos}\n"
             f"Categoria: {self.categoria}\n"
+            f"tipo: {self.tipo}\n",
             f"Preço: R$ {self.preco:.2f}\n"
         ) 

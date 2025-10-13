@@ -2,7 +2,7 @@ from utils import db_functions
 from datetime import datetime
 
 class Evento:
-    def __init__(self, tema, data, local, capacidade_max, numero_inscritos, categoria, preco_ingresso):
+    def __init__(self, tema, data, local, capacidade_max, numero_inscritos, categoria, tipo, preco_ingresso):
         
         self._tema = tema
         self._data = datetime.strptime(data, "%d/%m/%Y")
@@ -10,6 +10,7 @@ class Evento:
         self._capacidade_max = capacidade_max
         self._numero_inscritos = numero_inscritos
         self._categoria = categoria
+        self._tipo = tipo
         self._preco_ingresso = preco_ingresso
 
     @property
@@ -37,6 +38,10 @@ class Evento:
         return self._categoria
     
     @property
+    def tipo(self):
+        return self.tipo
+    
+    @property
     def preco(self):
         return self._preco_ingresso
     
@@ -51,6 +56,7 @@ class Evento:
             "capacidade_max" : self.capacidade_max, 
             "numero_inscritos" : self.numero_inscritos,
             "categoria" : self.categoria,
+            "tipo" : self.tipo,
             "preco_ingresso" : self.preco
         }
 
