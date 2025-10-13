@@ -22,5 +22,11 @@
         "email": "silvio@gmail.com",
         "evento_escolhido": "test",
         "checkin": false
+    },
+    {
+        "nome": "EDVALDO",
+        "email": "edvaldo.sjr94@gmail.com",
+        "evento_escolhido": "Postgre SQL",
+        "checkin": true
     }
 ]

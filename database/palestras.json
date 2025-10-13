@@ -28,5 +28,15 @@
         "categoria": "tech",
         "tipo": "palestra",
         "preco_ingresso": 40.0
+    },
+    {
+        "tema": "Postgre SQL",
+        "data": "10/11/2025",
+        "local": "Recife",
+        "capacidade_max": 10,
+        "numero_inscritos": 1,
+        "categoria": "tech",
+        "tipo": "palestra",
+        "preco_ingresso": 0.0
     }
 ]

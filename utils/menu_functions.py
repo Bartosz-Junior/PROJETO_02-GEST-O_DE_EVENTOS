@@ -44,7 +44,7 @@ def mostrar_eventos(dicts_palestras, dicts_workshops):
             elif escolha == 2:
                 todos_eventos = dicts_palestras + dicts_workshops  # juntar tudo
                 helpers_functions.buscar_eventos(todos_eventos)
-            
+
             elif escolha == 0:
                 break
 

@@ -235,7 +235,8 @@ def buscar_eventos(eventos_filtrados):
 
         else:
             print("Total de 0 eventos encontrados!")
-
+            break
+        
 def fazer_checkin_participante(participante):
     objeto_participante = db_functions.carregar_objeto(participante, Participante)
 
