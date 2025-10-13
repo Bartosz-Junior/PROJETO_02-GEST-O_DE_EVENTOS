@@ -4,7 +4,7 @@ from utils import menu_functions, db_functions
 
 while True:
 
-    objs_palestras, objs_workshops, objs_participantes = db_functions.carregar_todos_objetos()
+    dicts_palestras, dicts_workshops, dicts_participantes = db_functions.carregar_todos_dados()
 
     try:
         print("______________ MENU _______________")
@@ -21,23 +21,22 @@ while True:
 
         match escolha:
             case 1:
-                # Adiciona o evento e salva no JSON
                 menu_functions.adicionar_evento()
                 
             case 2:
-                menu_functions.mostrar_eventos(objs_palestras, objs_workshops)
+                menu_functions.mostrar_eventos(dicts_palestras, dicts_workshops)
 
             case 3:
-                menu_functions.fazer_inscricao(objs_palestras, objs_workshops)
+                menu_functions.fazer_inscricao(dicts_palestras, dicts_workshops)
 
             case 4:
-                menu_functions.cancelar_inscricao_participante(objs_participantes, objs_palestras, objs_workshops)
+                menu_functions.buscar_email_cancelamento(dicts_participantes)
 
             case 5:
-                menu_functions.fazer_checkin_participante(objs_participantes)
+                menu_functions.buscar_email_checkin(dicts_participantes)
 
             case 6:
-                menu_functions.relatorios(objs_palestras, objs_workshops)
+                menu_functions.relatorios(dicts_palestras, dicts_workshops)
 
             case 0:
                 print("Saindo...")

@@ -2,9 +2,16 @@ from .eventos import Evento
 from utils import db_functions
 
 class Palestra(Evento):
-    def __init__(self, tema, data, local, capacidade_max, numero_inscritos, categoria, preco_ingresso):
+    def __init__(self, tema, data, local, capacidade_max, numero_inscritos, categoria, tipo, preco_ingresso):
 
-        super().__init__(tema, data, local, capacidade_max, numero_inscritos, categoria, preco_ingresso)
+        super().__init__(tema, data, local, capacidade_max, numero_inscritos, categoria, tipo, preco_ingresso)
+
+    def salvar_evento_json(self):
+        dict_evento = super().salvar_evento_json()
+        dados = db_functions.carregar_json("database/palestras.json")
+        dados.append(dict_evento)
+        db_functions.salvar_json("database/palestras.json", dados)
+
 
     def aumentar_numero_inscritos(self, diretorio):
 
@@ -27,7 +34,7 @@ class Palestra(Evento):
             if dado["tema"] == self.tema:
                 dado["numero_inscritos"] -= 1
         
-        db_functions.salvar_json("database/palestras.json".dados)
+        db_functions.salvar_json("database/palestras.json", dados)
         print("Número de inscritos reduzido.")
 
     def __str__(self):
@@ -40,5 +47,6 @@ class Palestra(Evento):
             f"Capacidade_max: {self.capacidade_max}\n"
             f"Inscritos: {self.numero_inscritos}\n"
             f"Categoria: {self.categoria}\n"
+            f"tipo: {self.tipo}\n",
             f"Preço: R$ {self.preco:.2f}\n"
         ) 

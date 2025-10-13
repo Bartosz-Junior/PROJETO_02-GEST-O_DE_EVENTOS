@@ -6,6 +6,7 @@
         "capacidade_max": 120,
         "numero_inscritos": 0,
         "categoria": "teste",
+        "tipo": "workshop",
         "preco_ingresso": 120.0
     },
     {
@@ -15,6 +16,7 @@
         "capacidade_max": 120,
         "numero_inscritos": 1,
         "categoria": "festa",
+        "tipo": "workshop",
         "preco_ingresso": 0.0
     },
     {
@@ -24,6 +26,17 @@
         "capacidade_max": 120,
         "numero_inscritos": 0,
         "categoria": "tech",
+        "tipo": "workshop",
         "preco_ingresso": 20.0
+    },
+    {
+        "tema": "test",
+        "data": "28/10/2025",
+        "local": "rec",
+        "capacidade_max": 45,
+        "numero_inscritos": 0,
+        "categoria": "tech",
+        "tipo": "workshop",
+        "preco_ingresso": 30.0
     }
 ]
