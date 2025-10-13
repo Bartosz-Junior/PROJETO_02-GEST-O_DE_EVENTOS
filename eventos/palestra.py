@@ -27,7 +27,7 @@ class Palestra(Evento):
             if dado["tema"] == self.tema:
                 dado["numero_inscritos"] -= 1
         
-        db_functions.salvar_json("database/palestras.json".dados)
+        db_functions.salvar_json("database/palestras.json", dados)
         print("Número de inscritos reduzido.")
 
     def __str__(self):
