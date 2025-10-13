@@ -16,5 +16,11 @@
         "email": "luana@gmail.com",
         "evento_escolhido": "POO com python",
         "checkin": true
+    },
+    {
+        "nome": "SILVIO SANTOS",
+        "email": "silvio@gmail.com",
+        "evento_escolhido": "test",
+        "checkin": false
     }
 ]

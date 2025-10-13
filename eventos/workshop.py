@@ -6,6 +6,11 @@ class Workshop(Evento):
 
         super().__init__(tema, data, local, capacidade_max, numero_inscritos, categoria, tipo, preco_ingresso)
 
+    def salvar_evento_json(self):
+        dict_evento = super().salvar_evento_json()
+        dados = db_functions.carregar_json("database/workshops.json")
+        dados.append(dict_evento)
+        db_functions.salvar_json("database/workshops.json", dados)
 
     def aumentar_numero_inscritos(self, diretorio):
 

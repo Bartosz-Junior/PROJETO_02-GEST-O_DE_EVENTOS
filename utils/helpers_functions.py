@@ -11,7 +11,7 @@ import json, os, datetime
 def add_evento(tipo_evento):
     hoje = datetime.datetime.today()
     try:                            
-        print("__________ Adicionar Palestra __________")
+        print(f"__________ Adicionar {tipo_evento.capitalize()} __________")
 
         tema = str(input("Tema: "))
 

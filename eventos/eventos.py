@@ -39,7 +39,7 @@ class Evento:
     
     @property
     def tipo(self):
-        return self.tipo
+        return self._tipo
     
     @property
     def preco(self):
@@ -49,7 +49,7 @@ class Evento:
         
         data_str = self.data.strftime("%d/%m/%Y")
 
-        dict_evento = {
+        return {
             "tema" : self.tema,
             "data" : data_str,
             "local" : self.local,
@@ -59,10 +59,6 @@ class Evento:
             "tipo" : self.tipo,
             "preco_ingresso" : self.preco
         }
-
-        dados = db_functions.carregar_json("database/palestras.json")
-        dados.append(dict_evento)
-        db_functions.salvar_json("database/palestras.json", dados)
 
     #VERIFICAR SE A DATA É FUTURA
     def verificar_data(self):

@@ -18,5 +18,15 @@
         "categoria": "tech",
         "tipo": "palestra",
         "preco_ingresso": 40.0
+    },
+    {
+        "tema": "test",
+        "data": "30/11/2025",
+        "local": "rec",
+        "capacidade_max": 40,
+        "numero_inscritos": 1,
+        "categoria": "tech",
+        "tipo": "palestra",
+        "preco_ingresso": 40.0
     }
 ]
