@@ -104,17 +104,17 @@ def relatorios(palestras, workshops):
     # Inscrições por evento
     print(" Inscrições por evento:")
     for evento in palestras + workshops:
-        print(f"- {evento.tema}: {evento.numero_inscritos} inscritos")
+        print(f"- {evento["tema"]}: {evento["numero_inscritos"]} inscritos")
 
     # Total de participantes
-    total_participantes = sum(e.numero_inscritos for e in palestras + workshops)
+    total_participantes = sum(e["numero_inscritos"] for e in palestras + workshops)
     print(f"\nTotal de participantes (contagem geral): {total_participantes}\n")
 
     # Evento mais popular
     if palestras + workshops:
-        mais_popular = max(palestras + workshops, key=lambda e: e.numero_inscritos)
-        if mais_popular.numero_inscritos > 0:
-            print(f" Evento mais popular: {mais_popular.tema} ({mais_popular.numero_inscritos} inscritos)")
+        mais_popular = max(palestras + workshops, key=lambda e: e["numero_inscritos"])
+        if mais_popular["numero_inscritos"] > 0:
+            print(f" Evento mais popular: {mais_popular["tema"]} ({mais_popular["numero_inscritos"]} inscritos)")
         else:
             print("Nenhum evento tem inscritos ainda.")
     else:
