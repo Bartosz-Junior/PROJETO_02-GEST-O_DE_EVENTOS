@@ -53,13 +53,15 @@ def add_evento(tipo_evento):
                 break
 
         if tipo_evento == "palestra":
-            novo_evento = Palestra(tema, data, local_evento, capacidade_max, numero_inscritos, categoria, preco_ingresso)
+            tipo = tipo_evento
+            novo_evento = Palestra(tema, data, local_evento, capacidade_max, numero_inscritos, categoria, tipo, preco_ingresso)
 
             novo_evento.salvar_evento_json()
 
 
         elif tipo_evento == "workshop":
-            novo_evento = Workshop(tema, data, local_evento, capacidade_max, numero_inscritos, categoria, preco_ingresso)
+            tipo = tipo_evento
+            novo_evento = Workshop(tema, data, local_evento, capacidade_max, numero_inscritos, categoria, tipo, preco_ingresso)
 
             novo_evento.salvar_evento_json()
 
@@ -70,21 +72,22 @@ def add_evento(tipo_evento):
         print("Opção inválida!")
 
 
-def listar_objetos(objetos, tipo):
+def listar_dados(dados, tipo):
     print("\n" + "="*30)
-    print(f"      LISTA DE {tipo}")
+    print(f"      LISTA DE {tipo.upper()}")
     print("="*30)
 
-    if not objetos:
-        print(f"Nenhum evento cadastrado ainda.")
+    if not dados:
+        print(f"Nenhum {tipo.lower()} cadastrado ainda.")
         return
 
-    for i, objeto in enumerate(objetos):
+    for i, dado in enumerate(dados):
         print(f"\n--- {tipo} {i} ---")
-        print(objeto)
+
+        for chave, valor in dado.items():
+            print(f"{chave.capitalize()}: {valor}")
 
     print("\n" + "="*30)
-
 
 def add_participante(eventos, tipo, diretorio_evento):
     try:
@@ -92,7 +95,7 @@ def add_participante(eventos, tipo, diretorio_evento):
             print("Nenhum evento disponível.")
             return
 
-        listar_objetos(eventos, tipo)
+        listar_dados(eventos, tipo)
         indice = int(input("Informe qual evento deseja participar: "))
 
         if (indice < 0) or (indice >= len(eventos)):
@@ -101,11 +104,10 @@ def add_participante(eventos, tipo, diretorio_evento):
         
         nome = str(input("Informe o nome do participante: ")).upper()
         email = str(input("Informe o e-mail do particante: ")).lower()
-        evento_escolhido = eventos[indice]
+        evento_escolhido = db_functions.carregar_objeto(eventos[indice], Palestra)
         
         if nome and email and evento_escolhido:
             participante = Participante(nome, email, evento_escolhido.tema)
-            print(participante)
 
             if participante.verificar_email("database/participantes.json"):
                 return
@@ -137,25 +139,30 @@ def buscar_eventos(eventos_filtrados):
 
         if filtro_tipo:
             if filtro_tipo == "palestras":
-                eventos_filtrados = [evento for evento in eventos_filtrados if isinstance(evento, Palestra)]
+                eventos_filtrados = [evento for evento in eventos_filtrados if evento["tipo"] == filtro_tipo]
 
             elif filtro_tipo == "workshops":
-                eventos_filtrados = [evento for evento in eventos_filtrados if isinstance(evento, Workshop)]
+                eventos_filtrados = [evento for evento in eventos_filtrados if evento["tipo"] == filtro_tipo]
 
         if filtro_categoria:
-            eventos_filtrados = [evento for evento in eventos_filtrados if evento.categoria == filtro_categoria]
+            eventos_filtrados = [evento for evento in eventos_filtrados if evento["categoria"] == filtro_categoria]
 
         if filtro_data:
             try:
-                filtro_data_formatada = datetime.datetime.strptime(filtro_data, "%d/%m/%Y")
-                eventos_filtrados = [evento for evento in eventos_filtrados if evento.data.date() == filtro_data_formatada.date()]
+                # filtro_data_formatada = datetime.datetime.strptime(filtro_data, "%d/%m/%Y")
+                eventos_filtrados = [evento for evento in eventos_filtrados if evento["data"] == filtro_data]
                 
             except ValueError:
                 print("Data inválida. Use o formato dd/mm/aaaa.")
 
         if eventos_filtrados:
             print(f"Total de {len(eventos_filtrados)} encontrados!")
-            listar_objetos(eventos_filtrados, "RESULTADOS")
+            listar_dados(eventos_filtrados, "resultados")
 
         else:
             print("Total de 0 eventos encontrados!")
+
+def fazer_checkin_participante(participante):
+    objeto_participante = db_functions.carregar_objeto(participante, Participante)
+
+    objeto_participante.fazer_checkin()

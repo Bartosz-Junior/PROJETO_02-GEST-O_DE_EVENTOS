@@ -31,6 +31,11 @@ def salvar_json(diretorio, dados):
         json.dump(dados, file, indent=4, ensure_ascii=False)
 
 
+def carregar_objeto(dado, classe):
+
+    objeto = classe(**dado)
+    return objeto
+
 # REINSTÂNCIA TODOS OS OBJETOS CARREGADOS DO JSON
 def carregar_instancias(dados, classe):
 
@@ -42,7 +47,7 @@ def carregar_instancias(dados, classe):
 
     return lista_instancias
 
-def carregar_todos_objetos():
+def carregar_todos_dados():
     DIRETORIO_PALESTRAS = "database/palestras.json"
     DIRETORIO_WORKSHOPS = "database/workshops.json"
     DIRETORIO_PARTICIPANTES = "database/participantes.json"
@@ -52,9 +57,4 @@ def carregar_todos_objetos():
     dict_workshops = carregar_json(DIRETORIO_WORKSHOPS)
     dict_participantes = carregar_json(DIRETORIO_PARTICIPANTES)
 
-
-    objetos_palestras = carregar_instancias(dict_palestras, Palestra)
-    objetos_workshops = carregar_instancias(dict_workshops, Workshop)
-    objetos_participantes = carregar_instancias(dict_participantes, Participante)
-
-    return objetos_palestras, objetos_workshops, objetos_participantes
+    return dict_palestras, dict_workshops, dict_participantes
