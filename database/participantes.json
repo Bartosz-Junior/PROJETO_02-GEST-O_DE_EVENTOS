@@ -28,5 +28,11 @@
         "email": "edvaldo.sjr94@gmail.com",
         "evento_escolhido": "Postgre SQL",
         "checkin": true
+    },
+    {
+        "nome": "JOANA DARC",
+        "email": "darc@gmail.com",
+        "evento_escolhido": "Postgre SQL",
+        "checkin": true
     }
 ]

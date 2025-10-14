@@ -1,10 +1,8 @@
 from utils import menu_functions, db_functions
 
-
-
 while True:
 
-    dicts_palestras, dicts_workshops, dicts_participantes = db_functions.carregar_todos_dados()
+    dict_dados = db_functions.carregar_dict_dados()
 
     try:
         print("______________ MENU _______________")
@@ -24,19 +22,19 @@ while True:
                 menu_functions.adicionar_evento()
                 
             case 2:
-                menu_functions.mostrar_eventos(dicts_palestras, dicts_workshops)
+                menu_functions.mostrar_eventos(dict_dados)
 
             case 3:
-                menu_functions.fazer_inscricao(dicts_palestras, dicts_workshops)
+                menu_functions.fazer_inscricao(dict_dados)
 
             case 4:
-                menu_functions.buscar_email_cancelamento(dicts_participantes)
+                menu_functions.buscar_email_cancelamento(dict_dados)
 
             case 5:
-                menu_functions.buscar_email_checkin(dicts_participantes)
+                menu_functions.buscar_email_checkin(dict_dados)
 
             case 6:
-                menu_functions.relatorios(dicts_palestras, dicts_workshops)
+                menu_functions.relatorios(dict_dados)
 
             case 0:
                 print("Saindo...")

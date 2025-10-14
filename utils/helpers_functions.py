@@ -5,11 +5,10 @@ from eventos.palestra import Palestra
 from eventos.workshop import Workshop
 from eventos.participantes import Participante
 from datetime import datetime
-import json, os, datetime
 
 
 def add_evento(tipo_evento):
-    hoje = datetime.datetime.today()
+    hoje = datetime.today()
     
     print(f"__________ Adicionar {tipo_evento.capitalize()} __________")
 
@@ -26,7 +25,7 @@ def add_evento(tipo_evento):
         try:
             data = input("Data de realização (dd/mm/aaaa): ")
             # tenta converter
-            data_formatada = datetime.datetime.strptime(data, "%d/%m/%Y")      
+            data_formatada = datetime.strptime(data, "%d/%m/%Y")      
             # valida se é no passado
             if data_formatada < hoje:
                 print("A data do evento não pode ser menor que a data atual!")
@@ -201,40 +200,53 @@ def buscar_evento_inscrito(evento):
         print("Evento não encontrado")
 
 
-def buscar_eventos(eventos_filtrados):
+def buscar_eventos(dict_dados):
     while True:
-        
-        print("______ BUSCAR EVENTO ______")
-        print()
-        filtro_tipo = str(input("Informe o tipo do evento [ENTER para ignorar filtro]: ")).lower()
-        filtro_data = str(input("Informe a data do evento (dd/mm/YY) [ENTER para ignorar filtro]: "))
-        filtro_categoria = str(input("Informe a categoria do evento [ENTER para ignorar filtro]: ")).lower()
+        try:
+
+            print("______ BUSCAR EVENTO ______")
+            print()
+
+            while True:
+                filtro_tipo = str(input("Informe o tipo do evento [ENTER para ignorar filtro]: ")).lower()
+                if filtro_tipo in dict_dados:
+                    break
+                print("Tipo invalido, escolha entre palestras ou workshops.\n")
+
+
+            filtro_data = str(input("Informe a data do evento (dd/mm/YY) [ENTER para ignorar filtro]: "))
+            filtro_categoria = str(input("Informe a categoria do evento [ENTER para ignorar filtro]: ")).lower()
+
+        except ValueError:
+            print("Opção inválida!")
+            continue
 
         if filtro_tipo:
             if filtro_tipo == "palestras":
-                eventos_filtrados = [evento for evento in eventos_filtrados if evento["tipo"] == filtro_tipo]
+                eventos_filtrados = dict_dados["palestras"]
 
             elif filtro_tipo == "workshops":
-                eventos_filtrados = [evento for evento in eventos_filtrados if evento["tipo"] == filtro_tipo]
+                eventos_filtrados = dict_dados["workshops"]
 
         if filtro_categoria:
             eventos_filtrados = [evento for evento in eventos_filtrados if evento["categoria"] == filtro_categoria]
 
         if filtro_data:
             try:
-                # filtro_data_formatada = datetime.datetime.strptime(filtro_data, "%d/%m/%Y")
                 eventos_filtrados = [evento for evento in eventos_filtrados if evento["data"] == filtro_data]
                 
             except ValueError:
                 print("Data inválida. Use o formato dd/mm/aaaa.")
 
         if eventos_filtrados:
+            print()
             print(f"Total de {len(eventos_filtrados)} encontrados!")
             listar_dados(eventos_filtrados, "resultados")
             break
 
         else:
-            print("Total de 0 eventos encontrados!")
+            print()
+            print("Total de 0 eventos encontrados!\n")
             break
         
 def fazer_checkin_participante(participante):
