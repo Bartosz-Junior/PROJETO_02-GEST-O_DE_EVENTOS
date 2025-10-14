@@ -1,7 +1,5 @@
 # FUNÇOES RELACIONADAS AOS BANCO DE DADOS
-from eventos.palestra import Palestra
-from eventos.workshop import Workshop
-from eventos.participantes import Participante
+from datetime import datetime
 import json
 import os # para verificar se o arquivo json existe
 
@@ -36,25 +34,37 @@ def carregar_objeto(dado, classe):
     objeto = classe(**dado)
     return objeto
 
-# REINSTÂNCIA TODOS OS OBJETOS CARREGADOS DO JSON
-def carregar_instancias(dados, classe):
-
-    lista_instancias = []
-    for dado in dados:
-        
-        p = classe(**dado)
-        lista_instancias.append(p)
-
-    return lista_instancias
-
-def carregar_todos_dados():
+def carregar_dict_dados():
     DIRETORIO_PALESTRAS = "database/palestras.json"
     DIRETORIO_WORKSHOPS = "database/workshops.json"
     DIRETORIO_PARTICIPANTES = "database/participantes.json"
 
-    # CARREGA OS DADOS DO JSON E A VARIAVEL RECEBER UM DICT
-    dict_palestras = carregar_json(DIRETORIO_PALESTRAS)
-    dict_workshops = carregar_json(DIRETORIO_WORKSHOPS)
-    dict_participantes = carregar_json(DIRETORIO_PARTICIPANTES)
+    dicts_palestras = carregar_json(DIRETORIO_PALESTRAS)
+    dicts_workshops = carregar_json(DIRETORIO_WORKSHOPS)
+    dicts_participantes = carregar_json(DIRETORIO_PARTICIPANTES)
 
-    return dict_palestras, dict_workshops, dict_participantes
+    hoje = datetime.now()
+
+    dict_dados = {
+        "palestras" : [],
+        "workshops" : [],
+        "participantes" : []
+    }
+
+    for evento in dicts_palestras:
+        data_str = evento["data"]
+        data = datetime.strptime(data_str, "%d/%m/%Y")
+
+        if data > hoje:
+            dict_dados["palestras"].append(evento)
+            
+    for evento in dicts_workshops:
+        data_str = evento["data"]
+        data = datetime.strptime(data_str, "%d/%m/%Y")
+
+        if data > hoje:
+            dict_dados["workshops"].append(evento)
+
+    dict_dados["participantes"] = dicts_participantes
+
+    return dict_dados
