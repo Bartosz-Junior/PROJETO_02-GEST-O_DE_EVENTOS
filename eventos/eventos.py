@@ -63,16 +63,9 @@ class Evento:
             "tipo" : self.tipo,
             "preco_ingresso" : self.preco
         }
-
-    #VERIFICAR SE A DATA É FUTURA
-    def verificar_data(self):
-        pass
     
     def reduzir_numero_inscritos(self):
         raise NotImplementedError("Este método deve ser subescrito pelas subclasses.")  
-        
-    def verificar_vagas(self):
-        pass
 
     def aumentar_numero_inscritos(self):
         raise NotImplementedError("Este método deve ser subescrito pelas subclasses.")

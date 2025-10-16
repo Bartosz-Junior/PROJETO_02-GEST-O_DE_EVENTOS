@@ -1,6 +1,6 @@
 #  Sistema de Gerenciamento de Eventos  
 
-Este projeto é um sistema back-end para gerenciamento de eventos como workshops, palestras e meetups. Ele permite o **cadastro de eventos**, **inscrição de participantes**, **check-in**, e a **emissão de relatórios detalhados**, funcionando como a espinha dorsal de uma plataforma de gestão.  
+Este projeto é um sistema back-end para gerenciamento de eventos como workshops, palestras etc. Ele permite o **cadastro de eventos**, **inscrição de participantes**, **check-in**, e a **emissão de relatórios detalhados**, funcionando como a espinha dorsal de uma plataforma de gestão. O sistema deve ser iniciado pelo arquivo **main.py**.
 
 ##  Funcionalidades  
 - **Cadastro de Eventos**: nome, data, local, capacidade máxima, categoria e preço do ingresso.  
@@ -37,18 +37,22 @@ PROJETO_02-GEST-O_DE_EVENTOS/
 │ ├── eventos.py
 │ ├── palestra.py
 │ ├── participantes.py
-│ ├── sistema.py
 │ └── workshop.py
 │
 ├── tests/
-│ ├── test_evento.py
+│ ├── test_buscar_evento.py
 │ ├── test_participante.py
-│ └── test_system.py
+│ ├── test_workshop.py
+│ ├── test_listagem_de_dados.py
+│ ├── test_bd.py
+│ └── test_palestra.py
+| 
 │
 ├── utils/
-│ └── functions.py
+│ ├── db_functions.py
+│ ├── helpers_functions.py
+│ └── menu_functions.py
 │
 ├── .gitignore
-├── inscricao_participante.py
 ├── main.py
 └── README.md
