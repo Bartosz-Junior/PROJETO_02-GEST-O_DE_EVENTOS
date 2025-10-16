@@ -10,7 +10,7 @@
         "preco_ingresso": 25.0
     },
     {
-        "tema": "POO com python",
+        "tema": "poo com python",
         "data": "30/01/2026",
         "local": "camaragibe",
         "capacidade_max": 100,
@@ -30,7 +30,7 @@
         "preco_ingresso": 40.0
     },
     {
-        "tema": "Postgre SQL",
+        "tema": "postgre SQL",
         "data": "10/11/2025",
         "local": "Recife",
         "capacidade_max": 10,

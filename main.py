@@ -19,7 +19,7 @@ while True:
 
         match escolha:
             case 1:
-                menu_functions.adicionar_evento()
+                menu_functions.adicionar_evento(dict_dados)
                 
             case 2:
                 menu_functions.mostrar_eventos(dict_dados)

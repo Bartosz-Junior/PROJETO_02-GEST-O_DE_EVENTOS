@@ -2,7 +2,7 @@
 
 from utils import helpers_functions
 
-def adicionar_evento():
+def adicionar_evento(dict_dados):
     while True:
         try:
             print("__________ ADICIONAR EVENTO __________")
@@ -13,10 +13,10 @@ def adicionar_evento():
             escolha = int(input())
 
             if escolha == 1:
-                helpers_functions.add_evento("palestra")
+                helpers_functions.add_evento("palestra", dict_dados)
 
             elif escolha == 2:
-                helpers_functions.add_evento("workshop")
+                helpers_functions.add_evento("workshop", dict_dados)
 
             elif escolha == 0:
                 break
