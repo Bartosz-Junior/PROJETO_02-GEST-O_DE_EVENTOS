@@ -187,8 +187,6 @@ def cancelar_inscricao_participante(participante, dict_dados):
         print("Evento não encontrado.")
 
 
-    # buscar_evento_inscrito(evento)
-
 def buscar_eventos(dict_dados):
     while True:
         try:
