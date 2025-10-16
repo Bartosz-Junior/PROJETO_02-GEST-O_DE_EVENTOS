@@ -7,20 +7,28 @@ from eventos.participantes import Participante
 from datetime import datetime
 
 
-def add_evento(tipo_evento):
+def add_evento(tipo_evento, dict_dados):
     hoje = datetime.today()
     
     print(f"__________ Adicionar {tipo_evento.capitalize()} __________")
 
-    # 1. Validação de Tema
+    todos_eventos = dict_dados["palestras"] + dict_dados["workshops"]
+
     while True:
-        tema = str(input("Tema: ")).strip()
+        tema = str(input("Tema: ")).strip().lower()
         if not tema:
             print("O tema não pode ser vazio!")
             continue
+
+        tema_existe = any(dado["tema"] == tema for dado in todos_eventos)
+        if tema_existe:
+            print("Este tema já existe! Escolha outro.")
+            continue
+        
         break
 
-    # 2. Validação de Data (já está boa, apenas movendo o try/except para dentro)
+
+    # 2. Validação de Data
     while True:
         try:
             data = input("Data de realização (dd/mm/aaaa): ")
@@ -45,7 +53,7 @@ def add_evento(tipo_evento):
             continue
         break
     
-    # 4. Validação de Capacidade Máxima (incluindo try/except para int)
+    # 4. Validação de Capacidade Máxima
     while True:
         try:
             capacidade_max_str = input("Capacidade de pessoas: ")
@@ -70,7 +78,7 @@ def add_evento(tipo_evento):
         
     numero_inscritos = 0
 
-    # 6. Validação de Preço (incluindo try/except para float)
+    # 6. Validação de Preço
     while True:
         try:
             preco_ingresso_str = input("Preço da entrada: ")
@@ -90,7 +98,7 @@ def add_evento(tipo_evento):
             
             novo_evento = Palestra(tema, data, local_evento, capacidade_max, numero_inscritos, categoria, tipo, preco_ingresso)
             novo_evento.salvar_evento_json()
-            print(f"Evento 'Palestra' criado (Tema: {tema}, Data: {data}, Preço: {preco_ingresso})")
+            print(f"\nEvento 'Palestra' criado (Tema: {tema}, Data: {data}, Preço: {preco_ingresso})")
 
 
         elif tipo_evento == "workshop":
@@ -98,7 +106,7 @@ def add_evento(tipo_evento):
             
             novo_evento = Workshop(tema, data, local_evento, capacidade_max, numero_inscritos, categoria, tipo, preco_ingresso)
             novo_evento.salvar_evento_json()
-            print(f"Evento 'Workshop' criado (Tema: {tema}, Data: {data}, Preço: {preco_ingresso})")
+            print(f"\nEvento 'Workshop' criado (Tema: {tema}, Data: {data}, Preço: {preco_ingresso})")
         
         else:
             # Caso o 'tipo_evento' passado para a função seja inválido

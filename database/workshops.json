@@ -1,6 +1,6 @@
 [
     {
-        "tema": "Python para leigos",
+        "tema": "python para leigos",
         "data": "20/10/2025",
         "local": "teste",
         "capacidade_max": 120,
@@ -10,7 +10,7 @@
         "preco_ingresso": 120.0
     },
     {
-        "tema": "Aniversário Bartosz",
+        "tema": "aniversario Bartosz",
         "data": "29/12/2025",
         "local": "Iputinga",
         "capacidade_max": 120,
@@ -20,23 +20,13 @@
         "preco_ingresso": 0.0
     },
     {
-        "tema": "sexshop for devs",
-        "data": "09/10/2025",
-        "local": "cecine UFPE polo recife",
+        "tema": "workshop de js",
+        "data": "30/12/2025",
+        "local": "camaragibe",
         "capacidade_max": 120,
         "numero_inscritos": 0,
         "categoria": "tech",
         "tipo": "workshop",
-        "preco_ingresso": 20.0
-    },
-    {
-        "tema": "test",
-        "data": "28/10/2025",
-        "local": "rec",
-        "capacidade_max": 45,
-        "numero_inscritos": 0,
-        "categoria": "tech",
-        "tipo": "workshop",
-        "preco_ingresso": 30.0
+        "preco_ingresso": 15.0
     }
 ]
