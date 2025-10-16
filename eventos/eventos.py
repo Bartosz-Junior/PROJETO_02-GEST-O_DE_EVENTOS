@@ -33,6 +33,10 @@ class Evento:
     def numero_inscritos(self):
         return self._numero_inscritos
     
+    @numero_inscritos.setter
+    def numero_inscritos(self, valor):
+        self._numero_inscritos = valor
+    
     @property
     def categoria(self):
         return self._categoria

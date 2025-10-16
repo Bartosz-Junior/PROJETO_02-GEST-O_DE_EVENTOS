@@ -27,15 +27,16 @@ class Workshop(Evento):
             print("Evento com a capacidade máxima atingida!")
 
     def reduzir_numero_inscritos(self):
-
-        dados = db_functions.carregar_json("database/workshops.json")
-
-        for dado in dados:
-            if dado["tema"] == self.tema:
-                dado["numero_inscritos"] -= 1
-        
-        db_functions.salvar_json("database/workshops.json", dados)
-        print("Número de inscritos reduzido.")
+        if self.numero_inscritos > 0:
+            self.numero_inscritos -= 1
+            dados = db_functions.carregar_json("database/workshops.json")
+            for dado in dados:
+                if dado["tema"] == self.tema:
+                    dado["numero_inscritos"] = self.numero_inscritos
+            db_functions.salvar_json("database/workshops.json", dados)
+            print("Número de inscritos reduzido.")
+        else:
+            print("Nenhum inscrito para remover.")
 
     def __str__(self):
         
