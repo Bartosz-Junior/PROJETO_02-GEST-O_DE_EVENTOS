@@ -34,5 +34,11 @@
         "email": "darc@gmail.com",
         "evento_escolhido": "Postgre SQL",
         "checkin": true
+    },
+    {
+        "nome": "SENNA",
+        "email": "senna@gmail.com",
+        "evento_escolhido": "Aniversário Bartosz",
+        "checkin": false
     }
 ]
