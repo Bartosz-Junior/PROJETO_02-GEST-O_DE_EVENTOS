@@ -167,28 +167,14 @@ def add_participante(eventos, tipo, diretorio_evento):
     except IndexError:
         print("Evento inválido! O número do evento não existe na lista.")
 
-def cancelar_inscricao_participante(participante):
+def cancelar_inscricao_participante(participante, dict_dados):
     objeto_participante = db_functions.carregar_objeto(participante, Participante)
 
-    evento = objeto_participante.remover_inscrito()
-    buscar_evento_inscrito(evento)
+    evento_reduzir = objeto_participante.remover_inscrito()
+    todos_eventos = dict_dados["palestras"] + dict_dados["workshops"]
 
-def buscar_evento_inscrito(evento):
-
-    # VERFICAR O TIPO DO EVENTO
-    dados_palestras = db_functions.carregar_json(f"database/palestras.json")
-    dados_workshops = db_functions.carregar_json(f"database/workshops.json")
-    
-    # Descobrir onde o evento está
-    for dado in dados_palestras:
-        if dado["tema"] == evento:
-            dados = dados_palestras
-            break
-    else:
-        dados = dados_workshops
-
-    for dado in dados:
-        if dado["tema"] == evento:
+    for dado in todos_eventos:
+        if dado["tema"] == evento_reduzir:
             if dado["tipo"] == "palestra":
                 objeto_evento = db_functions.carregar_objeto(dado, Palestra)
             else:
@@ -196,9 +182,12 @@ def buscar_evento_inscrito(evento):
 
             objeto_evento.reduzir_numero_inscritos()
             break
-    else:
-        print("Evento não encontrado")
 
+    else:
+        print("Evento não encontrado.")
+
+
+    # buscar_evento_inscrito(evento)
 
 def buscar_eventos(dict_dados):
     while True:
